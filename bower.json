@@ -1,0 +1,25 @@
+{
+  "name": "black-belt-AngularJS-directives",
+  "version": "0.0.1",
+  "description": "A Directive set to help Master AngularJS Directives",
+  "author": "https://github.com/joshkurz/black-belt-AngularJS-directives/graphs/contributors",
+  "license": "MIT",
+  "homepage": "https://github.com/joshkurz/black-belt-AngularJS-directives",
+  "main": "./directives",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test*",
+    "demo*",
+    "gruntFile.js",
+    "package.json"
+  ],
+  "dependencies": {
+    "angular": "~1.x.x"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.x.x",
+    "bootstrap-css": "3.x.x"
+  }
+}

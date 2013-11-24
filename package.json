@@ -1,0 +1,24 @@
+{
+  "name": "black-belt-AngularJS-directives",
+  "version": "0.0.1",
+  "description": "A Directive set to help Master AngularJS Directives",
+  "author": "https://github.com/joshkurz/black-belt-AngularJS-directives/graphs/contributors",
+  "license": "MIT",
+  "homepage": "https://github.com/joshkurz/black-belt-AngularJS-directives",
+  "main": "./directives",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-karma": "~0.7.1",
+    "grunt-contrib-jshint": "~0.2.0",
+    "matchdep": "~0.1.1",
+    "karma" : "~0.10.4",
+    "http-server" : "0.5.5",
+    "karma-coverage" : "~0.1.2"
+  },
+  "scripts": {"test": "grunt"},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/joshkurz/black-belt-AngularJS-directives"
+  }
+}
