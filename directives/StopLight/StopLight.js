@@ -1,4 +1,10 @@
 angular.module('StopLight',[])
+
+/*
+* DemoCtrl
+* @description: used for controlling the options fed to the stop light.
+* http://jsfiddle.net/joshkurz/6Zxuf/13/
+*/
 .controller('demoCtrl', ['$scope', function($scope){
     
     $scope.stopLightOptions = {
