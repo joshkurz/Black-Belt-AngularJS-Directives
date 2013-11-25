@@ -1,0 +1,18 @@
+<html ng-app="StopLight">
+   <head>
+   	<link rel="stylesheet" type="text/css" href="../../../bower_components/bootstrap-css/css/bootstrap.css"/>
+   	<link rel="stylesheet" type="text/css" href="stopLight.css"/>
+   	<script src="../../../bower_components/angular/angular.js"></script>
+   	<script src="../stopLight.js"></script>
+   </head>
+
+   <body ng-controller="demoCtrl">
+      <div stop-light-container options="stopLightOptions" class="stopLight">
+        <canvas class="light" stop-light state="red"></canvas>
+        <canvas class="light" stop-light state="yellow"></canvas>
+        <canvas class="light" stop-light state="green"></canvas>
+      </div>
+   </body>
+
+</html>
+    

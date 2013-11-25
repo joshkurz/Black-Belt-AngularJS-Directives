@@ -8,6 +8,12 @@ describe('StopLight', function () {
     scope = _$rootScope_.$new();
     $compile = _$compile_;
     svgService = _svgService_;
+    scope.options = {
+        lineWidth: 6,
+        strokeStyle: '#003300',
+        radius: 30,
+        state: 'green'
+    };
     ctrl = _$controller_('stopLightCtrl', {$scope:  scope, $interval: _$interval_});
     scope.$apply();
   }));
@@ -15,7 +21,7 @@ describe('StopLight', function () {
   describe('Creating A StopLightContainer Directive with multiple stop lights', function () {
     it('throw an error if the element that is not a Canvas Element', function() {
       expect(function(){
-        var stopLight = $compile('<div stop-light-container>' +
+        var stopLight = $compile('<div stop-light-container options="options">' +
                                  '<div stop-light></div>' +
                                  '</div>')(scope);
         scope.$apply();
@@ -23,7 +29,7 @@ describe('StopLight', function () {
     });    
     it('not throw an error when initializing on a Canvas Element', function() {
       expect(function(){
-        var stopLight = $compile('<div stop-light-container>' +
+        var stopLight = $compile('<div stop-light-container options="options">' +
                                    '<canvas stop-light></canvas>' +
                                    '<canvas stop-light></canvas>' +
                                    '<canvas stop-light></canvas>' +
@@ -32,7 +38,7 @@ describe('StopLight', function () {
       }).not.toThrow('StopLight can only be a canvas element. DIV will not work.');
     });   
     it('The original state should be green and after 6 seconds it should cycle through yellow and red', function() {
-        var stopLight = $compile('<div stop-light-container>' +
+        var stopLight = $compile('<div stop-light-container options="options">' +
                                    '<canvas stop-light></canvas>' +
                                    '<canvas stop-light></canvas>' +
                                    '<canvas stop-light></canvas>' +
@@ -47,7 +53,7 @@ describe('StopLight', function () {
         expect(ctrl.options.state).toBe('red');
     });
     it('Every stop light should be grey because the state was not set as a default', function() {
-        var stopLight = $compile('<div stop-light-container>' +
+        var stopLight = $compile('<div stop-light-container options="options">' +
                                    '<canvas stop-light></canvas>' +
                                    '<canvas stop-light></canvas>' +
                                    '<canvas stop-light></canvas>' +
@@ -61,7 +67,7 @@ describe('StopLight', function () {
         expect(svg.fillStyle).toBe('#cccccc');
     });
     it('Each stop light should be what the default state is set as and the last element should be set as green', function() {
-        var stopLight = $compile('<div stop-light-container>' +
+        var stopLight = $compile('<div stop-light-container options="options">' +
                                    '<canvas stop-light state="red"></canvas>' +
                                    '<canvas stop-light state="yellow"></canvas>' +
                                    '<canvas stop-light state="green"></canvas>' +
@@ -75,7 +81,7 @@ describe('StopLight', function () {
         expect(svg2.fillStyle).toBe('#008000');
     });
     it('Each stop light should be what the default state is set as and the last element should be set as green', function() {
-        var stopLight = $compile('<div stop-light-container>' +
+        var stopLight = $compile('<div stop-light-container options="options">' +
                                    '<canvas stop-light state="red"></canvas>' +
                                    '<canvas stop-light state="yellow"></canvas>' +
                                    '<canvas stop-light state="green"></canvas>' +

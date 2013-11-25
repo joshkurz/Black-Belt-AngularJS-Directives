@@ -1,4 +1,14 @@
 angular.module('StopLight',[])
+.controller('demoCtrl', ['$scope', function($scope){
+    
+    $scope.stopLightOptions = {
+        lineWidth: 6,
+        strokeStyle: '#003300',
+        radius: 30,
+        state: 'green'
+    };
+        
+}])
   
   /*
   * The StopLight module consists of two directives, one controller, and one service. 
@@ -51,12 +61,7 @@ angular.module('StopLight',[])
 }])
 .controller('stopLightCtrl', ['$scope','$interval', function($scope,$interval){
     
-    $scope.options = this.options = {
-        lineWidth: 6,
-        strokeStyle: '#003300',
-        radius: 30,
-        state: 'green'
-    };
+    this.options = $scope.options;
     
     this.setNextState = function(){
         state = $scope.options.state;
@@ -71,7 +76,7 @@ angular.module('StopLight',[])
         restrict: 'A',
         controller: 'stopLightCtrl',
         transclude: true,
-        scope: {},
+        scope: {options: '='},
         template: '<div ng-transclude></div>',
         replace: true
     };

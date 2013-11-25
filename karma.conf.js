@@ -15,10 +15,6 @@ module.exports = function (config) {
 
     frameworks : ["jasmine"],
 
-    preprocessors : {
-        '**/src/*.js': 'coverage'
-    },
-
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit'
     reporters : ['progress', 'coverage']
