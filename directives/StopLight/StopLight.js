@@ -15,14 +15,13 @@ angular.module('StopLight',[])
     };
         
 }])
-  
-  /*
-  * The StopLight module consists of two directives, one controller, and one service. 
-  * StopLightContainer: Contains the StopLight Directive
-  * StopLight: The SVG Element that renders the active light.
-  * StopLightCtrl: Switches the state of the Stop Light
-  * svgService: A service that performs svg functions.
-  */
+/*
+* The StopLight module consists of two directives, one controller, and one service. 
+* StopLightContainer: Contains the StopLight Directive
+* StopLight: The SVG Element that renders the active light.
+* StopLightCtrl: Switches the state of the Stop Light
+* svgService: A service that performs svg functions.
+*/
 .service('svgService', [ function(){
     
     var service = {
@@ -71,7 +70,11 @@ angular.module('StopLight',[])
     
     this.setNextState = function(){
         state = $scope.options.state;
-        $scope.options.state =  state==='red'?'green':state==='yellow'?'red':'yellow';
+        if($scope.options.reverse === true){
+            $scope.options.state =  state==='red'?'yellow':state==='yellow'?'green':'red';
+        } else {
+          $scope.options.state =  state==='red'?'green':state==='yellow'?'red':'yellow';   
+        }
     };
     
     $interval(this.setNextState,3000);
