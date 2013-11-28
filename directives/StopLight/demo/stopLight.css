@@ -1,11 +1,64 @@
-.light{
-    width: 100%;
-    height: 35%;
+html{
+  background: linear-gradient(#08f, #fff);
+  padding: 40px;
+  width: 170px;
+  height: 100%;
+  margin: 0 auto;
 }
 
-.stopLight{
-    margin: 20px auto;
-    border: solid 5px grey;
-    width: 33%;
-    height: 85%;
+button {
+    margin-left: -100px;
+}
+
+.light{
+    width: 100%;
+    height: 30%;
+}
+
+.protector{
+  background: transparent;
+  width: 180px;
+  height: 0;
+  position: absolute;
+  top: 20px;
+  left: -35px;
+  border-right: solid 30px transparent;
+  border-left: solid 30px transparent;
+  border-top: solid 30px #111;
+  border-radius: 10px;
+  z-index: -1;
+}
+
+.protector:nth-child(2){
+  top: 80px;
+}
+
+.protector:nth-child(3){
+  top: 140px;
+}
+
+.trafficlight{
+  background: #222;
+  background-image: linear-gradient(transparent 2%, #111 2%, transparent 3%, #111 30%);
+  width: 170px;
+  height: 200px;
+  border-radius: 10px;
+  position: relative;
+  border: solid 5px #333;
+   margin-bottom: 50px;
+}
+
+
+.trafficlight:before{
+  background: #222;
+  background-image: radial-gradient(#444, #000);
+  content: "";
+  width: 170px;
+  height: 150px;
+  margin: 0 auto;
+  position: absolute;
+  top: -30px;
+  margin-left: 0px;
+  border-radius: 50%;
+  z-index: -1;
 }
