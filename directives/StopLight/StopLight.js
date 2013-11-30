@@ -3,13 +3,13 @@ angular.module('StopLight',[])
     
     $scope.states = [{
         lineWidth: 6,
-        strokeStyle: '#003300',
+        strokeStyle: 'white',
         radius: 60,
         state: 'green',
-        interval: 3000
+        interval: 1000
     },{
         lineWidth: 6,
-        strokeStyle: '#003300',
+        strokeStyle: 'white',
         radius: 60,
         state: 'red',
         reverse: true,
@@ -91,16 +91,11 @@ angular.module('StopLight',[])
         
 }]).directive('stopLightContainer', [ function() {
     return {
-        restrict: 'A',
         controller: 'stopLightCtrl',
-        transclude: true,
         scope: {options: '='},
-        template: '<div ng-transclude></div>',
-        replace: true
     };
 }]).directive('stopLight', ['svgService', function(svgService) {
     return {
-        restrict: 'A',
         require: '^stopLightContainer',
         scope: {},
         link: function(scope,element,attrs,stopLightCtrl) {
