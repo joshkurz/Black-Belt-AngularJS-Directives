@@ -1,14 +1,24 @@
 angular.module('StopLight',[])
 .controller('demoCtrl', ['$scope', function($scope){
     
-    $scope.stopLightOptions = {
+    $scope.states = [{
         lineWidth: 6,
         strokeStyle: '#003300',
         radius: 60,
         state: 'green'
-    };
+    },{
+        lineWidth: 6,
+        strokeStyle: '#003300',
+        radius: 60,
+        state: 'red',
+        reverse: true
+    }];
     
-    $scope.stopLights = [{type: 'drag', color: 'red'},{type: 'traffic', color: 'green'}];
+    $scope.stopAllStates = function(){
+        for(var i = 0;i < $scope.states.length;i++){
+            $scope.states[i].state = 'red';
+        }
+    };
         
 }])
   
@@ -47,13 +57,13 @@ angular.module('StopLight',[])
       * @description: Does the Dom Manipulation on the canvas element.
       * @param: canvas {domElement} - the canvas element to alter
       * @param: options: {obj} - an object that contains
-      * @param: state: {obj} - unique instance of state
       */
-      setUpStopLight : function(canvas,options,state){
+      setUpStopLight : function(canvas,options){
                 canvas.beginPath();
                 canvas.arc(options.width/2,options.height/2, options.radius, 0, 12 * Math.PI, false);
                 canvas.lineWidth = options.lineWidth;
                 canvas.strokeStyle = options.strokeStyle;
+                this.changeColor(canvas,options.attrsState,options.state);
       }
     };
     
@@ -62,30 +72,17 @@ angular.module('StopLight',[])
         
 }])
 .controller('stopLightCtrl', ['$scope','$interval', function($scope,$interval){
-    var state, options = $scope.options;
-    //state must be specific to the singular stop light instance
-    this.state = state = $scope.state;
-    if(state.type === 'drag'){
-        state.reverse = true;
-    }
-
+    
+    this.options = $scope.options;
     
     this.setNextState = function(){
-        if(state.reverse === true){
-            state.color =  state.color==='red'?'yellow':state.color==='yellow'?'green':'red';
+        state = $scope.options.state;
+        if($scope.options.reverse === true){
+            $scope.options.state =  state==='red'?'yellow':state==='yellow'?'green':'red';
         } else {
-          state.color =  state.color==='red'?'green':state.color==='yellow'?'red':'yellow';   
+          $scope.options.state =  state==='red'?'green':state==='yellow'?'red':'yellow';   
         }
     };
-    
-    this.getOptions = function(){
-       return options;
-    }
-    
-    this.getState = function(){
-      return state;
-    }
-    
     
     $interval(this.setNextState,3000);
     
@@ -95,12 +92,8 @@ angular.module('StopLight',[])
         restrict: 'A',
         controller: 'stopLightCtrl',
         transclude: true,
-        scope: {options: '=', state: '='},
-        template: '<div>' +
-          '<div class="protector"></div>' + 
-          '<div class="protector"></div>' + 
-          '<div class="protector"></div>' +
-          '<span ng-transclude></span></div>',
+        scope: {options: '='},
+        template: '<div ng-transclude></div>',
         replace: true
     };
 }]).directive('stopLight', ['svgService', function(svgService) {
@@ -109,30 +102,29 @@ angular.module('StopLight',[])
         require: '^stopLightContainer',
         scope: {},
         link: function(scope,element,attrs,stopLightCtrl) {
+            
             if ( element[0].tagName !== 'CANVAS' ) {
               throw new Error('StopLight can only be a canvas element. ' + element[0].tagName + ' will not work.');
             }
             
-            var firstLoad = true,
-                context = element[0].getContext('2d');
+            var context = element[0].getContext('2d');
             
             scope.options =  angular.extend({ 
+              attrsState: attrs.state,
               height: element[0].height,
               width: element[0].width
-            },stopLightCtrl.getOptions());
-            
+            },stopLightCtrl.options);
 
             function getStopLightState(){
-              return stopLightCtrl.getState().color;
+              return stopLightCtrl.options.state;
             }
             
             svgService.setUpStopLight(context,scope.options);
           
             scope.$watch(getStopLightState, function(newV,oldV){
-                if(newV !== oldV || firstLoad === true){
-                    svgService.changeColor(context,attrs.state,newV);
-                    firstLoad = false;
-                }
+              if(newV !== oldV){
+                svgService.changeColor(context,scope.options.attrsState,newV);
+              }
             });
         }
     };

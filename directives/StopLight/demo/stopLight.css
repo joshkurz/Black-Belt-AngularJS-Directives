@@ -40,12 +40,12 @@ button {
 .trafficlight{
   background: #222;
   background-image: linear-gradient(transparent 2%, #111 2%, transparent 3%, #111 30%);
-  width: 170px;
-  height: 200px;
+  width: 150px;
+  min-height: 100px;
   border-radius: 10px;
   position: relative;
   border: solid 5px #333;
-   margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 
@@ -53,7 +53,7 @@ button {
   background: #222;
   background-image: radial-gradient(#444, #000);
   content: "";
-  width: 170px;
+  width: 150px;
   height: 150px;
   margin: 0 auto;
   position: absolute;

@@ -7,14 +7,12 @@
    </head>
 
    <body ng-controller="demoCtrl">
-      <div ng-app="StopLight" ng-controller="demoCtrl">
-        <button ng-click="stopLights[0].color = 'red'">Stop!!!</button>   
-        <div stop-light-container options="stopLightOptions" class="trafficlight" state="sLight" ng-repeat="sLight in stopLights">
-          <canvas class="light" stop-light state="red"></canvas>
-          <canvas class="light" stop-light state="yellow"></canvas>
-          <canvas class="light" stop-light state="green"></canvas>
-        </div>
-      </div>
+     <button ng-click="stopAllStates()">Stop!!!</button>   
+     <div stop-light-container options="state" class="trafficlight" ng-repeat="state in states">
+      <canvas class="light" stop-light state="red"></canvas>
+      <canvas class="light" stop-light state="yellow"></canvas>
+      <canvas class="light" stop-light state="green"></canvas>
+     </div>
    </body>
 
 </html>
