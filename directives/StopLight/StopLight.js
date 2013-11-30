@@ -5,13 +5,15 @@ angular.module('StopLight',[])
         lineWidth: 6,
         strokeStyle: '#003300',
         radius: 60,
-        state: 'green'
+        state: 'green',
+        interval: 3000
     },{
         lineWidth: 6,
         strokeStyle: '#003300',
         radius: 60,
         state: 'red',
-        reverse: true
+        reverse: true,
+        interval: 3000
     }];
     
     $scope.stopAllStates = function(){
@@ -84,7 +86,7 @@ angular.module('StopLight',[])
         }
     };
     
-    $interval(this.setNextState,3000);
+    $interval(this.setNextState,this.options.interval);
     
         
 }]).directive('stopLightContainer', [ function() {
