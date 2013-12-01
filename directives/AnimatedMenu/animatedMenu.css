@@ -1,0 +1,61 @@
+.body{
+    height: 1000px;
+}
+.animated-menu {
+    background: #ccc;
+    position: fixed;
+    box-shadow: 0 3px 3px;
+}
+
+/* Vertical menu that slides from the left or right */
+ 
+.animated-menu-left {
+    left: -150px;
+}
+ 
+.animated-menu-right {
+    right: -240px;
+}
+ 
+.animated-menu-left.animated-menu-open {
+    left: 0px;
+}
+ 
+.animated-menu-right.animated-menu-open {
+    right: 0px;
+}
+
+/* Orientation-dependent styles for the content of the menu */
+ 
+.animated-menu-vertical {
+    width: 25%;
+    max-width: 525px;
+    height: 100%;
+    top: 78px;
+    z-index: 998;
+    overflow: scroll;
+}
+
+/* Push classes applied to the body */
+ 
+.animated-menu-push {
+    position: relative;
+    left: 0;
+}
+ 
+.animated-menu-push-toright {
+    left: 0px;
+}
+ 
+.animated-menu-push-toleft {
+    left: -25%;
+}
+ 
+/* Transitions */
+ 
+.animated-menu,
+.animated-menu-push {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
