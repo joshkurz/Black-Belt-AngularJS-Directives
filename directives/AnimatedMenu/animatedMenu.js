@@ -1,3 +1,5 @@
+//http://jsfiddle.net/joshkurz/FsWC2/4/
+
 angular.module('Menus', [])
 .controller('menuCtrl', function($scope){
     $scope.hello = 'Hello';
