@@ -26,8 +26,9 @@ angular.module('demoApp', [])
             scope.$watch('templateVar', function(newV,oldV){
 
                 if(newV !== undefined){
-                    var newElement = $compile($templateCache.get(newV))(scope);
-                    element.html(newElement);
+                    var newElement = $compile($templateCache.get(newV).trim())(scope);
+                    element.html('');
+                    element.append(newElement[0]);
 
                 }
 
