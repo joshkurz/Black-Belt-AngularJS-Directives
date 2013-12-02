@@ -98,11 +98,13 @@ angular.module('StopLight',[])
     return {
         require: '^stopLightContainer',
         scope: {},
-        link: function(scope,element,attrs,stopLightCtrl) {
-            
-            if ( element[0].tagName !== 'CANVAS' ) {
-              throw new Error('StopLight can only be a canvas element. ' + element[0].tagName + ' will not work.');
-            }
+        compile: function(tElem, tAttrs){
+          
+          if ( tElem[0].tagName !== 'CANVAS' ) {
+              throw new Error('StopLight can only be a canvas element. ' + tElem[0].tagName + ' will not work.');
+          }
+
+          return function(scope,element,attrs,stopLightCtrl) {
             
             var context = element[0].getContext('2d');
             
@@ -123,6 +125,7 @@ angular.module('StopLight',[])
                 svgService.changeColor(context,scope.options.attrsState,newV);
               }
             });
+          }   
         }
     };
 }]);
