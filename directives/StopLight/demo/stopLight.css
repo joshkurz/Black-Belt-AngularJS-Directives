@@ -1,11 +1,3 @@
-html{
-  background: linear-gradient(#08f, #fff);
-  padding: 40px;
-  width: 170px;
-  height: 100%;
-  margin: 0 auto;
-}
-
 button {
     margin-left: -100px;
 }

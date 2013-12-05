@@ -35,7 +35,7 @@ angular.module('demoApp', [])
     return {
         scope: { term: '@'},
         template: '<input ng-model="term">'
-    }
+    };
 })
 .directive('exprRep', function(){
     return {
@@ -44,11 +44,11 @@ angular.module('demoApp', [])
         link: function(scope, element, attrs){
             scope.term = scope.term();
         }
-    }
+    };
 })
 .directive('twoWayRep', function(){
     return {
         scope: { term: '='},
         template: '<input ng-model="term">'
-    }
-})
+    };
+});

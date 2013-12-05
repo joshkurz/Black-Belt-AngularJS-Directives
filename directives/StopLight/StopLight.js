@@ -92,7 +92,7 @@ angular.module('StopLight',[])
 }]).directive('stopLightContainer', [ function() {
     return {
         controller: 'stopLightCtrl',
-        scope: {options: '='},
+        scope: {options: '='}
     };
 }]).directive('stopLight', ['svgService', function(svgService) {
     return {

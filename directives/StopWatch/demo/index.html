@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html ng-app="StopLight">
+<html ng-app="demoApp">
   <head>
-    <title>Stop Light</title>
+    <title>Stop Watch</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../../bower_components/bootstrap-css/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="stopLight.css"/>
+    <link rel="stylesheet" type="text/css" href="../stopWatch.css"/>
     <script src="../../../bower_components/angular/angular.js"></script>
-    <script src="../stopLight.js"></script>
+    <script src="../stopWatch.js"></script>
+    <script src="stopWatchDemo.js"></script>
+
+    <script type="text/ng-template" id="stopWatch.tpl.html">
+        <div class="container">
+          <div class="stopWatch numbers">
+            {{options.elapsedTime | stopWatchTime}}
+           </div>
+          <button class="btn" ng-click="startTimer()">Start</button>
+          <button class="btn" ng-click="stopTimer()">Stop</button>
+          <button class="btn" ng-click="resetTimer()">Reset</button>
+        </div>
+    </script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,29 +44,25 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/directives/stopWatch/demo">Stop Watch</a></li>
-            <li><a class="active" href="#">Stop Light</a></li>
+            <li class="active"><a href="#">Stop Watch</a></li>
+            <li><a href="/directives/stopLight/demo">Stop Light</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
     <div class="container">
+
       <div class="jumbotron">
-        <button class="btn" ng-click="stopAllStates()">Stop!!!</button>   
-         <div stop-light-container options="state" class="trafficlight" ng-repeat="state in states">
-          <canvas class="light" stop-light state="red"></canvas>
-          <canvas class="light" stop-light state="yellow"></canvas>
-          <canvas class="light" stop-light state="green"></canvas>
-         </div>
+        <div ng-repeat="options in stopWatches">
+          <div stop-watch options="options"></div>
+        </div>
       </div>
 
       <div class="footer">
         <p>&copy; Black Belt AngularJS Directives 2013</p>
       </div>
 
-    </div>
-
+    </div> 
   </body>
 </html>
-    

@@ -36,6 +36,6 @@ angular.module('demoApp', [])
 
         }
 
-    }
+    };
 
 }]);
