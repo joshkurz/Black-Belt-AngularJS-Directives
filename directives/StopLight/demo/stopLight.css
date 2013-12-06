@@ -35,6 +35,9 @@ button {
   width: 150px;
   min-height: 100px;
   border-radius: 10px;
+  margin-right: 2%;
+  margin-top: 45px;
+  display: inline-block;
   position: relative;
   border: solid 5px #333;
   margin-bottom: 50px;
@@ -53,4 +56,9 @@ button {
   margin-left: 0px;
   border-radius: 50%;
   z-index: -1;
+}
+
+.container {
+  padding: 5px;
+  text-align: center;
 }
