@@ -6,7 +6,8 @@ module.exports = function (config) {
         'bower_components/angular/angular.js',
         'bower_components/angular-mocks/angular-mocks.js',
         'directives/**/*.js',
-        'directives/**/tests/*.spec.js'
+        'directives/**/tests/*.spec.js',
+        'directives/**/*.tpl.html'
     ],
 
     singleRun : true,
@@ -17,7 +18,7 @@ module.exports = function (config) {
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit'
-    reporters : ['progress', 'coverage']
+    reporters : ['progress']
 
   });
 };

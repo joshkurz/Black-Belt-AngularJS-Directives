@@ -2,10 +2,10 @@ module.exports = function (grunt) {
   "use strict";
 
   // load all grunt tasks
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+  require('load-grunt-tasks')(grunt);
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'karma']);
+  grunt.registerTask('default', ['jshint', 'html2js', 'build', 'karma']);
 
   var testConfig = function(configFile, customOptions) {
     var options = { configFile: configFile, keepalive: true };
@@ -15,9 +15,81 @@ module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    meta: {
+      modules: 'angular.module("AngularBlackBelt", [<%= srcModules %>]);',
+      tplmodules: 'angular.module("AngularBlackBelt.tpls", [<%= tplModules %>]);',
+      all: 'angular.module("AngularBlackBelt", ["AngularBlackBelt.tpls", <%= srcModules %>]);'
+    },
+    modules: [],
+    pkg: grunt.file.readJSON('package.json'),
+    dist: 'dist',
+    filename: 'AngularBlackBelt',
+    filenamecustom: '<%= filename %>-custom',
+    delta: {
+      html: {
+        files: ['directives/**/*.tpl.html'],
+        tasks: ['html2js', 'karma:watch:run']
+      },
+      js: {
+        files: ['directives/**/*.js'],
+        //we don't need to jshint here, it slows down everything else
+        tasks: ['karma:watch:run']
+      }
+    },
     karma: {
       unit: {
         options: testConfig('karma.conf.js')
+      }
+    },
+    concat: {
+      dist: {
+        options: {
+          banner: '<%= meta.modules %>\n'
+        },
+        src: [], //src filled in by build task
+        dest: '<%= dist %>/<%= filename %>-<%= pkg.version %>.js'
+      }
+    },
+    copy: {
+      demohtml: {
+        options: {
+          //process html files with gruntfile config
+          processContent: grunt.template.process
+        },
+        files: [{
+          expand: true,
+          src: ["**/*.html"],
+          cwd: "demo/",
+          dest: "dist/"
+        }]
+      },
+      demoassets: {
+        files: [{
+          expand: true,
+          //Don't re-copy html files, we process those
+          src: ["**/**/*", "!**/*.html"],
+          cwd: "demo",
+          dest: "dist/"
+        }]
+      }
+    },
+    uglify: {
+      dist:{
+        src:['<%= dist %>/<%= filename %>-<%= pkg.version %>.js'],
+        dest:'<%= dist %>/<%= filename %>-<%= pkg.version %>.min.js'
+      }
+    },
+    html2js: {
+      dist: {
+        options: {
+          module: null, // no bundle module for all the html2js templates
+          base: '.'
+        },
+        files: [{
+          expand: true,
+          src: ['directives/**/*.tpl.html'],
+          ext: '.html.js'
+        }]
       }
     },
     jshint:{
@@ -35,6 +107,92 @@ module.exports = function (grunt) {
         globals:{}
       }
     }
+  });
+
+  grunt.registerTask('dist', 'Override dist directory', function() {
+    var dir = this.args[0];
+    if (dir) { grunt.config('dist', dir); }
+  });
+
+  grunt.registerTask('build', 'Create Anugular Black Belt build files', function() {
+    var _ = grunt.util._;
+
+    var foundModules = {};
+    function findModule(name) {
+      if (foundModules[name]) { return; }
+      foundModules[name] = true;
+
+      function breakup(text, separator) {
+        return text.replace(/[A-Z]/g, function (match) {
+          return separator + match;
+        });
+      }
+      function ucwords(text) {
+        return text.replace(/^([a-z])|\s+([a-z])/g, function ($1) {
+          return $1.toUpperCase();
+        });
+      }
+      function enquote(str) {
+        return '"' + str + '"';
+      }
+
+      function dependenciesForModule(name) {
+        var deps = [];
+        grunt.file.expand('directives/' + name + '/*.js')
+        .map(grunt.file.read)
+        .forEach(function(contents) {
+          //Strategy: find where module is declared,
+          //and from there get everything inside the [] and split them by comma
+          var moduleDeclIndex = contents.indexOf('angular.module(');
+          var depArrayStart = contents.indexOf('[', moduleDeclIndex);
+          var depArrayEnd = contents.indexOf(']', depArrayStart);
+          var dependencies = contents.substring(depArrayStart + 1, depArrayEnd);
+          dependencies.split(',').forEach(function(dep) {
+            if (dep.indexOf('AngularBlackBelt.') > -1) {
+              var depName = dep.trim().replace('AngularBlackBelt.','').replace(/['"]/g,'');
+              if (deps.indexOf(depName) < 0) {
+                deps.push(depName);
+                //Get dependencies for this new dependency
+                deps = deps.concat(dependenciesForModule(depName));
+              }
+            }
+          });
+        });
+        return deps;
+      }
+
+      var module = {
+        name: name,
+        moduleName: enquote('AngularBlackBelt.' + name),
+        displayName: ucwords(breakup(name, ' ')),
+        srcFiles: grunt.file.expand("directives/"+name+"/*.js"),
+        tplFiles: grunt.file.expand("directives/"+name+"/*.tpl.html"),
+        tpljsFiles: grunt.file.expand("directives/"+name+"/*.tpl.html.js"),
+        tplModules: grunt.file.expand("directives/"+name+"/*.tpl.html").map(enquote),
+        dependencies: dependenciesForModule(name)
+      };
+      module.dependencies.forEach(findModule);
+      grunt.config('modules', grunt.config('modules').concat(module));
+    }
+
+    grunt.file.expand({
+      filter: 'isDirectory', cwd: '.'
+    }, 'directives/*').forEach(function(dir) {
+      console.log(dir)
+      findModule(dir.split('/')[1]);
+    });
+
+    var modules = grunt.config('modules');
+    grunt.config('srcModules', _.pluck(modules, 'moduleName'));
+    grunt.config('tplModules', _.pluck(modules, 'tplModules').filter(function(tpls) { return tpls.length > 0;} ));
+
+    var srcFiles = _.pluck(modules, 'srcFiles');
+    var tpljsFiles = _.pluck(modules, 'tpljsFiles');
+    //Set the concat task to concatenate the given src modules
+    grunt.config('concat.dist.src', grunt.config('concat.dist.src')
+                 .concat(srcFiles));
+
+    grunt.task.run(['concat', 'uglify']);
   });
 
 };
