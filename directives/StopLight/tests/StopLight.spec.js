@@ -19,7 +19,7 @@ describe('StopLight', function () {
   }));
 
   describe('Creating A StopLightContainer Directive with multiple stop lights', function () {
-    it('throw an error if the element that is not a Canvas Element', function() {
+    it('throw an error if the element is not a Canvas Element', function() {
       expect(function(){
         var stopLight = $compile('<div stop-light-container options="options">' +
                                  '<div stop-light></div>' +

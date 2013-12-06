@@ -1,7 +1,7 @@
  /*
   * The StopWatch module consists of one directives, one controller, and one filter. 
   */
-angular.module('stopWatchApp', [])
+angular.module('StopWatch', [])
 .controller('stopWatchCtrl', ['$scope', '$interval', function($scope, $interval){
     var startTime = 0,
         currentTime = null,
@@ -59,7 +59,7 @@ angular.module('stopWatchApp', [])
         scope: {options: '='},
         replace: true,
         controller: 'stopWatchCtrl',
-        templateUrl: 'stopWatch.tpl.html',
+        templateUrl: 'directives/StopWatch/stopWatch.tpl.html',
         compile: function(tElem, tAttrs){
             
             if (!tAttrs.options){
@@ -68,7 +68,7 @@ angular.module('stopWatchApp', [])
             
             return function(scope, elem, attrs){    
               scope.startTimer();              
-            }
+            };
         }
     };
 }])
@@ -77,14 +77,14 @@ angular.module('stopWatchApp', [])
         if(input){
             
             var elapsed = input.getTime();
-            var hours = parseInt(elapsed / 360000);
+            var hours = parseInt(elapsed / 360000,10);
             elapsed %= 360000;
-            var mins = parseInt(elapsed / 60000);
+            var mins = parseInt(elapsed / 60000,10);
             elapsed %= 60000;
-            var secs = parseInt(elapsed / 1000);
+            var secs = parseInt(elapsed / 1000,10);
             var ms = elapsed % 1000;
             
-            return hours + ':' + mins + ':' + secs + ':' + ms
+            return hours + ':' + mins + ':' + secs + ':' + ms;
         }
     };
 });
