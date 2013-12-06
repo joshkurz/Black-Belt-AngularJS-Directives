@@ -2,6 +2,9 @@
   * The StopWatch module consists of one directives, one controller, and one filter. 
   */
 angular.module('StopWatch', [])
+.controller('stopWatchDemoCtrl', ['$scope', function($scope){
+    $scope.stopWatches = [{ log: []},{interval: 1000, log: []},{interval: 2000, log: []}];
+}])
 .controller('stopWatchCtrl', ['$scope', '$interval', function($scope, $interval){
     var startTime = 0,
         currentTime = null,
@@ -13,7 +16,9 @@ angular.module('StopWatch', [])
         $scope.options.interval = 100;
     }
 
-    $scope.options.elapsedTime = new Date(0);
+    this.options = $scope.options;
+
+    this.options.elapsedTime = new Date(0);
     
     function pushToLog(lap){
         if($scope.options.log !== undefined){
@@ -27,7 +32,7 @@ angular.module('StopWatch', [])
         $scope.options.elapsedTime.setTime(timeElapsed);
     }
 
-    this.startTimer = $scope.startTimer = function(){
+    this.startTimer = function(){
         if(running === false){
             startTime = new Date().getTime();
             interval = $interval(updateTime,$scope.options.interval);
@@ -35,7 +40,7 @@ angular.module('StopWatch', [])
         }
     };
 
-    this.stopTimer = $scope.stopTimer = function(){
+    this.stopTimer = function(){
         if( running === false) {
             return;
         }
@@ -46,9 +51,9 @@ angular.module('StopWatch', [])
         running = false;
     };
 
-    this.resetTimer = $scope.resetTimer = function(){
+    this.resetTimer = function(){
       startTime = new Date().getTime();
-      $scope.options.elapsedTime.setTime(0);
+      this.options.elapsedTime.setTime(0);
       timeElapsed = offset = 0;
     };
 
@@ -66,8 +71,11 @@ angular.module('StopWatch', [])
                  throw new Error('Must Pass an options object from the Controller For the StopWatch to Work Correctly.');
             }
             
-            return function(scope, elem, attrs){    
-              scope.startTimer();              
+            return function(scope, elem, attrs, controller){     
+              scope.stopTimer = controller.stopTimer;
+              scope.resetTimer = controller.resetTimer;
+              scope.startTimer = controller.startTimer;
+              scope.startTimer(); 
             };
         }
     };

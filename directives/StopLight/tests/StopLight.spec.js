@@ -35,7 +35,7 @@ describe('StopLight', function () {
                                    '<canvas stop-light></canvas>' +
                                  '</div>')(scope);
         scope.$apply();
-      }).not.toThrow('StopLight can only be a canvas element. DIV will not work.');
+      }).not.toThrow();
     });   
     it('The original state should be green and after 6 seconds it should cycle through yellow and red', function() {
         var stopLight = $compile('<div stop-light-container options="options">' +
