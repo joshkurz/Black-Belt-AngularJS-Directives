@@ -5,9 +5,8 @@ module.exports = function (config) {
     files : [
         'bower_components/angular/angular.js',
         'bower_components/angular-mocks/angular-mocks.js',
-        'directives/**/*.js',
-        'directives/**/tests/*.spec.js',
-        'directives/**/*.tpl.html'
+        'dist/*.js',
+        'directives/**/tests/*.spec.js'
     ],
 
     singleRun : true,
