@@ -73,12 +73,6 @@ module.exports = function (grunt) {
         }]
       }
     },
-    uglify: {
-      dist:{
-        src:['<%= dist %>/<%= filename %>-<%= pkg.version %>.js'],
-        dest:'<%= dist %>/<%= filename %>-<%= pkg.version %>.min.js'
-      }
-    },
     html2js: {
       dist: {
         options: {
@@ -192,7 +186,7 @@ module.exports = function (grunt) {
     grunt.config('concat.dist.src', grunt.config('concat.dist.src')
                  .concat(srcFiles));
 
-    grunt.task.run(['concat', 'uglify']);
+    grunt.task.run(['concat']);
   });
 
 };

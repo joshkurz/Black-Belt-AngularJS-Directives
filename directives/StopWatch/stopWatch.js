@@ -5,20 +5,22 @@ angular.module('StopWatch', [])
 .controller('stopWatchDemoCtrl', ['$scope', function($scope){
     $scope.stopWatches = [{ log: []},{interval: 1000, log: []},{interval: 2000, log: []}];
 }])
-.controller('stopWatchCtrl', ['$scope', '$interval', function($scope, $interval){
+.controller('stopWatchCtrl', ['$scope', '$interval',    function($scope, $interval){
+    
     var startTime = 0,
         currentTime = null,
         offset = 0,
         running = false,
-        interval = null;
+        interval = null,
+        self = this;
     
     if(!$scope.options.interval){
         $scope.options.interval = 100;
     }
 
-    this.options = $scope.options;
+    self.options = $scope.options;
 
-    this.options.elapsedTime = new Date(0);
+    self.options.elapsedTime = new Date(0);
     
     function pushToLog(lap){
         if($scope.options.log !== undefined){
@@ -26,34 +28,35 @@ angular.module('StopWatch', [])
         }
     }
      
-    function updateTime(){
+    self.updateTime = function(){
         currentTime = new Date().getTime();
         var timeElapsed = offset + (currentTime - startTime);
         $scope.options.elapsedTime.setTime(timeElapsed);
-    }
-
-    this.startTimer = function(){
-        if(running === false){
-            startTime = new Date().getTime();
-            interval = $interval(updateTime,$scope.options.interval);
-            running = true;
-        }
     };
 
-    this.stopTimer = function(){
+    self.startTimer = function(){
+        if(running === false){
+            startTime = new Date().getTime();
+            interval = $interval(self.updateTime,$scope.options.interval);
+            running = true;
+        }
+        console.log(interval.$$intervalId);
+    };
+
+    self.stopTimer = function(){
         if( running === false) {
             return;
         }
-        updateTime();
+        self.updateTime();
         offset = offset + currentTime - startTime;
         pushToLog(currentTime - startTime);
         $interval.cancel(interval);  
         running = false;
     };
 
-    this.resetTimer = function(){
+    self.resetTimer = function(){
       startTime = new Date().getTime();
-      this.options.elapsedTime.setTime(0);
+      self.options.elapsedTime.setTime(0);
       timeElapsed = offset = 0;
     };
 
@@ -85,8 +88,8 @@ angular.module('StopWatch', [])
         if(input){
             
             var elapsed = input.getTime();
-            var hours = parseInt(elapsed / 360000,10);
-            elapsed %= 360000;
+            var hours = parseInt(elapsed / 3600000,10);
+            elapsed %= 3600000;
             var mins = parseInt(elapsed / 60000,10);
             elapsed %= 60000;
             var secs = parseInt(elapsed / 1000,10);

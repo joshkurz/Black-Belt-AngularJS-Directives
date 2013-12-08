@@ -1,62 +1,11 @@
 describe('StopWatch', function () {
   'use strict';
 
-  var scope, $compile, $locale, ctrl, svgService, $window, $interval;
+  var scope, ctrl, $compile, $locale, svgService, $window, $interval;
 
   beforeEach(module('StopWatch'));
   beforeEach(module('directives/StopWatch/stopWatch.tpl.html', 'directives/StopWatch/stopWatch.tpl.html'));
-  beforeEach(module(function ($provide) {
-    var repeatFns = [],
-        nextRepeatId = 0,
-        now = 0;
-
-    $window = {
-      setInterval: function(fn, delay, count) {
-        repeatFns.push({
-          nextTime:(now + delay),
-          delay: delay,
-          fn: fn,
-          id: nextRepeatId
-        });
-        repeatFns.sort(function(a,b){ return a.nextTime - b.nextTime;});
-
-        return nextRepeatId++;
-      },
-
-      clearInterval: function(id) {
-        var fnIndex;
-
-        angular.forEach(repeatFns, function(fn, index) {
-          if (fn.id === id) {
-            fnIndex = index;
-          }
-        });
-
-        if (fnIndex !== undefined) {
-          repeatFns.splice(fnIndex, 1);
-          return true;
-        }
-
-        return false;
-      },
-
-      flush: function(millis) {
-        now += millis;
-
-        function flushSort(a,b){ return a.nextTime - b.nextTime;}
-        while (repeatFns.length && repeatFns[0].nextTime <= now) {
-          var task = repeatFns[0];
-          task.fn();
-          task.nextTime += task.delay;
-          repeatFns.sort(flushSort);
-        }
-        return millis;
-      }
-    };
-    
-    $provide.value('$window', $window);
-
-  }));
+  
   beforeEach(inject(function (_$rootScope_, _$compile_,_$controller_,_$interval_) {
     scope = _$rootScope_.$new();
     $compile = _$compile_;
@@ -65,7 +14,6 @@ describe('StopWatch', function () {
         interval: 100,
         log: []
     };
-    ctrl = _$controller_('stopWatchCtrl', {$scope:  scope, $interval: _$interval_});
     scope.$apply();
   }));
 
@@ -83,32 +31,38 @@ describe('StopWatch', function () {
         var stopWatch = $compile('<div stop-watch options="newObject"></div>')(scope);
         scope.$apply();
       }).not.toThrow();
+    });
+
+  });
+
+  describe('Stop Watch Directives Controller', function () {
+
+    beforeEach(inject(function (_$rootScope_, _$compile_,_$controller_,_$interval_) {
+    scope = _$rootScope_.$new();
+    $compile = _$compile_;
+    $interval = _$interval_;
+    scope.options = {
+        interval: 100,
+        log: []
+    };
+    ctrl = _$controller_('stopWatchCtrl', {$scope:  scope, $interval: $interval});
+    scope.$apply();
+  }));
+
+    it('Should call updateTime when the timer is started and should call it every 100 milliseconds', function() {
+      spyOn(ctrl, 'updateTime');
+      ctrl.startTimer();
+      $interval.flush(1000);
+      scope.$apply();
+      expect(ctrl.updateTime.callCount).toBe(10);
     }); 
 
-    it('Should set an interval of 100 on the new object and also set a date.', function() {
-      scope.newObject = {};
-      var stopWatch = $compile('<div stop-watch options="newObject"></div>')(scope);
-      scope.$apply();
-      expect(scope.newObject.interval).toBe(100);
-      expect(scope.newObject.elapsedTime.getTime()).toBe(0);
-    }); 
-    
-    it('Should update the elapsedTime every 100 milliseconds', function() {
-      scope.newObject = {};
-      var stopWatch = $compile('<div stop-watch options="newObject"></div>')(scope);
-      spyOn(ctrl, 'startTimer');
-      expect(ctrl.startTimer).toHaveBeenCalled();
-    }); 
-
-    it('Should update the elapsedTime every 100 milliseconds', function() {
-      scope.newObject = {};
-      var stopWatch = $compile('<div stop-watch options="newObject"></div>')(scope);
-      scope.$apply();
-      stopWatch.scope().updateTime();
-      for(var i = 0;i < 100;i++){
-        expect(scope.newObject.elapsedTime.getTime()).toBe(100*i);
-      }
-    }); 
+    it('Should call cancel the contollers timer if stopTimer is called', function() {
+      spyOn(ctrl , 'updateTime');
+      ctrl.stopTimer();
+      $interval.flush(1000);
+      expect(ctrl.updateTime.callCount).toBe(0);
+    });
 
   });
 
