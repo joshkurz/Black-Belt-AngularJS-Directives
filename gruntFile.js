@@ -172,7 +172,6 @@ module.exports = function (grunt) {
     grunt.file.expand({
       filter: 'isDirectory', cwd: '.'
     }, 'directives/*').forEach(function(dir) {
-      console.log(dir)
       findModule(dir.split('/')[1]);
     });
 
