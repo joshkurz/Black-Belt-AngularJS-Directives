@@ -1,11 +1,11 @@
  /*
-  * The StopWatch module consists of one directives, one controller, and one filter. 
+  * The Stopwatch module consists of one directives, one controller, and one filter. 
   */
-angular.module('StopWatch', [])
-.controller('stopWatchDemoCtrl', ['$scope', function($scope){
-    $scope.stopWatches = [{ log: []},{interval: 1000, log: []},{interval: 2000, log: []}];
+angular.module('Stopwatch', [])
+.controller('stopwatchDemoCtrl', ['$scope', function($scope){
+    $scope.stopwatches = [{ log: []},{interval: 1000, log: []},{interval: 2000, log: []}];
 }])
-.controller('stopWatchCtrl', ['$scope', '$interval',    function($scope, $interval){
+.controller('stopwatchCtrl', ['$scope', '$interval',    function($scope, $interval){
     
     var startTime = 0,
         currentTime = null,
@@ -40,7 +40,6 @@ angular.module('StopWatch', [])
             interval = $interval(self.updateTime,$scope.options.interval);
             running = true;
         }
-        console.log(interval.$$intervalId);
     };
 
     self.stopTimer = function(){
@@ -61,17 +60,17 @@ angular.module('StopWatch', [])
     };
 
 }])
-.directive('stopWatch', ['$interval', function($interval){
+.directive('stopwatch', ['$interval', function($interval){
     return {
         restrict: 'EA',
         scope: {options: '='},
         replace: true,
-        controller: 'stopWatchCtrl',
-        templateUrl: 'directives/StopWatch/stopWatch.tpl.html',
+        controller: 'stopwatchCtrl',
+        templateUrl: 'directives/Stopwatch/stopwatch.tpl.html',
         compile: function(tElem, tAttrs){
             
             if (!tAttrs.options){
-                 throw new Error('Must Pass an options object from the Controller For the StopWatch to Work Correctly.');
+                 throw new Error('Must Pass an options object from the Controller For the Stopwatch to Work Correctly.');
             }
             
             return function(scope, elem, attrs, controller){     
@@ -83,7 +82,7 @@ angular.module('StopWatch', [])
         }
     };
 }])
-.filter('stopWatchTime', function () {
+.filter('stopwatchTime', function () {
     return function (input) {
         if(input){
             

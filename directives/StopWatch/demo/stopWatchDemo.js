@@ -1,4 +1,4 @@
-angular.module('demoApp', ['StopWatch'])
+angular.module('demoApp', ['Stopwatch'])
 .controller('demoCtrl', ['$scope', function($scope){
-    $scope.stopWatches = [{interval: 100, log: []},{interval: 1000, log: []},{interval: 200, log: []}];
+    $scope.stopwatches = [{interval: 100, log: []},{interval: 1000, log: []},{interval: 200, log: []}];
 }]);

@@ -4,15 +4,15 @@
     <title>Stop Watch</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../../bower_components/bootstrap-css/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="../stopWatch.css"/>
+    <link rel="stylesheet" type="text/css" href="../stopwatch.css"/>
     <script src="../../../bower_components/angular/angular.js"></script>
-    <script src="../stopWatch.js"></script>
-    <script src="stopWatchDemo.js"></script>
+    <script src="../stopwatch.js"></script>
+    <script src="stopwatchDemo.js"></script>
 
-    <script type="text/ng-template" id="directives/StopWatch/stopWatch.tpl.html">
+    <script type="text/ng-template" id="directives/Stopwatch/stopwatch.tpl.html">
         <div class="container">
-          <div class="stopWatch numbers">
-            {{options.elapsedTime | stopWatchTime}}
+          <div class="stopwatch numbers">
+            {{options.elapsedTime | stopwatchTime}}
            </div>
           <button class="btn" ng-click="startTimer()">Start</button>
           <button class="btn" ng-click="stopTimer()">Stop</button>
@@ -54,8 +54,8 @@
     <div class="container">
 
       <div class="jumbotron">
-        <div ng-repeat="options in stopWatches">
-          <div stop-watch options="options"></div>
+        <div ng-repeat="options in stopwatches">
+          <div stopwatch options="options"></div>
            <div class="log" ng-repeat="log in options.log">
              {{log/1000}} seconds
            </div>

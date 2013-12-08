@@ -1,10 +1,10 @@
-describe('StopWatch', function () {
+describe('Stopwatch', function () {
   'use strict';
 
   var scope, ctrl, $compile, $locale, svgService, $window, $interval;
 
-  beforeEach(module('StopWatch'));
-  beforeEach(module('directives/StopWatch/stopWatch.tpl.html', 'directives/StopWatch/stopWatch.tpl.html'));
+  beforeEach(module('Stopwatch'));
+  beforeEach(module('directives/Stopwatch/stopwatch.tpl.html', 'directives/Stopwatch/stopwatch.tpl.html'));
   
   beforeEach(inject(function (_$rootScope_, _$compile_,_$controller_,_$interval_) {
     scope = _$rootScope_.$new();
@@ -17,25 +17,25 @@ describe('StopWatch', function () {
     scope.$apply();
   }));
 
-  describe('Creating A Stop Watch Directive', function () {
+  describe('Creating A Stopwatch Directive', function () {
     it('throw an error if there are no options set on the element', function() {
       expect(function(){
-        var stopWatch = $compile('<div stop-watch></div>')(scope);
+        var stopwatch = $compile('<div stopwatch></div>')(scope);
         scope.$apply();
-      }).toThrow('Must Pass an options object from the Controller For the StopWatch to Work Correctly.');
+      }).toThrow('Must Pass an options object from the Controller For the Stopwatch to Work Correctly.');
     });    
 
     it('Should not throw an error with an empty options object', function() {
       expect(function(){
         scope.newObject = {};
-        var stopWatch = $compile('<div stop-watch options="newObject"></div>')(scope);
+        var stopwatch = $compile('<div stopwatch options="newObject"></div>')(scope);
         scope.$apply();
       }).not.toThrow();
     });
 
   });
 
-  describe('Stop Watch Directives Controller', function () {
+  describe('Stopwatch Directives Controller', function () {
 
     beforeEach(inject(function (_$rootScope_, _$compile_,_$controller_,_$interval_) {
     scope = _$rootScope_.$new();
@@ -45,7 +45,7 @@ describe('StopWatch', function () {
         interval: 100,
         log: []
     };
-    ctrl = _$controller_('stopWatchCtrl', {$scope:  scope, $interval: $interval});
+    ctrl = _$controller_('stopwatchCtrl', {$scope:  scope, $interval: $interval});
     scope.$apply();
   }));
 
