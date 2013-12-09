@@ -14,6 +14,7 @@ describe('Stopwatch', function () {
         interval: 100,
         log: []
     };
+    scope.newObject = {};
     scope.$apply();
   }));
 
@@ -33,10 +34,16 @@ describe('Stopwatch', function () {
     });
 
     it('Should set the default interval value to 100 milliseconds', function() {
-      scope.newObject = {};
       var stopwatch = $compile('<div stopwatch options="newObject"></div>')(scope);
       scope.$apply();
-      expect(stopwatch.scope().options.interval).toBe(100);
+      expect(stopwatch.isolateScope().options.interval).toBe(100);
+    }); 
+
+    it('Should set the value of the options to 1000', function() {
+      scope.newObject = {interval: 1000};
+      var stopwatch = $compile('<div stopwatch options="newObject"></div>')(scope);
+      scope.$apply();
+      expect(stopwatch.isolateScope().options.interval).toBe(1000);
     }); 
 
   });
@@ -51,7 +58,6 @@ describe('Stopwatch', function () {
       stopwatch = $compile('<div stopwatch options="options"></div>')(scope);
       scope.$apply();
       stopwatchCtrl = stopwatch.controller('stopwatch');
-      stopwatchScope = stopwatch.scope();
     }));
 
     it('Should create the correct elements based upon the given template for the stopwatch', function() {
@@ -71,12 +77,12 @@ describe('Stopwatch', function () {
       expect(stopwatchCtrl.running).toBe(false);
     }); 
 
-    it('Should call stopTimer() when the Stop button is clicked and append to the directive options.log the time', function() {
+    it('Should call stopTimer() when the Stop button is clicked and append the time to the directives defining scope', function() {
       $interval.flush(10000);
       expect(stopwatchCtrl.options.log.length).toBe(0);
       $(stopwatch.children()[2]).click();
       expect(stopwatchCtrl.running).toBe(false);
-      expect(stopwatchScope.options.log.length).toBe(1);
+      expect(scope.options.log.length).toBe(1);
     }); 
 
      it('Should not append to the log if the timer is stoped and stop is clicked', function() {
@@ -84,12 +90,12 @@ describe('Stopwatch', function () {
       expect(stopwatchCtrl.options.log.length).toBe(0);
       $(stopwatch.children()[2]).click();
       expect(stopwatchCtrl.running).toBe(false);
-      expect(stopwatchScope.options.log.length).toBe(1);
+      expect(scope.options.log.length).toBe(1);
       $(stopwatch.children()[2]).click();
-      expect(stopwatchScope.options.log.length).toBe(1);
+      expect(scope.options.log.length).toBe(1);
       $(stopwatch.children()[1]).click();
       $(stopwatch.children()[2]).click();
-      expect(stopwatchScope.options.log.length).toBe(2);
+      expect(scope.options.log.length).toBe(2);
     }); 
 
     it('Should reset the domTime back to 0:0:0:0 when reset is clicked', function() {

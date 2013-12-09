@@ -18,7 +18,7 @@ module.exports = function (config) {
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit'
-    reporters : ['dots']
+    reporters : ['progress']
 
   });
 };

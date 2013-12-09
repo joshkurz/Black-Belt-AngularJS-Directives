@@ -2,9 +2,6 @@
   * The Stopwatch module consists of one directives, one controller, and one filter. 
   */
 angular.module('Stopwatch', [])
-.controller('stopwatchDemoCtrl', ['$scope', function($scope){
-    $scope.stopwatches = [{ log: []},{interval: 1000, log: []},{interval: 2000, log: []}];
-}])
 .controller('stopwatchCtrl', ['$scope', '$interval',    function($scope, $interval){
     
     var startTime = 0,
