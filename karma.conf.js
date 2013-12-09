@@ -3,6 +3,7 @@ module.exports = function (config) {
   config.set({
     basePath : '',
     files : [
+        'bower_components/jquery/jquery.js',
         'bower_components/angular/angular.js',
         'bower_components/angular-mocks/angular-mocks.js',
         'dist/*.js',
@@ -17,7 +18,7 @@ module.exports = function (config) {
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit'
-    reporters : ['progress']
+    reporters : ['dots']
 
   });
 };

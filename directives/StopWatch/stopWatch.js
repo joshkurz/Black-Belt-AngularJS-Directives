@@ -10,7 +10,6 @@ angular.module('Stopwatch', [])
     var startTime = 0,
         currentTime = null,
         offset = 0,
-        running = false,
         interval = null,
         self = this;
     
@@ -21,6 +20,8 @@ angular.module('Stopwatch', [])
     self.options = $scope.options;
 
     self.options.elapsedTime = new Date(0);
+
+    self.running = false;
     
     function pushToLog(lap){
         if($scope.options.log !== undefined){
@@ -35,22 +36,22 @@ angular.module('Stopwatch', [])
     };
 
     self.startTimer = function(){
-        if(running === false){
+        if(self.running === false){
             startTime = new Date().getTime();
             interval = $interval(self.updateTime,$scope.options.interval);
-            running = true;
+            self.running = true;
         }
     };
 
     self.stopTimer = function(){
-        if( running === false) {
+        if( self.running === false) {
             return;
         }
         self.updateTime();
         offset = offset + currentTime - startTime;
         pushToLog(currentTime - startTime);
         $interval.cancel(interval);  
-        running = false;
+        self.running = false;
     };
 
     self.resetTimer = function(){
@@ -60,7 +61,7 @@ angular.module('Stopwatch', [])
     };
 
 }])
-.directive('stopwatch', ['$interval', function($interval){
+.directive('stopwatch', function(){
     return {
         restrict: 'EA',
         scope: {options: '='},
@@ -73,15 +74,17 @@ angular.module('Stopwatch', [])
                  throw new Error('Must Pass an options object from the Controller For the Stopwatch to Work Correctly.');
             }
             
-            return function(scope, elem, attrs, controller){     
+            return function(scope, elem, attrs, controller){    
+              scope.startTimer = controller.startTimer; 
               scope.stopTimer = controller.stopTimer;
               scope.resetTimer = controller.resetTimer;
-              scope.startTimer = controller.startTimer;
-              scope.startTimer(); 
+              scope.getThis = controller.getThis;
+              //start the Timer
+              controller.startTimer();
             };
         }
     };
-}])
+})
 .filter('stopwatchTime', function () {
     return function (input) {
         if(input){
