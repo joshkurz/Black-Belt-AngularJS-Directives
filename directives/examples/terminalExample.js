@@ -1,4 +1,4 @@
-var app = angular.module('TerminalExample', []);
+var app = angular.module('terminalExample', []);
 
 app.directive('directiveOne', function() {
   return {

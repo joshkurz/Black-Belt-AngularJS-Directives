@@ -1,0 +1,10 @@
+<div class="jumbotron" ng-controller="demoStopwatchCtrl">
+  <div ng-repeat="options in stopwatches">
+    <div stopwatch options="options"></div>
+     <div class="log" ng-repeat="log in options.log">
+       {{log/1000}} seconds
+     </div>
+  </div>
+</div>
+
+  

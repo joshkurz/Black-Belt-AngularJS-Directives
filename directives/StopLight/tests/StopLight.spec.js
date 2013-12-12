@@ -3,7 +3,7 @@ describe('StopLight', function () {
 
   var scope, $compile, $locale, ctrl, svgService;
 
-  beforeEach(module('StopLight'));
+  beforeEach(module('AngularBlackBelt.StopLight'));
   beforeEach(inject(function (_$rootScope_, _$compile_,_$controller_,_$interval_,_svgService_) {
     scope = _$rootScope_.$new();
     $compile = _$compile_;

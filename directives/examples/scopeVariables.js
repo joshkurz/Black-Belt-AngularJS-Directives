@@ -27,8 +27,8 @@
 // <div stop-watch the-name=”localName”></div>
 
 
-angular.module('demoApp', [])
-.controller('demoCtrl', function($scope){
+angular.module('scopeVariables', [])
+.controller('scopeVariablesTest', function($scope){
     $scope.term = 'How To Master';
 })
 .directive('stringRep', function(){

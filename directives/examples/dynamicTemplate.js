@@ -13,8 +13,8 @@
 //     <div dynamic-template template-var="{{templateVar}}"></div>
 // </div>
 
-angular.module('demoApp', [])
-.controller('demoCtrl', function($scope){
+angular.module('dynamicTemplate', [])
+.controller('templateCtrl', function($scope){
     $scope.templateVar = '/test1.tpl.html';
 })
 .directive('dynamicTemplate', ['$compile', '$templateCache',         function($compile, $templateCache){

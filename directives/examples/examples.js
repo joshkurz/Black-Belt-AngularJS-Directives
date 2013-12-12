@@ -1,1 +1,1 @@
-angular.module('examples',['TerminalExample']);
+angular.module('AngularBlackBelt.examples', ['dynamicTemplate', 'scopeVariables', 'terminalExample']);

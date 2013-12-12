@@ -5,7 +5,7 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'html2js', 'build', 'karma']);
+  grunt.registerTask('default', ['jshint', 'html2js', 'recess', 'build', 'karma']);
 
   var testConfig = function(configFile, customOptions) {
     var options = { configFile: configFile, keepalive: true };
@@ -19,6 +19,10 @@ module.exports = function (grunt) {
       modules: 'angular.module("AngularBlackBelt", [<%= srcModules %>]);',
       tplmodules: 'angular.module("AngularBlackBelt.tpls", [<%= tplModules %>]);',
       all: 'angular.module("AngularBlackBelt", ["AngularBlackBelt.tpls", <%= srcModules %>]);'
+    },
+    src: {
+      html: ['demo/index.html'],
+      less: ['less/*.less'] // recess:build doesn't accept ** in its file patterns
     },
     modules: [],
     pkg: grunt.file.readJSON('package.json'),
@@ -50,29 +54,6 @@ module.exports = function (grunt) {
         dest: '<%= dist %>/<%= filename %>-<%= pkg.version %>.js'
       }
     },
-    copy: {
-      demohtml: {
-        options: {
-          //process html files with gruntfile config
-          processContent: grunt.template.process
-        },
-        files: [{
-          expand: true,
-          src: ["**/*.html"],
-          cwd: "demo/",
-          dest: "dist/"
-        }]
-      },
-      demoassets: {
-        files: [{
-          expand: true,
-          //Don't re-copy html files, we process those
-          src: ["**/**/*", "!**/*.html"],
-          cwd: "demo",
-          dest: "dist/"
-        }]
-      }
-    },
     html2js: {
       dist: {
         options: {
@@ -81,7 +62,7 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          src: ['directives/**/*.tpl.html'],
+          src: ['directives/**/**/*.tpl.html'],
           ext: '.html.js'
         }]
       }
@@ -100,7 +81,17 @@ module.exports = function (grunt) {
         eqnull:true,
         globals:{}
       }
-    }
+    },
+    recess: {
+      build: {
+        files: {
+          '<%= dist %>/<%= pkg.name %>.css':
+          ['<%= src.less %>'] },
+        options: {
+          compile: true
+        }
+      }
+    },
   });
 
   grunt.registerTask('dist', 'Override dist directory', function() {
@@ -162,7 +153,7 @@ module.exports = function (grunt) {
         srcFiles: grunt.file.expand("directives/"+name+"/*.js"),
         tplFiles: grunt.file.expand("directives/"+name+"/*.tpl.html"),
         tpljsFiles: grunt.file.expand("directives/"+name+"/*.tpl.html.js"),
-        tplModules: grunt.file.expand("directives/"+name+"/*.tpl.html").map(enquote),
+        tplModules: grunt.file.expand("dist/directives/"+name+"/*.tpl.html").map(enquote),
         dependencies: dependenciesForModule(name)
       };
       module.dependencies.forEach(findModule);

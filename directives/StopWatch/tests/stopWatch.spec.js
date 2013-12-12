@@ -3,8 +3,7 @@ describe('Stopwatch', function () {
 
   var scope, ctrl, $compile, $locale, svgService, $window, $interval;
 
-  beforeEach(module('Stopwatch'));
-  beforeEach(module('directives/Stopwatch/stopwatch.tpl.html', 'directives/Stopwatch/stopwatch.tpl.html'));
+  beforeEach(module('AngularBlackBelt.Stopwatch'));
   
   beforeEach(inject(function (_$rootScope_, _$compile_,_$controller_,_$interval_) {
     scope = _$rootScope_.$new();
@@ -68,16 +67,21 @@ describe('Stopwatch', function () {
       expect($(stopwatch.children()[3]).html()).toBe('Reset');
     }); 
 
-    it('Should call startTimer() and set running to true as soon as the stopwatch is created and linked to the DOM', function() {      
+    it('Should not call startTimer() when the DOM is loaded, but should start on click', function() {      
+      expect(stopwatchCtrl.running).toBe(false);
+      $(stopwatch.children()[1]).click();
       expect(stopwatchCtrl.running).toBe(true);
     }); 
 
     it('Should call stopTimer() when the Stop button is clicked', function() {
+      $(stopwatch.children()[1]).click();
+      expect(stopwatchCtrl.running).toBe(true);
       $(stopwatch.children()[2]).click();
       expect(stopwatchCtrl.running).toBe(false);
     }); 
 
     it('Should call stopTimer() when the Stop button is clicked and append the time to the directives defining scope', function() {
+      $(stopwatch.children()[1]).click();
       $interval.flush(10000);
       expect(stopwatchCtrl.options.log.length).toBe(0);
       $(stopwatch.children()[2]).click();
@@ -86,6 +90,7 @@ describe('Stopwatch', function () {
     }); 
 
      it('Should not append to the log if the timer is stoped and stop is clicked', function() {
+      $(stopwatch.children()[1]).click();
       $interval.flush(10000);
       expect(stopwatchCtrl.options.log.length).toBe(0);
       $(stopwatch.children()[2]).click();
@@ -100,6 +105,7 @@ describe('Stopwatch', function () {
 
     it('Should reset the domTime back to 0:0:0:0 when reset is clicked', function() {
       var domTime = $(stopwatch).find('.stopwatch');
+      $(stopwatch.children()[1]).click();
       expect(domTime.html().trim()).toBe('0:0:0:0');
       $interval.flush(10000);
       expect(domTime.html().trim()).toNotBe('0:0:0:0');
