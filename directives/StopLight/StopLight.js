@@ -50,9 +50,12 @@ angular.module('AngularBlackBelt.StopLight',[])
 }])
 .controller('stopLightCtrl', ['$scope','$interval', function($scope,$interval){
     
-    this.options = $scope.options;
+    var interval = null,
+        self = this;
+
+    self.options = $scope.options;
     
-    this.setNextState = function(){
+    self.setNextState = function(){
         state = $scope.options.state;
         if($scope.options.reverse === true){
             $scope.options.state =  state==='red'?'yellow':state==='yellow'?'green':'red';
@@ -60,8 +63,16 @@ angular.module('AngularBlackBelt.StopLight',[])
           $scope.options.state =  state==='red'?'green':state==='yellow'?'red':'yellow';   
         }
     };
+
+    self.killInterval = function(){
+      $interval.cancel(interval); 
+    };
     
-    $interval(this.setNextState,this.options.interval);
+    interval = $interval(this.setNextState,self.options.interval);
+
+    $scope.$on('$destroy', function(node){
+      self.killInterval();
+    });
     
         
 }]).directive('stopLightContainer', [ function() {
@@ -73,7 +84,7 @@ angular.module('AngularBlackBelt.StopLight',[])
     return {
         require: '^stopLightContainer',
         scope: {},
-        link: function(scope,element,attrs,stopLightCtrl) {
+        link: function(scope,element,attrs,controller) {
             
             if ( element[0].tagName !== 'CANVAS' ) {
               throw new Error('StopLight can only be a canvas element. ' + element[0].tagName + ' will not work.');
@@ -85,10 +96,10 @@ angular.module('AngularBlackBelt.StopLight',[])
               attrsState: attrs.state,
               height: element[0].height,
               width: element[0].width
-            },stopLightCtrl.options);
+            },controller.options);
 
             function getStopLightState(){
-              return stopLightCtrl.options.state;
+              return controller.options.state;
             }
             
             svgService.setUpStopLight(context,scope.options);

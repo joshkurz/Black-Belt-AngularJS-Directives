@@ -133,15 +133,28 @@ describe('Stopwatch', function () {
       spyOn(ctrl, 'updateTime');
       ctrl.startTimer();
       $interval.flush(1000);
-      scope.$apply();
       expect(ctrl.updateTime.callCount).toBe(10);
     }); 
 
     it('Should not call updateTime if the timer is stoped', function() {
       spyOn(ctrl , 'updateTime');
+      ctrl.startTimer();
+      $interval.flush(1000);
+      expect(ctrl.updateTime.callCount).toBe(10);
+      //calls update time one more time whevever we stop the timer.
       ctrl.stopTimer();
       $interval.flush(1000);
-      expect(ctrl.updateTime.callCount).toBe(0);
+      expect(ctrl.updateTime.callCount).toBe(11);
+    });
+
+    it('Should not call updateTime if the scope has been destroyed', function() {
+      spyOn(ctrl , 'updateTime');
+      ctrl.startTimer();
+      $interval.flush(1000);
+      expect(ctrl.updateTime.callCount).toBe(10);
+      scope.$destroy();
+      $interval.flush(1000);
+      expect(ctrl.updateTime.callCount).toBe(10);
     });
 
   });

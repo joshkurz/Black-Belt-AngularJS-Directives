@@ -57,6 +57,10 @@ angular.module('AngularBlackBelt.Stopwatch', ['directives/Stopwatch/stopwatch.tp
       timeElapsed = offset = 0;
     };
 
+    $scope.$on('$destroy', function(node){
+      $interval.cancel(interval); 
+    });
+
 }])
 .directive('stopwatch', function(){
     return {
