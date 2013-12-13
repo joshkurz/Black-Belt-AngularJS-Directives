@@ -1,7 +1,7 @@
  /*
   * The Stopwatch module consists of one directives, one controller, and one filter. 
   */
-angular.module('AngularBlackBelt.Stopwatch', ['directives/Stopwatch/stopwatch.tpl.html'])
+angular.module('AngularBlackBelt.Stopwatch', ['directives/Stopwatch/stopwatch.tpl.html', 'directives/Stopwatch/stopwatch2.tpl.html'])
 .controller('stopwatchCtrl', ['$scope', '$interval',    function($scope, $interval){
     
     var startTime = 0,
@@ -68,9 +68,16 @@ angular.module('AngularBlackBelt.Stopwatch', ['directives/Stopwatch/stopwatch.tp
         scope: {options: '='},
         replace: true,
         controller: 'stopwatchCtrl',
-        templateUrl: 'directives/Stopwatch/stopwatch.tpl.html',
-        compile: function(tElem, tAttrs){
+        templateUrl: function(tElem, tAttrs){
+
+            if (!tAttrs.templateUrl){
+                 throw new Error('Must Give the stopwatch a templateUrl to look for.');
+            }
             
+            return tAttrs.templateUrl;
+        },
+        compile: function(tElem, tAttrs){
+
             if (!tAttrs.options){
                  throw new Error('Must Pass an options object from the Controller For the Stopwatch to Work Correctly.');
             }

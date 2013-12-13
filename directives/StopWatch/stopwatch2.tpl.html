@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="stopwatch numbers">
+    {{options.elapsedTime | stopwatchTime}}
+   </div>
+   <button ng-click="resetTimer()">Reset</button>
+   <button ng-click="stopTimer()">Stop</button>
+   <button ng-click="startTimer()">Start</button>
+</div>
