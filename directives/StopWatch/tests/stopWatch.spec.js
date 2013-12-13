@@ -121,6 +121,74 @@ describe('Stopwatch', function () {
 
   });
 
+  describe('Creating A Stopwatch Directives with a different tempalte and still have all the same passing tests', function () {
+     
+     var stopwatch,
+         stopwatchCtrl,
+         stopwatchScope;
+
+     beforeEach(inject(function (_$rootScope_, _$compile_,_$controller_,_$interval_) {
+      stopwatch = $compile('<div stopwatch options="options" template-url="directives/Stopwatch/stopwatch2.tpl.html"></div>')(scope);
+      scope.$apply();
+      stopwatchCtrl = stopwatch.controller('stopwatch');
+    }));
+
+    it('Should create the correct elements based upon the given template for the stopwatch', function() {
+      var domTime = $(stopwatch).find('.stopwatch');
+      expect(domTime.html().trim()).toBe('0:0:0:0');
+      expect($(stopwatch.children()[3]).html()).toBe('Start');
+      expect($(stopwatch.children()[2]).html()).toBe('Stop');
+      expect($(stopwatch.children()[1]).html()).toBe('Reset');
+    }); 
+
+    it('Should not call startTimer() when the DOM is loaded, but should start when the start button is clicked', function() {      
+      expect(stopwatchCtrl.running).toBe(false);
+      $(stopwatch.children()[3]).click();
+      expect(stopwatchCtrl.running).toBe(true);
+    }); 
+
+    it('Should call stopTimer() when the Stop button is clicked', function() {
+      $(stopwatch.children()[3]).click();
+      expect(stopwatchCtrl.running).toBe(true);
+      $(stopwatch.children()[2]).click();
+      expect(stopwatchCtrl.running).toBe(false);
+    }); 
+
+    it('Should call stopTimer() when the Stop button is clicked and append the time to the directives defining scope', function() {
+      $(stopwatch.children()[3]).click();
+      $interval.flush(10000);
+      expect(stopwatchCtrl.options.log.length).toBe(0);
+      $(stopwatch.children()[2]).click();
+      expect(stopwatchCtrl.running).toBe(false);
+      expect(scope.options.log.length).toBe(1);
+    }); 
+
+     it('Should not append to the log if the timer is stoped and stop is clicked', function() {
+      $(stopwatch.children()[3]).click();
+      $interval.flush(10000);
+      expect(stopwatchCtrl.options.log.length).toBe(0);
+      $(stopwatch.children()[2]).click();
+      expect(stopwatchCtrl.running).toBe(false);
+      expect(scope.options.log.length).toBe(1);
+      $(stopwatch.children()[2]).click();
+      expect(scope.options.log.length).toBe(1);
+      $(stopwatch.children()[3]).click();
+      $(stopwatch.children()[2]).click();
+      expect(scope.options.log.length).toBe(2);
+    }); 
+
+    it('Should reset the domTime back to 0:0:0:0 when reset is clicked', function() {
+      var domTime = $(stopwatch).find('.stopwatch');
+      $(stopwatch.children()[3]).click();
+      expect(domTime.html().trim()).toBe('0:0:0:0');
+      $interval.flush(10000);
+      expect(domTime.html().trim()).toNotBe('0:0:0:0');
+      $(stopwatch.children()[1]).click();
+      expect(domTime.html().trim()).toBe('0:0:0:0');
+    }); 
+
+  });
+
   describe('Stopwatch Controller', function () {
 
     beforeEach(inject(function (_$rootScope_,_$controller_,_$interval_) {
