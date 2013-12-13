@@ -121,6 +121,73 @@ describe('Stopwatch', function () {
 
   });
 
+  describe('Creating multiple stopwatches on a single scope and making sure they do not interfere with each other', function () {
+     
+     var stopwatch,
+         stopwatch2,
+         stopwatch3,
+         stopwatchCtrl,
+         stopwatchCtrl2,
+         stopwatchCtrl3,
+         stopwatchScope;
+
+     beforeEach(inject(function (_$rootScope_, _$compile_,_$controller_,_$interval_) {
+      scope.options2 = {
+          interval: 1000,
+          log: []
+      };
+      scope.options3 = {
+          interval: 200,
+          log: []
+      };
+      stopwatch = $compile('<div stopwatch options="options" template-url="directives/Stopwatch/stopwatch.tpl.html"></div>')(scope);
+      stopwatch2 = $compile('<div stopwatch options="options2" template-url="directives/Stopwatch/stopwatch2.tpl.html"></div>')(scope);
+      stopwatch3 = $compile('<div stopwatch options="options3" template-url="directives/Stopwatch/stopwatch.tpl.html"></div>')(scope);
+      scope.$apply();
+      stopwatchCtrl = stopwatch.controller('stopwatch');
+      stopwatchCtrl2 = stopwatch2.controller('stopwatch');
+      stopwatchCtrl3 = stopwatch3.controller('stopwatch');
+    }));
+
+     it('All of the stopwatches should append to their own log array', function() {
+      $(stopwatch.children()[1]).click();
+      $(stopwatch2.children()[3]).click();
+      $(stopwatch3.children()[1]).click();
+      $interval.flush(10000);
+      expect(stopwatchCtrl.options.log.length).toBe(0);
+      expect(stopwatchCtrl2.options.log.length).toBe(0);
+      expect(stopwatchCtrl3.options.log.length).toBe(0);
+      $(stopwatch.children()[2]).click();
+      $(stopwatch2.children()[2]).click();
+      $(stopwatch3.children()[2]).click();
+      expect(stopwatchCtrl.running).toBe(false);
+      expect(stopwatchCtrl2.running).toBe(false);
+      expect(stopwatchCtrl3.running).toBe(false);
+      expect(scope.options.log.length).toBe(1);
+      expect(scope.options2.log.length).toBe(1);
+      expect(scope.options3.log.length).toBe(1);
+    }); 
+
+     it('Only going to run one timer and the other should stay at zero', function() {
+      var domTime = $(stopwatch).find('.stopwatch');
+      var domTime2 = $(stopwatch2).find('.stopwatch');
+      var domTime3 = $(stopwatch3).find('.stopwatch');
+      $(stopwatch.children()[1]).click();
+      expect(domTime.html().trim()).toBe('0:0:0:0');
+      expect(domTime2.html().trim()).toBe('0:0:0:0');
+      expect(domTime3.html().trim()).toBe('0:0:0:0');
+      $interval.flush(10000);
+      expect(domTime.html().trim()).toNotBe('0:0:0:0');
+      expect(domTime2.html().trim()).toBe('0:0:0:0');
+      expect(domTime3.html().trim()).toBe('0:0:0:0');
+      $(stopwatch.children()[3]).click();
+      expect(domTime.html().trim()).toBe('0:0:0:0');
+      expect(domTime2.html().trim()).toBe('0:0:0:0');
+      expect(domTime3.html().trim()).toBe('0:0:0:0');
+    }); 
+
+  });
+
   describe('Creating A Stopwatch Directives with a different tempalte and still have all the same passing tests', function () {
      
      var stopwatch,
