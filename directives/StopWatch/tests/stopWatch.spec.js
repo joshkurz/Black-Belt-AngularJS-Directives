@@ -26,27 +26,27 @@ describe('Stopwatch', function () {
 
      it('throw an error if there are no options set on the element', function() {
       expect(function(){
-        var stopwatch = $compile('<div stopwatch template-url="directives/Stopwatch/stopwatch.tpl.html"></div>')(scope);
+        var stopwatch = $compile('<div stopwatch template-url="directives/StopWatch/stopWatch.tpl.html"></div>')(scope);
         scope.$apply();
       }).toThrow('Must Pass an options object from the Controller For the Stopwatch to Work Correctly.');
     });  
 
     it('Should not throw an error with an empty options object', function() {
       expect(function(){
-        var stopwatch = $compile('<div stopwatch options="options" template-url="directives/Stopwatch/stopwatch.tpl.html"></div>')(scope);
+        var stopwatch = $compile('<div stopwatch options="options" template-url="directives/StopWatch/stopWatch.tpl.html"></div>')(scope);
         scope.$apply();
       }).not.toThrow();
     });
 
     it('Should set the default interval value to 100 milliseconds', function() {
-      var stopwatch = $compile('<div stopwatch options="newObject" template-url="directives/Stopwatch/stopwatch.tpl.html"></div>')(scope);
+      var stopwatch = $compile('<div stopwatch options="newObject" template-url="directives/StopWatch/stopWatch.tpl.html"></div>')(scope);
       scope.$apply();
       expect(stopwatch.isolateScope().options.interval).toBe(100);
     }); 
 
     it('Should set the value of the options to 1000', function() {
       scope.newObject = {interval: 1000};
-      var stopwatch = $compile('<div stopwatch options="newObject" template-url="directives/Stopwatch/stopwatch.tpl.html"></div>')(scope);
+      var stopwatch = $compile('<div stopwatch options="newObject" template-url="directives/StopWatch/stopWatch.tpl.html"></div>')(scope);
       scope.$apply();
       expect(stopwatch.isolateScope().options.interval).toBe(1000);
     }); 
@@ -60,7 +60,7 @@ describe('Stopwatch', function () {
          stopwatchScope;
 
      beforeEach(inject(function (_$rootScope_, _$compile_,_$controller_,_$interval_) {
-      stopwatch = $compile('<div stopwatch options="options" template-url="directives/Stopwatch/stopwatch.tpl.html"></div>')(scope);
+      stopwatch = $compile('<div stopwatch options="options" template-url="directives/StopWatch/stopWatch.tpl.html"></div>')(scope);
       scope.$apply();
       stopwatchCtrl = stopwatch.controller('stopwatch');
     }));
@@ -140,9 +140,9 @@ describe('Stopwatch', function () {
           interval: 200,
           log: []
       };
-      stopwatch = $compile('<div stopwatch options="options" template-url="directives/Stopwatch/stopwatch.tpl.html"></div>')(scope);
-      stopwatch2 = $compile('<div stopwatch options="options2" template-url="directives/Stopwatch/stopwatch2.tpl.html"></div>')(scope);
-      stopwatch3 = $compile('<div stopwatch options="options3" template-url="directives/Stopwatch/stopwatch.tpl.html"></div>')(scope);
+      stopwatch = $compile('<div stopwatch options="options" template-url="directives/StopWatch/stopWatch.tpl.html"></div>')(scope);
+      stopwatch2 = $compile('<div stopwatch options="options2" template-url="directives/StopWatch/stopwatch2.tpl.html"></div>')(scope);
+      stopwatch3 = $compile('<div stopwatch options="options3" template-url="directives/StopWatch/stopWatch.tpl.html"></div>')(scope);
       scope.$apply();
       stopwatchCtrl = stopwatch.controller('stopwatch');
       stopwatchCtrl2 = stopwatch2.controller('stopwatch');
@@ -195,7 +195,7 @@ describe('Stopwatch', function () {
          stopwatchScope;
 
      beforeEach(inject(function (_$rootScope_, _$compile_,_$controller_,_$interval_) {
-      stopwatch = $compile('<div stopwatch options="options" template-url="directives/Stopwatch/stopwatch2.tpl.html"></div>')(scope);
+      stopwatch = $compile('<div stopwatch options="options" template-url="directives/StopWatch/stopwatch2.tpl.html"></div>')(scope);
       scope.$apply();
       stopwatchCtrl = stopwatch.controller('stopwatch');
     }));
