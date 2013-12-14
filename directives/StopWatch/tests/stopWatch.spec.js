@@ -73,7 +73,7 @@ describe('Stopwatch', function () {
       expect($(stopwatch.children()[3]).html()).toBe('Reset');
     }); 
 
-    it('Should not call startTimer() when the DOM is loaded, but should start when the start button is clicked', function() {      
+    it('Should not call startTimer() when the DOM is linked, but should start when the start button is clicked', function() {      
       expect(stopwatchCtrl.running).toBe(false);
       $(stopwatch.children()[1]).click();
       expect(stopwatchCtrl.running).toBe(true);
@@ -208,7 +208,7 @@ describe('Stopwatch', function () {
       expect($(stopwatch.children()[1]).html()).toBe('Reset');
     }); 
 
-    it('Should not call startTimer() when the DOM is loaded, but should start when the start button is clicked', function() {      
+    it('Should not call startTimer() when the DOM is linked, but should start when the start button is clicked', function() {      
       expect(stopwatchCtrl.running).toBe(false);
       $(stopwatch.children()[3]).click();
       expect(stopwatchCtrl.running).toBe(true);
