@@ -308,25 +308,21 @@ describe('Stopwatch', function () {
     }));
 
     it('Should filter the date object to be in stopwatch format with all zeros', function() {
-      spyOn(ctrl, 'updateTime');
       var newDate = new Date(0);
       expect(stopwatchTimeFilter(newDate)).toBe('0:0:0:0');
     }); 
 
     it('Should have 1 second elapsed', function() {
-      spyOn(ctrl, 'updateTime');
       var newDate = new Date(1000);
       expect(stopwatchTimeFilter(newDate)).toBe('0:0:1:0');
     }); 
 
     it('Should have 1 minute elapsed', function() {
-      spyOn(ctrl, 'updateTime');
       var newDate = new Date(1000 * 60);
       expect(stopwatchTimeFilter(newDate)).toBe('0:1:0:0');
     }); 
 
     it('Should have 1 hour elapsed', function() {
-      spyOn(ctrl, 'updateTime');
       var newDate = new Date(1000 * 60 * 60);
       expect(stopwatchTimeFilter(newDate)).toBe('1:0:0:0');
     }); 
