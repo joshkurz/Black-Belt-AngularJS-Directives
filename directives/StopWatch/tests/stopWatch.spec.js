@@ -1,9 +1,9 @@
-describe('Stopwatch', function () {
+describe('StopWatch', function () {
   'use strict';
 
   var scope, ctrl, $compile, $locale, svgService, $window, $interval;
 
-  beforeEach(module('AngularBlackBelt.Stopwatch'));
+  beforeEach(module('AngularBlackBelt.StopWatch'));
   
   beforeEach(inject(function (_$rootScope_, _$compile_,_$controller_,_$interval_) {
     scope = _$rootScope_.$new();

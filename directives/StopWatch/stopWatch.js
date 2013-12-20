@@ -1,7 +1,7 @@
  /*
   * The Stopwatch module consists of one directives, one controller, and one filter. 
   */
-angular.module('AngularBlackBelt.Stopwatch', ['directives/StopWatch/stopWatch.tpl.html', 'directives/StopWatch/stopwatch2.tpl.html'])
+angular.module('AngularBlackBelt.StopWatch', ['directives/StopWatch/stopWatch.tpl.html', 'directives/StopWatch/stopwatch2.tpl.html'])
 .controller('stopwatchCtrl', ['$scope', '$interval',    function($scope, $interval){
     
     var startTime = 0,
