@@ -14,16 +14,20 @@ angular.module('AngularBlackBelt.html5Player', ['directives/html5Player/html5Pla
         scope: {
             videoConfig: '='
         },
-        link: {
-                pre: function(scope,element,attrs){
-                    scope.trustSrc = function(ext) {
-                      return $sce.trustAsResourceUrl(scope.videoConfig.filePath + ext);
-                    };
-                },
-                post: function(scope, element, attrs) {
-                 
-                  setTimeout(function(){element.mediaelementplayer();},1000);
-                }
+        link: function(scope, element, attrs) {
+            
+
+            function getSrc(){
+                return scope.videoConfig.filePath;
+            }
+
+            scope.trustSrc = function(ext) {
+              return $sce.trustAsResourceUrl(scope.videoConfig.filePath + ext);
+            };
+
+            scope.$watch(getSrc, function(obj) {
+                element.mediaelementplayer();
+            });
         }
     };
 }]);
