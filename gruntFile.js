@@ -29,15 +29,14 @@ module.exports = function (grunt) {
     dist: 'dist',
     filename: 'AngularBlackBelt',
     filenamecustom: '<%= filename %>-custom',
-    delta: {
+    watch: {
       html: {
         files: ['directives/**/*.tpl.html'],
         tasks: ['html2js', 'karma:watch:run']
       },
       js: {
         files: ['directives/**/*.js'],
-        //we don't need to jshint here, it slows down everything else
-        tasks: ['karma:watch:run']
+        tasks: ['jshint', 'recess', 'build']
       }
     },
     karma: {
