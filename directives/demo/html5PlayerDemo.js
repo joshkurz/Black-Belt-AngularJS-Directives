@@ -1,4 +1,4 @@
-angular.module('AngularBlackBelt.htmlPlayerDemo', ['directives/demo/htmlPlayerDemo.tpl.html'])
+angular.module('AngularBlackBelt.html5PlayerDemo', ['directives/demo/html5PlayerDemo.tpl.html'])
 .controller('htmlPlayerCtrl', ['$scope', function($scope){
     $scope.videos = [
       {

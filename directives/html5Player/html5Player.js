@@ -1,11 +1,11 @@
-angular.module('AngularBlackBelt.htmlPlayer', ['directives/htmlPlayer/htmlPlayer.tpl.html', 'directives/htmlPlayer/youtubeHtmlPlayer.tpl.html'])
-.directive('htmlPlayer', ['$sce',function($sce) {
+angular.module('AngularBlackBelt.html5Player', ['directives/htmlPlayer/html5Player.tpl.html', 'directives/htmlPlayer/youtubeHtml5Player.tpl.html'])
+.directive('html5Player', ['$sce',function($sce) {
     return {
         restrict: 'A',
         templateUrl: function(tElem, tAttrs){
 
             if (!tAttrs.templateUrl){
-                 throw new Error('Must Give the htmlPlayer a templateUrl to look for.');
+                 throw new Error('Must Give the html5Player a templateUrl to look for.');
             }
             
             return tAttrs.templateUrl;

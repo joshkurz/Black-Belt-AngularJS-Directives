@@ -1,5 +1,5 @@
 
-angular.module('AngularBlackBelt.demo', ['ngRoute', 'directives/demo/stopLightView.tpl.html', 'directives/demo/stopwatchView.tpl.html', 'AngularBlackBelt.StopWatchDemo', 'AngularBlackBelt.StopLightDemo', 'AngularBlackBelt.htmlPlayerDemo'])
+angular.module('AngularBlackBelt.demo', ['ngRoute', 'directives/demo/stopLightView.tpl.html', 'directives/demo/stopwatchView.tpl.html', 'AngularBlackBelt.StopWatchDemo', 'AngularBlackBelt.StopLightDemo', 'AngularBlackBelt.html5PlayerDemo'])
 
 .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
@@ -16,7 +16,7 @@ angular.module('AngularBlackBelt.demo', ['ngRoute', 'directives/demo/stopLightVi
     controller:'demoStopLightCtrl'
   });
 
-  $routeProvider.when('/htmlplayer', {
+  $routeProvider.when('/html5player', {
     templateUrl:'directives/demo/htmlPlayerDemo.tpl.html',
     controller:'htmlPlayerCtrl'
   });
