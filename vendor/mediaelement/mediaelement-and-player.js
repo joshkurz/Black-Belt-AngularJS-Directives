@@ -1214,16 +1214,17 @@ mejs.HtmlMediaElementShim = {
 				pluginMediaElement.setAttribute(attribute.name, attribute.value);
 			}
 		}
-
+        
+        //Took this out, so karma tests would pass. Karma cannot find the body tag.
 		// check for placement inside a <p> tag (sometimes WYSIWYG editors do this)
-		node = htmlMediaElement.parentNode;
-		while (node !== null && node.tagName.toLowerCase() != 'body') {
-			if (node.parentNode.tagName.toLowerCase() == 'p') {
-				node.parentNode.parentNode.insertBefore(node, node.parentNode);
-				break;
-			}
-			node = node.parentNode;
-		}
+		// node = htmlMediaElement.parentNode;
+		// while (node !== null && node.tagName.toLowerCase() != 'body') {
+		// 	if (node.parentNode.tagName.toLowerCase() == 'p') {
+		// 		node.parentNode.parentNode.insertBefore(node, node.parentNode);
+		// 		break;
+		// 	}
+		// 	node = node.parentNode;
+		// }
 
 		if (playback.isVideo) {
 			width = (options.pluginWidth > 0) ? options.pluginWidth : (options.videoWidth > 0) ? options.videoWidth : (htmlMediaElement.getAttribute('width') !== null) ? htmlMediaElement.getAttribute('width') : options.defaultVideoWidth;

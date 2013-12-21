@@ -1,33 +1,52 @@
 angular.module('AngularBlackBelt.html5Player', ['directives/html5Player/html5Player.tpl.html', 'directives/html5Player/youtubeHtml5Player.tpl.html'])
-.directive('html5Player', ['$sce',function($sce) {
+.directive('html5Player', ['$sce', '$compile', '$templateCache', function($sce, $compile, $templateCache) {
     return {
         restrict: 'A',
-        templateUrl: function(tElem, tAttrs){
-
-            if (!tAttrs.templateUrl){
-                 throw new Error('Must Give the html5Player a templateUrl to look for.');
-            }
-            
-            return tAttrs.templateUrl;
-        },
-        replace: 'element',
+        replace: true,
         scope: {
             videoConfig: '='
         },
-        link: function(scope, element, attrs) {
+        compile: function(tElem,tAttrs){
             
+            return function(scope, element, attrs) {
+                
+                if (typeof scope.videoConfig !== 'object' || !scope.videoConfig.filePath || !scope.videoConfig.template){
+                     throw new Error('Must Give a correct videoCofig object with a template and filePath');
+                }
+            
+                var mediaelement,
+                    newElement;
 
-            function getSrc(){
-                return scope.videoConfig.filePath;
-            }
+                function getSrc(){
+                    if(scope.videoConfig){
+                      return scope.videoConfig.filePath;
+                    }
+                }
 
-            scope.trustSrc = function(ext) {
-              return $sce.trustAsResourceUrl(scope.videoConfig.filePath + ext);
+                scope.trustSrc = function(ext) {
+                    if(scope.videoConfig){
+                      return $sce.trustAsResourceUrl(scope.videoConfig.filePath + ext);
+                    }
+                };
+                
+                newElement = $compile($templateCache.get(scope.videoConfig.template).trim())(scope);
+
+                scope.$watch(getSrc, function(newV,oldV) {
+                    element.html('');
+                    if(scope.videoConfig){
+                      newElement = $compile($templateCache.get(scope.videoConfig.template).trim())(scope);
+                    }
+                    element.append(newElement);
+                    setTimeout(function(){
+                      mediaelement = newElement.mediaelementplayer();
+                    });
+                });
+
+                scope.$on('$destroy', function(){
+                  mediaelement.remove();
+                  element.html('');
+                });
             };
-
-            scope.$watch(getSrc, function(obj) {
-                element.mediaelementplayer();
-            });
         }
     };
 }]);

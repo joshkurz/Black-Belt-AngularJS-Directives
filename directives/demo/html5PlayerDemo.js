@@ -3,17 +3,20 @@ angular.module('AngularBlackBelt.html5PlayerDemo', ['directives/demo/html5Player
     $scope.videos = [
       {
        filePath: 'http://mediaelementjs.com/media/echo-hereweare', 
-       playerWidth: '640', 
-       playerHeight: '360', 
-       objWidth: '500', 
-       objHeight: '300'
+       template: 'directives/html5Player/html5Player.tpl.html',
+       thumbnail: 'http://mediaelementjs.com/media/echo-hereweare-540x304.jpg'
       },
       {
        filePath: 'http://www.youtube.com/watch?v=nOEw9iiopwI', 
-       playerWidth: '640', 
-       playerHeight: '360', 
-       objWidth: '500', 
-       objHeight: '300'
+       template: 'directives/html5Player/youtubeHtml5Player.tpl.html',
+       thumbnail: 'http://img.youtube.com/vi/nOEw9iiopwI/0.jpg'
+      },
+      {
+       filePath: 'http://www.youtube.com/watch?v=6v2L2UGZJAM', 
+       template: 'directives/html5Player/youtubeHtml5Player.tpl.html',
+       thumbnail: 'http://img.youtube.com/vi/6v2L2UGZJAM/0.jpg'
       }
     ];
+
+    $scope.activeVideo = $scope.videos[1];
 }]);
