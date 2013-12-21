@@ -17,8 +17,8 @@ angular.module('AngularBlackBelt.demo', ['ngRoute', 'directives/demo/stopLightVi
   });
 
   $routeProvider.when('/html5player', {
-    templateUrl:'directives/demo/htmlPlayerDemo.tpl.html',
-    controller:'htmlPlayerCtrl'
+    templateUrl:'directives/demo/html5PlayerDemo.tpl.html',
+    controller:'html5PlayerCtrl'
   });
 
 }]);

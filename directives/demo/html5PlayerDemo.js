@@ -1,5 +1,5 @@
 angular.module('AngularBlackBelt.html5PlayerDemo', ['directives/demo/html5PlayerDemo.tpl.html'])
-.controller('htmlPlayerCtrl', ['$scope', function($scope){
+.controller('html5PlayerCtrl', ['$scope', function($scope){
     $scope.videos = [
       {
        filePath: 'http://mediaelementjs.com/media/echo-hereweare', 

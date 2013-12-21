@@ -1,4 +1,4 @@
-angular.module('AngularBlackBelt.html5Player', ['directives/htmlPlayer/html5Player.tpl.html', 'directives/htmlPlayer/youtubeHtml5Player.tpl.html'])
+angular.module('AngularBlackBelt.html5Player', ['directives/html5Player/html5Player.tpl.html', 'directives/html5Player/youtubeHtml5Player.tpl.html'])
 .directive('html5Player', ['$sce',function($sce) {
     return {
         restrict: 'A',
