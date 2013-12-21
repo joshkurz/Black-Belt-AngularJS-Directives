@@ -2,6 +2,7 @@
 coverage
 node_modules/
 bower_components/
-dist/
+dist/*.js
+dist/*.css
 directives/**/*.html.js
 *.iml

@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html ng-app="AngularBlackBelt">
+  <head>
+    <title>Black Belt Directives</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap-css/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="black-belt-AngularJS-directives.css"/>
+    <link rel="stylesheet" href="../vendor/mediaelement/mediaelementplayer.css" />
+    <script src="../bower_components/jquery/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../vendor/mediaelement/mediaelement-and-player.min.js"></script>
+    <script src="AngularBlackBelt-0.0.1.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body ng-controller="demoCtrl">   
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Black Belt Directives</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li ng-class="{'active':  currentRoute == '/stopwatch'}"><a ng-href="#/stopwatch">Stop Watch</a></li>
+            <li ng-class="{'active':  currentRoute == '/stoplight'}"><a ng-href="#/stoplight">Stop Light</a></li>
+            <li ng-class="{'active':  currentRoute == '/html5player'}"><a ng-href="#/html5player">HTML5 Player</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="jumbotron">
+        <div ng-view></div>
+      </div>
+
+      <div class="footer">
+        <p>&copy; Black Belt AngularJS Directives 2013</p>
+      </div>
+
+    </div> 
+  </body>
+</html>
