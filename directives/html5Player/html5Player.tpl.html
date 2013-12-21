@@ -1,4 +1,10 @@
-<video data-setup="{'techOrder': ['html5', 'flash']}"  class="video-js vjs-default-skin" id="myvideo" video-loader="tutorialNumber" id="video" controls>
-    <source type="video/mp4" src="file:///C:/Users/Dell/Desktop/grammar%20game/ㅗㅏregular.mp4"></source> 
-    Your browser does not support the video tag.
+<video width="640" height="360" preload="none" ng-src="{{trustSrc('.mp4')}}">		
+	<source ng-src="{{trustSrc('.mp4')}}" type="video/mp4">
+	<source ng-src="{{trustSrc('.webm')}}" type="video/webm">
+	<source ng-src="{{trustSrc('.ogv')}}" type="video/ogg">
+	<object width="540" height="303" type="application/x-shockwave-flash" data="{{trustSrc('.swf')}}">
+		<param name="movie" value="{{trustSrc('.swf')}}">
+		<param name="flashvars" value="controls=true&amp;file={{trustSrc('.mp4')}}">
+		<img ng-src="{{trustSrc('.jpg')}}" width="540" height="303" title="No video playback capabilities">
+	</object>
 </video>
