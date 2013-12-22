@@ -1,9 +1,14 @@
 <div class="jumbotron">
+  <div class="alert alert-warning">
+    <label for="youtubeSearch">Search YouTube</label>
+    <input type="text" name="youtubeSearch" ng-model="result" typeahead="suggestion as suggestion.title.$t for suggestion in videoSearch($viewValue)">
+  </div>
+  <label>{{activeVideo.title}}</label>
+  <div html5-player video-config="activeVideo"></div>
+  <label class="alert">Suggested Titles</label>
   <div class="btn-group">
     <div ng-repeat="video in videos" class="btn">
       <img ng-click="setActiveVideo($index)" class="thumbnail videoThumbnail" ng-src="{{video.thumbnail}}">
     </div>
   </div>
-  <label class="alert alert-info">{{activeVideo.title}}</label>
-  <div html5-player video-config="activeVideo"></div>
 </div>

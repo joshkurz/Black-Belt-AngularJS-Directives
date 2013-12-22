@@ -1,5 +1,5 @@
 angular.module('AngularBlackBelt.html5PlayerDemo', ['directives/demo/html5PlayerDemo.tpl.html'])
-.controller('html5PlayerCtrl', ['$scope', '$location', function($scope, $location){
+.controller('html5PlayerCtrl', ['$scope', '$location', '$http', function($scope, $location, $http){
 
     var activeVideo = $location.search().activeVideo;
     $scope.videos = [
@@ -40,11 +40,28 @@ angular.module('AngularBlackBelt.html5PlayerDemo', ['directives/demo/html5Player
        title: 'Planet Earth Snippet'
       }
     ];
+
+    $scope.videoSearch = function(cityName) {
+      return $http.jsonp("https://gdata.youtube.com/feeds/api/videos?alt=json-in-script&orderby=published&start-index=11&max-results=10&v=2&callback=JSON_CALLBACK&q="+cityName).then(function(response){
+        return response.data.feed.entry;
+      });
+    };
     
     $scope.setActiveVideo = function(index){
       $scope.activeVideo = $scope.videos[index];
       $location.search('activeVideo', index);
     };
+
+    $scope.$watch('result', function(newV, oldV){
+       if(typeof newV === 'object' && newV !== oldV){
+         $scope.activeVideo = {
+          filePath: $scope.result.content.src,
+          template: 'directives/html5Player/youtubeHtml5Player.tpl.html',
+          thumbnail: $scope.result['media$group']['media$thumbnail'][0].url,
+          title: $scope.result.title.$t
+         };
+       }
+    });
 
     $scope.activeVideo = $scope.videos[activeVideo?activeVideo:1];
 }]);
