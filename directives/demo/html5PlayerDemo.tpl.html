@@ -1,8 +1,9 @@
 <div class="jumbotron">
   <div class="btn-group">
     <div ng-repeat="video in videos" class="btn">
-      <img ng-click="$parent.activeVideo = video" class="thumbnail videoThumbnail" ng-src="{{video.thumbnail}}">
+      <img ng-click="setActiveVideo($index)" class="thumbnail videoThumbnail" ng-src="{{video.thumbnail}}">
     </div>
   </div>
+  <label class="alert alert-info">{{activeVideo.title}}</label>
   <div html5-player video-config="activeVideo"></div>
 </div>

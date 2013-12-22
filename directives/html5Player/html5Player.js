@@ -29,24 +29,35 @@ angular.module('AngularBlackBelt.html5Player', ['directives/html5Player/html5Pla
                     }
                 };
                 
-                newElement = $compile($templateCache.get(scope.videoConfig.template).trim())(scope);
-
                 scope.$watch(getSrc, function(newV,oldV) {
+                    newElement = $compile($templateCache.get(scope.videoConfig.template).trim())(scope);
                     element.html('');
-                    if(scope.videoConfig){
-                      newElement = $compile($templateCache.get(scope.videoConfig.template).trim())(scope);
-                    }
                     element.append(newElement);
                     setTimeout(function(){
                       mediaelement = newElement.mediaelementplayer();
                     });
                 });
 
-                scope.$on('$destroy', function(){
+                scope.$on('$destroy', function(node){
                   mediaelement.remove();
                   element.html('');
                 });
             };
         }
     };
-}]);
+}]).directive('ngPoster', function() {
+    return {
+        restrict: 'A',
+        compile: function(tElem,tAttrs){
+            
+            return function(scope, element, attrs) {
+                
+                if (typeof scope.videoConfig !== 'object' || !scope.videoConfig.filePath || !scope.videoConfig.template){
+                     throw new Error('Must add ngPoster to a html5Player directive only.');
+                }
+
+                attrs.$set('poster', attrs.ngPoster);
+            };
+        }
+    };
+});

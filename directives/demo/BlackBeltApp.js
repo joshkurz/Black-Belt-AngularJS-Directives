@@ -18,6 +18,7 @@ angular.module('AngularBlackBelt.demo', ['ngRoute', 'directives/demo/stopLightVi
 
   $routeProvider.when('/html5player', {
     templateUrl:'directives/demo/html5PlayerDemo.tpl.html',
+    reloadOnSearch: false,
     controller:'html5PlayerCtrl'
   });
 

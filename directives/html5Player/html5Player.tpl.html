@@ -1,10 +1,9 @@
-<video width="100%" height="100%" preload="none" ng-src="{{trustSrc('.mp4')}}">		
+<video width="100%" height="100%" preload="none" ng-poster="{{videoConfig.thumbnail}}" ng-src="{{trustSrc('.mp4')}}">		
 	<source ng-src="{{trustSrc('.mp4')}}" type="video/mp4">
 	<source ng-src="{{trustSrc('.webm')}}" type="video/webm">
 	<source ng-src="{{trustSrc('.ogv')}}" type="video/ogg">
 	<object width="100%" height="100%" type="application/x-shockwave-flash" data="{{trustSrc('.swf')}}">
 		<param name="movie" value="{{trustSrc('.swf')}}">
 		<param name="flashvars" value="controls=true&amp;file={{trustSrc('.mp4')}}">
-		<img ng-src="{{trustSrc('.jpg')}}" width="100%" height="100%" title="No video playback capabilities">
 	</object>
 </video>
