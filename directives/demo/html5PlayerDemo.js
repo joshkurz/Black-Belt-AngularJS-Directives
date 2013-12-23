@@ -41,8 +41,8 @@ angular.module('AngularBlackBelt.html5PlayerDemo', ['directives/demo/html5Player
       }
     ];
 
-    $scope.videoSearch = function(cityName) {
-      return $http.jsonp("https://gdata.youtube.com/feeds/api/videos?alt=json-in-script&orderby=published&start-index=11&max-results=10&v=2&callback=JSON_CALLBACK&q="+cityName).then(function(response){
+    $scope.videoSearch = function(youtubeTitle) {
+      return $http.jsonp("https://gdata.youtube.com/feeds/api/videos?alt=json-in-script&orderby=viewCount&start-index=11&max-results=30&v=2&callback=JSON_CALLBACK&q="+youtubeTitle).then(function(response){
         return response.data.feed.entry;
       });
     };
@@ -57,7 +57,7 @@ angular.module('AngularBlackBelt.html5PlayerDemo', ['directives/demo/html5Player
          $scope.activeVideo = {
           filePath: $scope.result.content.src,
           template: 'directives/html5Player/youtubeHtml5Player.tpl.html',
-          thumbnail: $scope.result['media$group']['media$thumbnail'][0].url,
+          thumbnail: $scope.result['media$group']['media$thumbnail'][0].url.split('?')[0],
           title: $scope.result.title.$t
          };
        }
