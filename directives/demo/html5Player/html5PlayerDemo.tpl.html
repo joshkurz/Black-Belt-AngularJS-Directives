@@ -5,7 +5,7 @@
   </div>
   <label>{{activeVideo.title}}</label>
   <div html5-player video-config="activeVideo"></div>
-  <label class="alert">Suggested Titles</label>
+  <div class="alert">Suggested Titles</div>
   <div class="btn-group">
     <div ng-repeat="video in videos" class="btn">
       <img ng-click="setActiveVideo($index)" class="thumbnail videoThumbnail" ng-src="{{video.thumbnail}}">
