@@ -16,12 +16,6 @@ angular.module('AngularBlackBelt.demo/html5Player', ['directives/demo/html5Playe
        title: 'Tom and Jerry in A Night Before Christmas'
       },
       {
-       filePath: 'https://ia700609.us.archive.org/9/items/MuhammadAliVersusFloydPatterson/MuhammadAliVersusFloydPatterson_512kb', 
-       template: 'directives/html5Player/html5Player.tpl.html',
-       thumbnail: 'http://www.anglonautes.com/vocabulary/voc_sport_main/voc_sport_box_1/voc_sport_box_1_pic_65_clay.jpg',
-       title: 'Muhammad Ali vs Floyd Patterson'
-      },
-      {
        filePath: 'https://ia700703.us.archive.org/5/items/TheAmericanDreamFilm-FullLength/TheAmericanDreamFilm-fullLength', 
        template: 'directives/html5Player/html5Player.tpl.html',
        thumbnail: 'http://www.theamericandreamfilm.com/images/home/logo.png',

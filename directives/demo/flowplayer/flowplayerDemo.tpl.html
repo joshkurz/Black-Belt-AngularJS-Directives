@@ -1,0 +1,10 @@
+<div class="jumbotron">
+  <label>{{activeVideo.title}}</label>
+  <div flowplayer video-config="activeVideo"></div>
+  <div class="alert">Suggested Titles</div>
+  <div class="btn-group">
+    <div ng-repeat="video in videos" class="btn">
+      <img ng-click="setActiveVideo($index)" class="thumbnail videoThumbnail" ng-src="{{video.thumbnail}}">
+    </div>
+  </div>
+</div>

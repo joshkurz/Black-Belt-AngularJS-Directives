@@ -22,6 +22,12 @@ angular.module('AngularBlackBelt.demo', ['ngRoute', 'ui.bootstrap', 'directives/
     controller:'html5PlayerCtrl'
   });
 
+  $routeProvider.when('/flowplayer', {
+    templateUrl:'directives/demo/flowplayer/flowplayerDemo.tpl.html',
+    reloadOnSearch: false,
+    controller:'flowplayerCtrl'
+  });
+
 }]);
 
 

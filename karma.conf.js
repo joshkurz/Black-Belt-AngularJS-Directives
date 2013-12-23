@@ -7,6 +7,7 @@ module.exports = function (config) {
         'bower_components/angular/angular.js',
         'bower_components/angular-mocks/angular-mocks.js',
         'vendor/mediaelement/mediaelement-and-player.js',
+        'vendor/flowplayer/flowplayer-3.2.13.min.js',
         'dist/*.js',
         'directives/**/tests/*.spec.js'
     ],

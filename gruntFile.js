@@ -32,11 +32,11 @@ module.exports = function (grunt) {
     watch: {
       html: {
         files: ['directives/**/*.tpl.html','directives/**/demo/*.tpl.html'],
-        tasks: ['html2js', 'karma:watch:run']
+        tasks: []
       },
       js: {
         files: ['directives/**/*.js','directives/**/demo/*.js'],
-        tasks: ['jshint', 'recess', 'html2js','build']
+        tasks: ['jshint', 'recess', 'build']
       }
     },
     karma: {
