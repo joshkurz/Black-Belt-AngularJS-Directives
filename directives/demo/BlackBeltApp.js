@@ -1,5 +1,5 @@
 
-angular.module('AngularBlackBelt.demo', ['ngRoute', 'ui.bootstrap', 'directives/demo/stopLightView.tpl.html', 'directives/demo/stopwatchView.tpl.html', 'AngularBlackBelt.StopWatchDemo', 'AngularBlackBelt.StopLightDemo', 'AngularBlackBelt.html5PlayerDemo'])
+angular.module('AngularBlackBelt.demo', ['ngRoute', 'ui.bootstrap', 'directives/demo/stopLight/stopLightView.tpl.html', 'directives/demo/stopwatch/stopwatchDemo.tpl.html', 'AngularBlackBelt.demo/stopLight', 'AngularBlackBelt.demo/stopwatch', 'AngularBlackBelt.demo/html5Player'])
 
 .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
@@ -7,17 +7,17 @@ angular.module('AngularBlackBelt.demo', ['ngRoute', 'ui.bootstrap', 'directives/
   $routeProvider.otherwise({redirectTo:'/stopwatch'});
 
   $routeProvider.when('/stopwatch', {
-    templateUrl:'directives/demo/stopwatchView.tpl.html',
+    templateUrl:'directives/demo/stopwatch/stopwatchDemo.tpl.html',
     controller:'demoStopwatchCtrl'
   });
 
   $routeProvider.when('/stoplight', {
-    templateUrl:'directives/demo/stopLightView.tpl.html',
+    templateUrl:'directives/demo/stopLight/stopLightView.tpl.html',
     controller:'demoStopLightCtrl'
   });
 
   $routeProvider.when('/html5player', {
-    templateUrl:'directives/demo/html5PlayerDemo.tpl.html',
+    templateUrl:'directives/demo/html5Player/html5PlayerDemo.tpl.html',
     reloadOnSearch: false,
     controller:'html5PlayerCtrl'
   });

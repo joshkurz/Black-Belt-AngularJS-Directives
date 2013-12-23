@@ -31,12 +31,12 @@ module.exports = function (grunt) {
     filenamecustom: '<%= filename %>-custom',
     watch: {
       html: {
-        files: ['directives/**/*.tpl.html'],
+        files: ['directives/**/*.tpl.html','directives/**/demo/*.tpl.html'],
         tasks: ['html2js', 'karma:watch:run']
       },
       js: {
-        files: ['directives/**/*.js'],
-        tasks: ['jshint', 'recess', 'build']
+        files: ['directives/**/*.js','directives/**/demo/*.js'],
+        tasks: ['jshint', 'recess', 'html2js','build']
       }
     },
     karma: {
@@ -67,7 +67,7 @@ module.exports = function (grunt) {
       }
     },
     jshint:{
-      files:['directives/**/*.js', 'test/**/*.js', 'demo/**/*.js'],
+      files:['directives/**/**/*.js', 'test/**/*.js', 'demo/**/*.js'],
       options:{
         curly:true,
         eqeqeq:true,
@@ -163,6 +163,12 @@ module.exports = function (grunt) {
       filter: 'isDirectory', cwd: '.'
     }, 'directives/*').forEach(function(dir) {
       findModule(dir.split('/')[1]);
+    });
+
+    grunt.file.expand({
+      filter: 'isDirectory', cwd: '.'
+    }, 'directives/demo/*').forEach(function(dir) {
+      findModule('demo/'+ dir.split('/')[2]);
     });
 
     var modules = grunt.config('modules');

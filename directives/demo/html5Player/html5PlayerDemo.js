@@ -1,4 +1,4 @@
-angular.module('AngularBlackBelt.html5PlayerDemo', ['directives/demo/html5PlayerDemo.tpl.html'])
+angular.module('AngularBlackBelt.demo/html5Player', ['directives/demo/html5Player/html5PlayerDemo.tpl.html'])
 .controller('html5PlayerCtrl', ['$scope', '$location', '$http', function($scope, $location, $http){
 
     var activeVideo = $location.search().activeVideo;

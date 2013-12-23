@@ -1,4 +1,4 @@
-angular.module('AngularBlackBelt.StopLightDemo', [])
+angular.module('AngularBlackBelt.demo/stopLight', [])
 .controller('demoStopLightCtrl', ['$scope', function($scope){
     
     $scope.states = [{
