@@ -1,5 +1,5 @@
-angular.module('AngularBlackBelt.html5Player', ['directives/html5Player/html5Player.tpl.html', 'directives/html5Player/youtubeHtml5Player.tpl.html'])
-.directive('html5Player', ['$sce', '$compile', '$templateCache', function($sce, $compile, $templateCache) {
+angular.module('AngularBlackBelt.mediaelement', ['directives/mediaelement/mediaelement.tpl.html', 'directives/mediaelement/youtubeMediaelementPlayer.tpl.html'])
+.directive('mediaelement', ['$sce', '$compile', '$templateCache', function($sce, $compile, $templateCache) {
     return {
         restrict: 'A',
         replace: true,
@@ -53,7 +53,7 @@ angular.module('AngularBlackBelt.html5Player', ['directives/html5Player/html5Pla
             return function(scope, element, attrs) {
                 
                 if (typeof scope.videoConfig !== 'object' || !scope.videoConfig.filePath || !scope.videoConfig.template){
-                     throw new Error('Must add ngPoster to a html5Player directive only.');
+                     throw new Error('Must add ngPoster to a mediaelement directive only.');
                 }
 
                 attrs.$set('poster', attrs.ngPoster);

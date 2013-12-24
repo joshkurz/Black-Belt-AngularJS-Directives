@@ -4,7 +4,7 @@
     <input type="text" name="youtubeSearch" ng-model="result" typeahead="suggestion as suggestion.title.$t for suggestion in videoSearch($viewValue)">
   </div>
   <label>{{activeVideo.title}}</label>
-  <div html5-player video-config="activeVideo"></div>
+  <div mediaelement video-config="activeVideo"></div>
   <div class="alert">Suggested Titles</div>
   <div class="btn-group">
     <div ng-repeat="video in videos" class="btn">
