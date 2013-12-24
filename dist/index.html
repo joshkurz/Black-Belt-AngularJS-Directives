@@ -42,7 +42,7 @@
             <li ng-class="{'active':  currentRoute == '/stopwatch'}"><a ng-href="#/stopwatch">Stop Watch</a></li>
             <li ng-class="{'active':  currentRoute == '/stoplight'}"><a ng-href="#/stoplight">Stop Light</a></li>
             <li class="dropdown" ng-class="{active:isNavbarActiveViews()}">
-                <a id="videomenu" href="" class="dropdown-toggle">Video Players<b class="caret"></b></a>
+                <a id="videomenu" href="" class="dropdown-toggle" data-toggle="videomenu">Video Players<b class="caret"></b></a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="videomenu">
                     <li ng-class="{'active':  currentRoute == '/mediaelement'}"><a ng-href="#/mediaelement">Mediaelement</a></li>
                     <li ng-class="{'active':  currentRoute == '/flowplayer'}"><a ng-href="#/flowplayer">Flowplayer</a></li>
