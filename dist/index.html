@@ -41,8 +41,13 @@
           <ul class="nav navbar-nav">
             <li ng-class="{'active':  currentRoute == '/stopwatch'}"><a ng-href="#/stopwatch">Stop Watch</a></li>
             <li ng-class="{'active':  currentRoute == '/stoplight'}"><a ng-href="#/stoplight">Stop Light</a></li>
-            <li ng-class="{'active':  currentRoute == '/html5player'}"><a ng-href="#/html5player">HTML5 Player</a></li>
-            <li ng-class="{'active':  currentRoute == '/flowdplayer'}"><a ng-href="#/flowplayer">Flowplayer</a></li>
+            <li class="dropdown" ng-class="{active:isNavbarActiveViews()}">
+                <a id="videomenu" href="" class="dropdown-toggle">Video Players<b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="videomenu">
+                    <li ng-class="{'active':  currentRoute == '/html5player'}"><a ng-href="#/html5player">HTML5 Player</a></li>
+                    <li ng-class="{'active':  currentRoute == '/flowplayer'}"><a ng-href="#/flowplayer">Flowplayer</a></li>
+                </ul>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
