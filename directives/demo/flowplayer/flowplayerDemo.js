@@ -21,8 +21,8 @@ angular.module('AngularBlackBelt.demo/flowplayer', ['directives/demo/flowplayer/
           ratio: 16/9
         },
         playlist: [
-           "https://ia601903.us.archive.org/12/items/CountOfMonteChristoCanadianFilm/count%20of%20monte%20christo%20-%20canadian%20film",
            "https://ia700602.us.archive.org/29/items/Spartans/spartan_512kb",
+           "https://ia601903.us.archive.org/12/items/CountOfMonteChristoCanadianFilm/count%20of%20monte%20christo%20-%20canadian%20film",
            "https://ia600204.us.archive.org/2/items/020347/020347_512kb"
         ]
       }
