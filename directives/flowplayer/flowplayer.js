@@ -29,8 +29,7 @@ angular.module('AngularBlackBelt.flowplayer', ['directives/flowplayer/flowplayer
 
                 scope.$watch(getSrc, function(newV,oldV) {
                     newElement = $compile($templateCache.get(attrs.templateUrl).trim())(scope);
-                    element.html('');
-                    element.append(newElement);
+                    element.html('').append(newElement);
                     setTimeout(function(){
                        newElement.flowplayer(scope.videoConfig.options);
                     });
