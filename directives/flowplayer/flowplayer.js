@@ -1,13 +1,15 @@
-angular.module('AngularBlackBelt.flowplayer', ['directives/flowplayer/flowplayer.tpl.html'])
+angular.module('AngularBlackBelt.flowplayer', ['directives/flowplayer/flowplayer.tpl.html','directives/flowplayer/flowplayerSlideshow.tpl.html'])
 .directive('flowplayer', ['$sce', '$compile', '$templateCache', function($sce, $compile, $templateCache) {
     return {
         restrict: 'A',
-        templateUrl: 'directives/flowplayer/flowplayer.tpl.html',
-        replace: true,
         scope: {
             videoConfig: '='
         },
         compile: function(tElem,tAttrs){
+
+            if (!tAttrs.templateUrl){
+                 throw new Error('Must Give flowplayer a templateUrl to look for.');
+            }
             
             return function(scope, element, attrs) {
                 
@@ -15,19 +17,25 @@ angular.module('AngularBlackBelt.flowplayer', ['directives/flowplayer/flowplayer
                      throw new Error('videoConfig must be an object');
                 }
 
-                var flowplayer;
+                var newElement;
 
                 function getSrc(){
                     return JSON.stringify(scope.videoConfig);
                 }
 
+                scope.trustSrc = function(ext) {
+                    return $sce.trustAsResourceUrl(scope.videoConfig.playlist[0] + ext);
+                };
+
                 scope.$watch(getSrc, function(newV,oldV) {
-                    flowplayer = $f(element[0], '../vendor/flowplayer/flowplayer-3.2.18.swf', scope.videoConfig);
+                    newElement = $compile($templateCache.get(attrs.templateUrl).trim())(scope);
+                    element.html('');
+                    element.append(newElement);
+                    setTimeout(function(){
+                       newElement.flowplayer(scope.videoConfig.options);
+                    });
                 });
 
-                scope.$on('$destroy', function(node){
-                  flowplayer.unload();
-                });
             };
         }
     };

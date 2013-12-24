@@ -5,31 +5,26 @@ angular.module('AngularBlackBelt.demo/flowplayer', ['directives/demo/flowplayer/
 
     $scope.videos = [
       {
-          clip: {
-              url: 'https://ia700404.us.archive.org/11/items/LovingYouandDrinkingBeer/LovingYouandDrinkingBeer_512kb.mp4',
-              autoPlay: true,
-              autoBuffering: true
-          },
-          thumbnail: 'http://i1.ytimg.com/vi/xwTF6bEfxBk/mqdefault.jpg',
-          title: 'Loving You And Drinking Beer'
+        options: {
+          ratio: 16/9
+        },
+        playlist: [
+           "https://ia700701.us.archive.org/21/items/TomAndJerryInANightBeforeChristmas/TomAndJerry-003-NightBeforeChristmas1941",
+           "https://ia700703.us.archive.org/5/items/TheAmericanDreamFilm-FullLength/TheAmericanDreamFilm-fullLength",
+           "https://ia700404.us.archive.org/11/items/LovingYouandDrinkingBeer/LovingYouandDrinkingBeer_512kb",
+           "https://ia700204.us.archive.org/23/items/Dragon_Ball_Z_Bitches/DBZBitches_512kb",
+           "https://ia600302.us.archive.org/32/items/StarWarsGangsterRap/StarWarsGangstaRap_512kb"
+        ]
       },
       {
-          clip: {
-              url: 'https://ia700701.us.archive.org/21/items/TomAndJerryInANightBeforeChristmas/TomAndJerry-003-NightBeforeChristmas1941.mp4',
-              autoPlay: true,
-              autoBuffering: true
-          },
-          thumbnail: 'http://upload.wikimedia.org/wikipedia/en/b/b7/Tomandjerrytitle003.jpg',
-          title: 'Tom and Jerry in A Night Before Christmas'
-      },
-      {
-          clip: {
-              url: 'https://ia700703.us.archive.org/5/items/TheAmericanDreamFilm-FullLength/TheAmericanDreamFilm-fullLength.mp4',
-              autoPlay: true,
-              autoBuffering: true
-          },
-          thumbnail: 'http://www.theamericandreamfilm.com/images/home/logo.png',
-          title: 'The American Dream'
+        options: {
+          ratio: 16/9
+        },
+        playlist: [
+           "https://ia601903.us.archive.org/12/items/CountOfMonteChristoCanadianFilm/count%20of%20monte%20christo%20-%20canadian%20film",
+           "https://ia700602.us.archive.org/29/items/Spartans/spartan_512kb",
+           "https://ia600204.us.archive.org/2/items/020347/020347_512kb"
+        ]
       }
     ];
 

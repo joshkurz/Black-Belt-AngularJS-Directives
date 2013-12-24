@@ -1,10 +1,9 @@
 <div class="jumbotron">
-  <label>{{activeVideo.title}}</label>
-  <div flowplayer video-config="activeVideo"></div>
-  <div class="alert">Suggested Titles</div>
+  <label>Flowplayer</label>
+  <div class="alert">Select the Dots to change the Video.</div>
+  <div flowplayer video-config="activeVideo" template-url="directives/flowplayer/flowplayerSlideshow.tpl.html"></div>
+  <div class="alert">Playlists</div>
   <div class="btn-group">
-    <div ng-repeat="video in videos" class="btn">
-      <img ng-click="setActiveVideo($index)" class="thumbnail videoThumbnail" ng-src="{{video.thumbnail}}">
-    </div>
+    <button ng-repeat="video in videos" class="btn" ng-click="setActiveVideo($index)">{{$index}}</button>
   </div>
 </div>
