@@ -2,19 +2,19 @@
 angular.module('gaugeDemo', [])
 .controller('gaugeDemoCtrl', ['$scope', function($scope){
     $scope.demoOptions = {
-      lines: 12, // The number of lines to draw
-      angle: 0.15, // The length of each line
-      lineWidth: 0.44, // The line thickness
+      lines: 12,
+      angle: 0.15, 
+      lineWidth: 0.44,
       pointer: {
-        length: 0.9, // The radius of the inner circle
-        strokeWidth: 0.035, // The rotation offset
-        color: '#000000' // Fill color
+        length: 0.9,
+        strokeWidth: 0.035,
+        color: '#000000'
       },
-      limitMax: 'true',   // If true, the pointer will not go past the end of the gauge
+      limitMax: 'true', 
 
-      colorStart: '#6FADCF',   // Colors
-      colorStop: '#8FC0DA',    // just experiment with them
-      strokeColor: '#E0E0E0',   // to see which ones work best for you
+      colorStart: '#6FADCF', 
+      colorStop: '#8FC0DA', 
+      strokeColor: '#E0E0E0',
       generateGradient: true,
       maxValue: 3000
     };
