@@ -1,5 +1,5 @@
 //http://jsfiddle.net/joshkurz/8W2Z5/1/
-angular.module('gaugeDemo', [])
+angular.module('gauge-js', [])
 .controller('gaugeDemoCtrl', ['$scope', function($scope){
     $scope.demoOptions = {
       lines: 12,
@@ -28,27 +28,35 @@ angular.module('gaugeDemo', [])
             options:'=',
             currentValue: '='    
         },
-        link: function(scope, element, attrs){
-            
-            var gauge;
-            
-            function setGauge(options){
-              gauge = new Gauge(element[0]).setOptions(scope.options);
-              gauge.maxValue = scope.options.maxValue; // set max gauge value
-              gauge.set(scope.currentValue);
+        compile: function(tElem, tAttrs){
+
+            if ( tElem[0].tagName !== 'CANVAS' ) {
+              throw new Error('guage-js can only be set on a canvas element. ' + tElem[0].tagName + ' will not work.');
             }
 
-            function getOptions(){
-                return JSON.stringify(scope.options);
-            }
+            return function(scope, element, attrs){
             
-            scope.$watch(getOptions, function(newV, oldV){
-                setGauge(scope.options);
-            });
-                         
-            scope.$watch('currentValue', function(newV,oldV){
-                gauge.set(scope.currentValue); // set actual value   
-            });
+                var gauge;
+                
+                function setGauge(options){
+                    gauge = new Gauge(element[0]).setOptions(scope.options);
+                    gauge.maxValue = scope.options.maxValue; // set max gauge value
+                    gauge.set(scope.currentValue);
+                    console.log(gauge);
+                }
+
+                function getOptions(){
+                    return JSON.stringify(scope.options);
+                }
+                
+                scope.$watch(getOptions, function(newV, oldV){
+                    setGauge(scope.options);
+                });
+                             
+                scope.$watch('currentValue', function(newV,oldV){
+                    gauge.set(scope.currentValue); // set actual value   
+                });
+            };
         }
     };
 });
