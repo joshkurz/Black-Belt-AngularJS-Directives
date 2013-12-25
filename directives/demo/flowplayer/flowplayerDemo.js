@@ -35,16 +35,5 @@ angular.module('AngularBlackBelt.demo/flowplayer', ['directives/demo/flowplayer/
       $location.search('activeVideo', index);
     };
 
-    $scope.$watch('result', function(newV, oldV){
-       if(typeof newV === 'object' && newV !== oldV){
-         $scope.activeVideo = {
-          filePath: $scope.result.content.src,
-          template: 'directives/html5Player/youtubeHtml5Player.tpl.html',
-          thumbnail: $scope.result['media$group']['media$thumbnail'][0].url.split('?')[0],
-          title: $scope.result.title.$t
-         };
-       }
-    });
-
     $scope.activeVideo = $scope.videos[activeVideo?activeVideo:0];
 }]);

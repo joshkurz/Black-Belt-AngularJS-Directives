@@ -48,10 +48,13 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
 
     $scope.$watch('result', function(newV, oldV){
        if(typeof newV === 'object' && newV !== oldV){
+         var src = $scope.result.content.src.split('?')[0];
+         var splitArray = $scope.result.content.src.split('/');
+         src = 'http://www.youtube.com/watch?v=' + splitArray[splitArray.length-1].split('?')[0];
          $scope.activeVideo = {
-          filePath: $scope.result.content.src,
+          filePath: src,
           template: 'directives/mediaelement/youtubeMediaelementPlayer.tpl.html',
-          thumbnail: $scope.result['media$group']['media$thumbnail'][0].url.split('?')[0],
+          thumbnail: $scope.result['media$group']['media$thumbnail'][0],
           title: $scope.result.title.$t
          };
        }
