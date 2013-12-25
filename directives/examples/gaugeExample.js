@@ -1,3 +1,4 @@
+//http://jsfiddle.net/joshkurz/8W2Z5/
 angular.module('gaugeDemo', [])
 .controller('gaugeDemoCtrl', ['$scope', function($scope){
     $scope.demoOptions = {
