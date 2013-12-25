@@ -21,23 +21,23 @@ describe('flowplayer', function () {
 
   describe('Creating A flowplayer Directive', function () {
 
-    it('throw an error if there is no videoConfig set on the element', function() {
+    it('throw an error if there is no templateUrl  set on the element', function() {
       expect(function(){
         var flowplayer = $compile('<div flowplayer></div>')(scope);
         scope.$apply();
-      }).toThrow('videoConfig must be an object');
+      }).toThrow('Must Give flowplayer a templateUrl to look for.');
     });   
 
-    it('throw an error if videoConfig is not an object', function() {
+    it('throw an error if temp is not an object', function() {
       expect(function(){
-        var flowplayer = $compile('<div flowplayer video-config="badVideoObj"></div>')(scope);
+        var flowplayer = $compile('<div flowplayer video-config="badVideoObj" template-url="path/to/file.mp4"></div>')(scope);
         scope.$apply();
       }).toThrow('videoConfig must be an object');
     });   
 
     it('do not throw an error when creating the directive with a good videoConfig', function() {
       expect(function(){
-        var flowplayer = $compile('<div flowplayer video-config="goodVideoObj"></div>')(scope);
+        var flowplayer = $compile('<div flowplayer video-config="goodVideoObj" template-url="path/to/file.mp4"></div>')(scope);
         scope.$apply();
       }).not.toThrow();
     });  
