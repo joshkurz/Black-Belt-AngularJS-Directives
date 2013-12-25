@@ -1,10 +1,13 @@
 # Black Belt AngularJS Directives [![Build Status](https://travis-ci.org/joshkurz/black-belt-AngularJS-directives.png?branch=master)](https://travis-ci.org/joshkurz/black-belt-AngularJS-directives)
 
-A set of directives that showcase the many possibilitie techniques AngularJS holds in the HTML5 world.
+A set of directives that showcase the many techniques AngularJS holds in the HTML5 world.
 
 # Requirements
+- JQuery
 - AngularJS
 - bootstrap.css
+- Flowplayer.js
+- mediaelement.js
 
 # Testing
 
@@ -18,5 +21,7 @@ A set of directives that showcase the many possibilitie techniques AngularJS hol
 # Usage
 
 [bower](http://twitter.github.com/bower/) for dependency management.
+    * npm install
     * bower install
-    * run ./Demo folder in browser with http-server -c -1
+    * grunt
+    * http-server -c -1
