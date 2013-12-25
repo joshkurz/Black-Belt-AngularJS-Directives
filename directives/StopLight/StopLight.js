@@ -84,31 +84,34 @@ angular.module('AngularBlackBelt.StopLight',[])
     return {
         require: '^stopLightContainer',
         scope: {},
-        link: function(scope,element,attrs,controller) {
-            
-            if ( element[0].tagName !== 'CANVAS' ) {
-              throw new Error('StopLight can only be a canvas element. ' + element[0].tagName + ' will not work.');
-            }
-            
-            var context = element[0].getContext('2d');
-            
-            scope.options =  angular.extend({ 
-              attrsState: attrs.state,
-              height: element[0].height,
-              width: element[0].width
-            },controller.options);
-
-            function getStopLightState(){
-              return controller.options.state;
-            }
-            
-            svgService.setUpStopLight(context,scope.options);
+        compile: function(tElem,tAttrs){
           
-            scope.$watch(getStopLightState, function(newV,oldV){
-              if(newV !== oldV){
-                svgService.changeColor(context,scope.options.attrsState,newV);
-              }
-            });
+            if ( tElem[0].tagName !== 'CANVAS' ) {
+              throw new Error('StopLight can only be a canvas element. ' + tElem[0].tagName + ' will not work.');
+            }
+
+            return function(scope,element,attrs,controller) {
+            
+                var context = element[0].getContext('2d');
+                
+                scope.options =  angular.extend({ 
+                  attrsState: attrs.state,
+                  height: element[0].height,
+                  width: element[0].width
+                },controller.options);
+
+                function getStopLightState(){
+                  return controller.options.state;
+                }
+                
+                svgService.setUpStopLight(context,scope.options);
+              
+                scope.$watch(getStopLightState, function(newV,oldV){
+                  if(newV !== oldV){
+                    svgService.changeColor(context,scope.options.attrsState,newV);
+                  }
+                });
+            };
         }
     };
 }]);
