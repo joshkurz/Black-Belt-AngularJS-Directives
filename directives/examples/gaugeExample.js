@@ -48,9 +48,12 @@ angular.module('gauge-js', [])
                     setGauge(scope.options);
                 });
                              
-                scope.$watch('currentValue', function(newV,oldV){
-                    gauge.set(scope.currentValue); // set actual value  
-                    console.log(scope.currentValue); 
+                scope.$watch('currentValue', function(newV,oldV){       
+                    if(scope.currentValue > scope.options.maxValue){
+                      gauge.set(scope.options.maxValue);                  
+                    } else {
+                      gauge.set(scope.currentValue);  
+                    }  
                 });
             };
         }
