@@ -55,11 +55,17 @@ describe('gauge-js', function () {
     });   
 
     it('when the currentValue changes the gauge is updated correctly', function() {
-      console.log(gauge);
-      expect(gauge.value).toBe(25);
-      scope.currentValue = 100;
+      var oldDataUrl = gauge[0].toDataURL();
+      scope.value = 100;
       scope.$apply();
-      expect(gauge.value).toBe(100);
+      expect(gauge[0].toDataURL()).not.toBe(oldDataUrl);
+    });   
+
+    it('when the options change the gauge updates itself', function() {
+      var oldDataUrl = gauge[0].toDataURL();
+      scope.configOptions = 1000;
+      scope.$apply();
+      expect(gauge[0].toDataURL()).not.toBe(oldDataUrl);
     });   
 
   });

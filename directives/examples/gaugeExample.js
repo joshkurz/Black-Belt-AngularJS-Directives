@@ -42,19 +42,15 @@ angular.module('gauge-js', [])
                     gauge = new Gauge(element[0]).setOptions(scope.options);
                     gauge.maxValue = scope.options.maxValue; // set max gauge value
                     gauge.set(scope.currentValue);
-                    console.log(gauge);
-                }
-
-                function getOptions(){
-                    return JSON.stringify(scope.options);
                 }
                 
-                scope.$watch(getOptions, function(newV, oldV){
+                scope.$watch('options', function(newV, oldV){
                     setGauge(scope.options);
                 });
                              
                 scope.$watch('currentValue', function(newV,oldV){
-                    gauge.set(scope.currentValue); // set actual value   
+                    gauge.set(scope.currentValue); // set actual value  
+                    console.log(scope.currentValue); 
                 });
             };
         }
