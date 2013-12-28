@@ -1,4 +1,4 @@
-//http://jsfiddle.net/joshkurz/8W2Z5/1/
+//http://jsfiddle.net/joshkurz/8W2Z5/7/
 angular.module('gauge-js', [])
 .controller('gaugeDemoCtrl', ['$scope', function($scope){
     $scope.demoOptions = {
@@ -11,7 +11,6 @@ angular.module('gauge-js', [])
         color: '#000000'
       },
       limitMax: 'true', 
-
       colorStart: '#6FADCF', 
       colorStop: '#8FC0DA', 
       strokeColor: '#E0E0E0',
@@ -46,7 +45,7 @@ angular.module('gauge-js', [])
                 
                 scope.$watch('options', function(newV, oldV){
                     setGauge(scope.options);
-                });
+                },true);
                              
                 scope.$watch('currentValue', function(newV,oldV){       
                     if(scope.currentValue > scope.options.maxValue){
