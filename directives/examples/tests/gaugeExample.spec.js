@@ -18,7 +18,6 @@ describe('gauge-js', function () {
 
     scope.value = 25;
 
-
   }));
 
   describe('Creating A gauge-js Directive', function () {
@@ -36,6 +35,13 @@ describe('gauge-js', function () {
         scope.$apply();
       }).not.toThrow();
     });  
+
+    it('Gauge is called when the directive is compiled and linked to the DOM', function() {
+      spyOn(Gauge.prototype, 'setOptions').andCallThrough();
+      var gauge = $compile('<canvas gauge-js current-value="value" options="configOptions"></canvas>')(scope);
+      scope.$apply();
+      expect(Gauge.prototype.setOptions).toHaveBeenCalledWith(scope.configOptions);
+    }); 
 
   });
 
@@ -66,7 +72,7 @@ describe('gauge-js', function () {
       scope.configOptions = 1000;
       scope.$apply();
       expect(gauge[0].toDataURL()).not.toBe(oldDataUrl);
-    });   
+    });    
 
   });
 
