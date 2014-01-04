@@ -10,7 +10,7 @@ angular.module('AngularBlackBelt.demo/flowplayer', ['directives/demo/flowplayer/
       {
         options: {},
         playlist: [
-           "https://ia700701.us.archive.org/21/items/TomAndJerryInANightBeforeChristmas/TomAndJerry-003-NightBeforeChristmas1941",
+           "https://ia700602.us.archive.org/29/items/Spartans/spartan_512kb",
            "https://ia700703.us.archive.org/5/items/TheAmericanDreamFilm-FullLength/TheAmericanDreamFilm-fullLength",
            "https://ia700404.us.archive.org/11/items/LovingYouandDrinkingBeer/LovingYouandDrinkingBeer_512kb",
            "https://ia700204.us.archive.org/23/items/Dragon_Ball_Z_Bitches/DBZBitches_512kb",
@@ -20,7 +20,7 @@ angular.module('AngularBlackBelt.demo/flowplayer', ['directives/demo/flowplayer/
       {
         options: {},
         playlist: [
-           "https://ia700602.us.archive.org/29/items/Spartans/spartan_512kb",
+           "https://ia700701.us.archive.org/21/items/TomAndJerryInANightBeforeChristmas/TomAndJerry-003-NightBeforeChristmas1941",
            "https://ia601903.us.archive.org/12/items/CountOfMonteChristoCanadianFilm/count%20of%20monte%20christo%20-%20canadian%20film",
            "https://ia600204.us.archive.org/2/items/020347/020347_512kb"
         ]

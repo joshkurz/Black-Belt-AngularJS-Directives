@@ -19,8 +19,9 @@ angular.module('AngularBlackBelt.flowplayer', ['directives/flowplayer/flowplayer
 
                 var newElement;
 
-                function getSrc(){
-                    return JSON.stringify(scope.videoConfig) + attrs.templateUrl;
+                function getConfigurations(){
+                    scope.videoConfig.templateUrl = attrs.templateUrl;
+                    return scope.videoConfig;
                 }
 
                 scope.trustSrc = function(ext) {
@@ -35,9 +36,9 @@ angular.module('AngularBlackBelt.flowplayer', ['directives/flowplayer/flowplayer
                     });
                 }
 
-                scope.$watch(getSrc, function(newV,oldV) {
+                scope.$watch(getConfigurations, function(newV,oldV) {
                     init();
-                });
+                },true);
 
             };
         }
