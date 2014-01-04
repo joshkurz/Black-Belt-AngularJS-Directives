@@ -17,28 +17,37 @@ angular.module('AngularBlackBelt.flowplayer', ['directives/flowplayer/flowplayer
                      throw new Error('videoConfig must be an object');
                 }
 
-                var newElement;
+                var newElement,
+                    mediaPlayer;
 
                 function getConfigurations(){
                     scope.videoConfig.templateUrl = attrs.templateUrl;
                     return scope.videoConfig;
                 }
 
-                scope.trustSrc = function(ext) {
-                    return $sce.trustAsResourceUrl(scope.videoConfig.playlist[0] + ext);
+                scope.trustSrc = function(filePath,ext) {
+                    return $sce.trustAsResourceUrl(filePath + ext);
                 };
                 
                 function init(){
                     newElement = $compile($templateCache.get(attrs.templateUrl).trim())(scope);
                     element.html('').append(newElement);
                     setTimeout(function(){
-                       newElement.flowplayer(scope.videoConfig.options);
+                      mediaPlayer = newElement[attrs.mediaType](scope.videoConfig.options);
                     });
                 }
 
                 scope.$watch(getConfigurations, function(newV,oldV) {
                     init();
                 },true);
+
+                scope.$on('$destroy', function(node){
+                  if(mediaPlayer.remove){
+                    mediaPlayer.remove();
+                  }
+                  mediaPlayer = null;
+                  element.html('');
+                });
 
             };
         }

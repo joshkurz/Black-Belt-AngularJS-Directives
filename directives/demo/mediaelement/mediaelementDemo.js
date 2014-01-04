@@ -2,6 +2,8 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
 .controller('mediaelementCtrl', ['$scope', '$location', '$http', function($scope, $location, $http){
 
     var activeVideo = $location.search().activeVideo;
+
+    $scope.currentMediaPlayer = "directives/mediaelement/mediaelement.tpl.html";
     $scope.videos = [
       {
        filePath: 'https://ia700404.us.archive.org/11/items/LovingYouandDrinkingBeer/LovingYouandDrinkingBeer_512kb', 
@@ -20,18 +22,6 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
        template: 'directives/mediaelement/mediaelement.tpl.html',
        thumbnail: 'http://www.theamericandreamfilm.com/images/home/logo.png',
        title: 'The American Dream'
-      },
-      {
-       filePath: 'http://www.youtube.com/watch?v=nOEw9iiopwI', 
-       template: 'directives/mediaelement/youtubeMediaelementPlayer.tpl.html',
-       thumbnail: 'http://img.youtube.com/vi/nOEw9iiopwI/0.jpg',
-       title: 'Paul Irish on Chrome Dev Tools'
-      },
-      {
-       filePath: 'http://www.youtube.com/watch?v=6v2L2UGZJAM', 
-       template: 'directives/mediaelement/youtubeMediaelementPlayer.tpl.html',
-       thumbnail: 'http://img.youtube.com/vi/6v2L2UGZJAM/0.jpg',
-       title: 'Planet Earth Snippet'
       }
     ];
 
@@ -57,6 +47,7 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
           thumbnail: $scope.result['media$group']['media$thumbnail'][0],
           title: $scope.result.title.$t
          };
+         $scope.currentMediaPlayer = "directives/mediaelement/youtubeMediaelementPlayer.tpl.html";
        }
     });
 
