@@ -2,6 +2,9 @@ angular.module('AngularBlackBelt.demo/flowplayer', ['directives/demo/flowplayer/
 .controller('flowplayerCtrl', ['$scope', '$location', '$http', function($scope, $location, $http){
 
     var activeVideo = $location.search().activeVideo;
+    
+    $scope.currentFlowplayer = 'directives/flowplayer/flowplayerSlideshow.tpl.html';
+    $scope.buttonText = "Pre-Roll Player";
 
     $scope.videos = [
       {
@@ -28,6 +31,16 @@ angular.module('AngularBlackBelt.demo/flowplayer', ['directives/demo/flowplayer/
       return $http.jsonp("https://gdata.youtube.com/feeds/api/videos?alt=json-in-script&orderby=viewCount&start-index=11&max-results=30&v=2&callback=JSON_CALLBACK&q="+youtubeTitle).then(function(response){
         return response.data.feed.entry;
       });
+    };
+
+    $scope.changeFlowPlayer = function(){
+      if($scope.currentFlowplayer === 'directives/flowplayer/flowplayerSlideshow.tpl.html'){
+        $scope.currentFlowplayer = 'directives/flowplayer/flowplayer.tpl.html';
+        $scope.buttonText = "Playlist Player";
+      } else {
+        $scope.currentFlowplayer = 'directives/flowplayer/flowplayerSlideshow.tpl.html';
+        $scope.buttonText = "Pre-Roll Player";
+      }
     };
     
     $scope.setActiveVideo = function(index){

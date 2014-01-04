@@ -20,19 +20,23 @@ angular.module('AngularBlackBelt.flowplayer', ['directives/flowplayer/flowplayer
                 var newElement;
 
                 function getSrc(){
-                    return JSON.stringify(scope.videoConfig);
+                    return JSON.stringify(scope.videoConfig) + attrs.templateUrl;
                 }
 
                 scope.trustSrc = function(ext) {
                     return $sce.trustAsResourceUrl(scope.videoConfig.playlist[0] + ext);
                 };
-
-                scope.$watch(getSrc, function(newV,oldV) {
+                
+                function init(){
                     newElement = $compile($templateCache.get(attrs.templateUrl).trim())(scope);
                     element.html('').append(newElement);
                     setTimeout(function(){
                        newElement.flowplayer(scope.videoConfig.options);
                     });
+                }
+
+                scope.$watch(getSrc, function(newV,oldV) {
+                    init();
                 });
 
             };
