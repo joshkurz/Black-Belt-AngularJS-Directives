@@ -1,5 +1,5 @@
-angular.module('AngularBlackBelt.flowplayer', ['directives/flowplayer/flowplayer.tpl.html','directives/flowplayer/flowplayerSlideshow.tpl.html'])
-.directive('flowplayer', ['$sce', '$compile', '$templateCache', function($sce, $compile, $templateCache) {
+angular.module('AngularBlackBelt.mediaPlayer', ['directives/mediaPlayer/flowplayer.tpl.html','directives/mediaPlayer/flowplayerSlideshow.tpl.html'])
+.directive('mediaPlayer', ['$sce', '$compile', '$templateCache', '$timeout', function($sce, $compile, $templateCache, $timeout) {
     return {
         restrict: 'A',
         scope: {
@@ -8,7 +8,7 @@ angular.module('AngularBlackBelt.flowplayer', ['directives/flowplayer/flowplayer
         compile: function(tElem,tAttrs){
 
             if (!tAttrs.templateUrl){
-                 throw new Error('Must Give flowplayer a templateUrl to look for.');
+                 throw new Error('Must Give media-player a templateUrl to look for.');
             }
             
             return function(scope, element, attrs) {
@@ -32,8 +32,10 @@ angular.module('AngularBlackBelt.flowplayer', ['directives/flowplayer/flowplayer
                 function init(){
                     newElement = $compile($templateCache.get(attrs.templateUrl).trim())(scope);
                     element.html('').append(newElement);
-                    setTimeout(function(){
-                      mediaPlayer = newElement[attrs.mediaType](scope.videoConfig.options);
+                    $timeout(function(){
+                      if(attrs.mediaType){
+                        mediaPlayer = newElement[attrs.mediaType](scope.videoConfig.options);
+                      }
                     });
                 }
 
@@ -52,4 +54,17 @@ angular.module('AngularBlackBelt.flowplayer', ['directives/flowplayer/flowplayer
             };
         }
     };
-}]);
+}]).directive('ngPoster', function() {
+    return {
+        restrict: 'A',
+        compile: function(tElem,tAttrs){
+            
+            return function(scope, element, attrs) {            
+                attrs.$observe('ngPoster', function(newv,oldv){
+                  console.log(attrs.ngPoster);
+                  attrs.$set('poster', attrs.ngPoster);
+                });
+            };
+        }
+    };
+});

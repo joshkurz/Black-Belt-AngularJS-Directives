@@ -7,19 +7,16 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
     $scope.videos = [
       {
        filePath: 'https://ia700404.us.archive.org/11/items/LovingYouandDrinkingBeer/LovingYouandDrinkingBeer_512kb', 
-       template: 'directives/mediaelement/mediaelement.tpl.html',
        thumbnail: 'http://i1.ytimg.com/vi/xwTF6bEfxBk/mqdefault.jpg',
        title: 'Loving You And Drinking Beer'
       },
       {
        filePath: 'https://ia700701.us.archive.org/21/items/TomAndJerryInANightBeforeChristmas/TomAndJerry-003-NightBeforeChristmas1941', 
-       template: 'directives/mediaelement/mediaelement.tpl.html',
        thumbnail: 'http://upload.wikimedia.org/wikipedia/en/b/b7/Tomandjerrytitle003.jpg',
        title: 'Tom and Jerry in A Night Before Christmas'
       },
       {
        filePath: 'https://ia700703.us.archive.org/5/items/TheAmericanDreamFilm-FullLength/TheAmericanDreamFilm-fullLength', 
-       template: 'directives/mediaelement/mediaelement.tpl.html',
        thumbnail: 'http://www.theamericandreamfilm.com/images/home/logo.png',
        title: 'The American Dream'
       }
@@ -43,8 +40,7 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
          src = 'http://www.youtube.com/watch?v=' + splitArray[splitArray.length-1].split('?')[0];
          $scope.activeVideo = {
           filePath: src,
-          template: 'directives/mediaelement/youtubeMediaelementPlayer.tpl.html',
-          thumbnail: $scope.result['media$group']['media$thumbnail'][0],
+          thumbnail: $scope.result['media$group']['media$thumbnail'][0].url,
           title: $scope.result.title.$t
          };
          $scope.currentMediaPlayer = "directives/mediaelement/youtubeMediaelementPlayer.tpl.html";
