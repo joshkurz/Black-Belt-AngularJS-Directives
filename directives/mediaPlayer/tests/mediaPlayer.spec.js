@@ -62,22 +62,24 @@ describe('mediaPlayer', function () {
         expect($.fn.mediaelementplayer.mostRecentCall.args[0]).toBe(scope.goodvideoObj);
     }); 
 
-    it('create a mediaelement object when media-type is an interpolated string and call the mediaelement method with the correct options', function() {
+    it('create a mediaelement object when media-type and template url are interpolated strings and call the mediaelement method with the correct options', function() {
         spyOn($.fn, 'mediaelementplayer');
         scope.mediaType = "mediaelementplayer";
+        scope.template = "directives/mediaelement/mediaelement.tpl.html";
         scope.$apply();
-        var mediaPlayer = $compile('<div media-player media-type="{{mediaType}}" video-config="goodVideoObj" template-url="directives/mediaelement/mediaelement.tpl.html"></div>')(scope);
+        var mediaPlayer = $compile('<div media-player media-type="{{mediaType}}" video-config="goodVideoObj" template-url="{{template}}"></div>')(scope);
         scope.$apply();
         $timeout.flush();
         expect($.fn.mediaelementplayer.callCount).toBe(1);
         expect($.fn.mediaelementplayer.mostRecentCall.args[0]).toBe(scope.goodvideoObj);
     }); 
 
-    it('create a flowplayer object when media-type is an interpolated string and call the flowplayer method with the correct options', function() {
+    it('create a flowplayer object when media-type and template url are interpolated string and call the flowplayer method with the correct options', function() {
         spyOn($.fn, 'flowplayer');
         scope.mediaType = "flowplayer";
+        scope.template = "directives/mediaPlayer/flowplayer.tpl.html";
         scope.$apply();
-        var mediaPlayer = $compile('<div media-player media-type="{{mediaType}}" video-config="goodVideoObj" template-url="directives/mediaelement/mediaelement.tpl.html"></div>')(scope);
+        var mediaPlayer = $compile('<div media-player media-type="{{mediaType}}" video-config="goodVideoObj" template-url="{{template}}"></div>')(scope);
         scope.$apply();
         $timeout.flush();
         expect($.fn.flowplayer.callCount).toBe(1);
@@ -86,9 +88,16 @@ describe('mediaPlayer', function () {
 
     it('create a pure HTML5 media element', function() {
        expect(function(){
-        scope.mediaType = "";
+        var mediaPlayer = $compile('<div media-player video-config="goodVideoObj" template-url="directives/mediaPlayer/pureHtml5Player.tpl.html"></div>')(scope);
         scope.$apply();
-        var mediaPlayer = $compile('<div media-player media-type="{{mediaType}}" video-config="goodVideoObj" template-url="directives/mediaPlayer/pureHtml5Player.tpl.html"></div>')(scope);
+        $timeout.flush();
+      }).not.toThrow();
+    });
+
+    it('create a pure HTML5 media element with an empty media type and an interpolated template', function() {
+       expect(function(){
+        scope.template = "directives/mediaPlayer/pureHtml5Player.tpl.html";
+        var mediaPlayer = $compile('<div media-player="" video-config="goodVideoObj" template-url="{{template}}"></div>')(scope);
         scope.$apply();
         $timeout.flush();
       }).not.toThrow();
