@@ -1,4 +1,4 @@
-angular.module('AngularBlackBelt.mediaPlayer', ['directives/mediaPlayer/flowplayer.tpl.html','directives/mediaPlayer/flowplayerSlideshow.tpl.html'])
+angular.module('AngularBlackBelt.mediaPlayer', ['directives/mediaPlayer/flowplayer.tpl.html','directives/mediaPlayer/flowplayerSlideshow.tpl.html', 'directives/mediaPlayer/pureHtml5Player.tpl.html'])
 .directive('mediaPlayer', ['$sce', '$compile', '$templateCache', '$timeout', function($sce, $compile, $templateCache, $timeout) {
     return {
         restrict: 'A',
@@ -33,7 +33,7 @@ angular.module('AngularBlackBelt.mediaPlayer', ['directives/mediaPlayer/flowplay
                     newElement = $compile($templateCache.get(attrs.templateUrl).trim())(scope);
                     element.html('').append(newElement);
                     $timeout(function(){
-                      if(attrs.mediaType){
+                      if(attrs.mediaType && attrs.mediaType !== ''){
                         mediaPlayer = newElement[attrs.mediaType](scope.videoConfig.options);
                       }
                     });

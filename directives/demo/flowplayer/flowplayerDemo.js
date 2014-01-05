@@ -3,8 +3,9 @@ angular.module('AngularBlackBelt.demo/flowplayer', ['directives/demo/flowplayer/
 
     var activeVideo = $location.search().activeVideo;
     
+    $scope.mediaType = "flowplayer";
     $scope.currentFlowplayer = 'directives/mediaPlayer/flowplayerSlideshow.tpl.html';
-    $scope.buttonText = "Playlist Player";
+    $scope.buttonText = "Playlist Player";   
 
     $scope.videos = [
       {
@@ -33,13 +34,12 @@ angular.module('AngularBlackBelt.demo/flowplayer', ['directives/demo/flowplayer/
       });
     };
 
-    $scope.changeFlowPlayer = function(){
-      if($scope.currentFlowplayer === 'directives/mediaPlayer/flowplayerSlideshow.tpl.html'){
-        $scope.currentFlowplayer = 'directives/mediaPlayer/flowplayer.tpl.html';
-        $scope.buttonText = "Pre-Roll Player";
+    $scope.changeFlowPlayer = function(template){
+      $scope.currentFlowplayer = template;
+      if(template === 'directives/mediaPlayer/pureHtml5Player.tpl.html'){
+        $scope.mediaType = '';
       } else {
-        $scope.currentFlowplayer = 'directives/mediaPlayer/flowplayerSlideshow.tpl.html';
-        $scope.buttonText = "Playlist Player";
+        $scope.mediaType = "flowplayer";
       }
     };
     
