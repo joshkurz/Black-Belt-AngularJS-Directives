@@ -3,7 +3,7 @@ describe('mediaPlayer', function () {
 
   var scope, $compile, $timeout;
 
-  beforeEach(module('AngularBlackBelt.mediaPlayer', 'directives/mediaPlayer/flowplayer.tpl.html', 'directives/mediaelement/mediaelement.tpl.html'));
+  beforeEach(module('AngularBlackBelt.mediaPlayer', 'directives/mediaPlayer/pureHtml5Player.tpl.html', 'directives/mediaPlayer/flowplayer.tpl.html', 'directives/mediaelement/mediaelement.tpl.html'));
   
   beforeEach(inject(function (_$rootScope_, _$compile_,_$timeout_) {
     scope = _$rootScope_.$new();
@@ -88,10 +88,10 @@ describe('mediaPlayer', function () {
        expect(function(){
         scope.mediaType = "";
         scope.$apply();
-        var mediaPlayer = $compile('<div media-player media-type="{{mediaType}}" video-config="goodVideoObj" template-url="directives/mediaelement/mediaelement.tpl.html"></div>')(scope);
+        var mediaPlayer = $compile('<div media-player media-type="{{mediaType}}" video-config="goodVideoObj" template-url="directives/mediaPlayer/pureHtml5Player.tpl.html"></div>')(scope);
         scope.$apply();
         $timeout.flush();
-      });
+      }).not.toThrow();
     });     
 
   });
