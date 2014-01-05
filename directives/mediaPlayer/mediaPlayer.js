@@ -61,7 +61,6 @@ angular.module('AngularBlackBelt.mediaPlayer', ['directives/mediaPlayer/flowplay
             
             return function(scope, element, attrs) {            
                 attrs.$observe('ngPoster', function(newv,oldv){
-                  console.log(attrs.ngPoster);
                   attrs.$set('poster', attrs.ngPoster);
                 });
             };
