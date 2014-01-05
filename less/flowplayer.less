@@ -247,7 +247,7 @@ video {
 #dots hgroup h1{font-size:larger}
 #dots hgroup h2{color:#fff;font-weight:bold;line-height:1.5}
 #dots .fp-embed{/* embedding disabled */display:none}
-#dots .fp-playlist{/* small dots on bottom right */position:absolute;bottom:10%;right:2%;z-index:2;-webkit-transition:opacity 1s .5s;-moz-transition:opacity 1s .5s;transition:opacity 1s .5s;}
+#dots .fp-playlist{/* small dots on bottom right */position:absolute;-webkit-transition:opacity 1s .5s;-moz-transition:opacity 1s .5s;transition:opacity 1s .5s;}
 #dots .fp-playlist a{width:20px;height:20px;-webkit-border-radius:20px;-moz-border-radius:20px;border-radius:20px;display:block;float:left;margin-right:8px;background-color:#fff;cursor:pointer;border:1px solid #000;}
 #dots .fp-playlist a:hover{background-color:#ddd}
 #dots .fp-playlist a.is-active{background-color:#000 !important}
@@ -266,20 +266,82 @@ video {
    https://github.com/flowplayer/www/blob/master/content/media/css/demos/playlist/grid.styl
 
 */
-#grid{/* wrapper element for all players */background:url("http://flowplayer.org/media/img/demos/playlist/grid.jpg") 0 no-repeat;padding:0;height:434px;position:relative;}
-#grid .is-splash .fp-ui{background-position:0 -100em}
-#grid .flowplayer{/* hard-coded aspect ratio. (not working smoothly on smaller devices)  */width:239px;height:133px;position:absolute;-webkit-transition:all .5s;-moz-transition:all .5s;transition:all .5s;}
-#grid .flowplayer.is-mouseover.is-splash .fp-ui{background-position:center}
-#grid .flowplayer.is-ready,#grid .flowplayer.is-loading{background:#333 !important;top:15px !important;left:135px !important;width:700px;height:400px;z-index:10;-webkit-box-shadow:0 0 20px #000;-moz-box-shadow:0 0 20px #000;box-shadow:0 0 20px #000}
-#grid #player0{top:0;left:0}
-#grid #player1{top:0;left:249px}
-#grid #player2{top:0;left:498px}
-#grid #player3{top:0;left:747px}
-#grid #player4{top:143px;left:0}
-#grid #player5{top:143px;left:249px}
-#grid #player6{top:143px;left:498px}
-#grid #player7{top:143px;left:747px}
-#grid #player8{top:286px;left:0}
-#grid #player9{top:286px;left:249px}
-#grid #player10{top:286px;left:498px}
-#grid #player11{top:286px;left:747px}
+.flowplayer .fp-playlist, .flowplayer .preroll-cover {
+   position: absolute;
+   bottom: -100px;
+   width: 100%;
+   height: 100px;
+   text-align: center;
+}
+/* gradient for active playlist */
+.flowplayer .fp-playlist {
+   height: 100px;
+   background-color: rgba(0, 0, 0, 0.2);
+   background: -webkit-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+   background: -moz-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+   background: -ms-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+ 
+}
+/* gradient for playlist during pre-roll */
+.is-splash.flowplayer .fp-playlist, .flowplayer.video0 .fp-playlist {
+   background: -webkit-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+   background: -moz-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+   background: -ms-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+ 
+/* the pre-roll announcement - hidden by default */
+.flowplayer .preroll-cover {
+   display: none;
+   font-size: 60px;
+   color: #fff;
+   letter-spacing: 1em;
+   text-transform: uppercase;
+   cursor: default;
+}
+/* show the pre-roll announcement during pre-roll */
+.is-splash.flowplayer .preroll-cover, .flowplayer.video0 .preroll-cover {
+   display: block;
+}
+ 
+/* the playlist item anchors */
+.flowplayer .fp-playlist a {
+   display: inline-block;
+   color: #000;
+   background-color: #777;
+   padding: 8px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   font-size: 20px;
+   margin: 30px 15px;
+}
+/* hide advert playlist anchor */
+.flowplayer .fp-playlist a.is-advert {
+   display: none;
+}
+.flowplayer .fp-playlist a.is-active {
+   background-color: #fff;
+}
+.is-paused.flowplayer .fp-playlist a.is-active {
+   background-color: #eee;
+}
+.flowplayer .fp-next, .flowplayer .fp-prev {
+   position: absolute;
+   bottom: -60px;
+   font-size: 20px;
+   color: #777;
+   cursor: pointer;
+   display: none;
+}
+.flowplayer .fp-prev {
+   left: 1em;
+}
+.flowplayer .fp-next {
+   right: 1em;
+}
+ 
+/* always show the logo */
+.flowplayer .fp-logo {
+   display: block;
+   opacity: 1 !important;
+}

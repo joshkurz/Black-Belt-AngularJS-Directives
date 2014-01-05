@@ -1,9 +1,9 @@
 <div class="jumbotron">
   <label>Flowplayer</label>
-  <div class="alert">Select the Dots to change the Video.</div>
-  <div class="btn btn-primary" ng-click="changeFlowPlayer()">{{buttonText}}</div>
+  <div ng-if="buttonText == 'Playlist Player'" class="alert">Select the Dots to change the Video.</div>
+  <div class="btn btn-primary large" ng-click="changeFlowPlayer()">{{buttonText}}</div>
   <div media-player media-type="flowplayer" video-config="activeVideo" template-url="{{currentFlowplayer}}"></div>
-  <div ng-if="buttonText == 'Pre-Roll Player'"  class="alert">Playlists
+  <div ng-if="buttonText == 'Playlist Player'"  class="alert">Playlists
     <div class="btn-group">
       <button ng-repeat="video in videos" class="btn" ng-click="setActiveVideo($index)">{{$index}}</button>
     </div>

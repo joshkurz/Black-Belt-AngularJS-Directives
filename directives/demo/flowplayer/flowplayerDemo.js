@@ -4,7 +4,7 @@ angular.module('AngularBlackBelt.demo/flowplayer', ['directives/demo/flowplayer/
     var activeVideo = $location.search().activeVideo;
     
     $scope.currentFlowplayer = 'directives/mediaPlayer/flowplayerSlideshow.tpl.html';
-    $scope.buttonText = "Pre-Roll Player";
+    $scope.buttonText = "Playlist Player";
 
     $scope.videos = [
       {
@@ -36,10 +36,10 @@ angular.module('AngularBlackBelt.demo/flowplayer', ['directives/demo/flowplayer/
     $scope.changeFlowPlayer = function(){
       if($scope.currentFlowplayer === 'directives/mediaPlayer/flowplayerSlideshow.tpl.html'){
         $scope.currentFlowplayer = 'directives/mediaPlayer/flowplayer.tpl.html';
-        $scope.buttonText = "Playlist Player";
+        $scope.buttonText = "Pre-Roll Player";
       } else {
         $scope.currentFlowplayer = 'directives/mediaPlayer/flowplayerSlideshow.tpl.html';
-        $scope.buttonText = "Pre-Roll Player";
+        $scope.buttonText = "Playlist Player";
       }
     };
     
