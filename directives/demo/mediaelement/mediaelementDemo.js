@@ -31,6 +31,7 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
     $scope.setActiveVideo = function(index){
       $scope.activeVideo = $scope.videos[index];
       $location.search('activeVideo', index);
+      $scope.currentMediaPlayer = "directives/mediaelement/mediaelement.tpl.html";
     };
 
     $scope.$watch('result', function(newV, oldV){
