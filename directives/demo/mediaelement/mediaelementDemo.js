@@ -23,7 +23,7 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
     ];
 
     $scope.videoSearch = function(youtubeTitle) {
-      return $http.jsonp("https://gdata.youtube.com/feeds/api/videos?alt=json-in-script&orderby=viewCount&start-index=11&max-results=30&v=2&callback=JSON_CALLBACK&q="+youtubeTitle).then(function(response){
+      return $http.jsonp("https://gdata.youtube.com/feeds/api/videos?alt=json-in-script&start-index=11&max-results=30&v=2&callback=JSON_CALLBACK&q="+youtubeTitle).then(function(response){
         return response.data.feed.entry;
       });
     };

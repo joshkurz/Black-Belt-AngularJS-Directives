@@ -54,14 +54,14 @@ angular.module('AngularBlackBelt.mediaPlayer', ['directives/mediaPlayer/flowplay
             };
         }
     };
-}]).directive('ngPoster', function() {
+}]).directive('bbdPoster', function() {
     return {
         restrict: 'A',
         compile: function(tElem,tAttrs){
             
             return function(scope, element, attrs) {            
-                attrs.$observe('ngPoster', function(newv,oldv){
-                  attrs.$set('poster', attrs.ngPoster);
+                attrs.$observe('bbdPoster', function(newv,oldv){
+                  attrs.$set('poster', attrs.bbdPoster);
                 });
             };
         }
