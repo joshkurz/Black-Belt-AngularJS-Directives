@@ -1,5 +1,5 @@
 
-angular.module('AngularBlackBelt.demo', ['ngRoute', 'ui.bootstrap', 'directives/demo/stopLight/stopLightView.tpl.html', 'directives/demo/stopwatch/stopwatchDemo.tpl.html', 'AngularBlackBelt.demo/stopLight', 'AngularBlackBelt.demo/stopwatch'])
+angular.module('AngularBlackBelt.demo', ['ngRoute', 'ui.bootstrap', 'ngSocial', 'directives/demo/stopLight/stopLightView.tpl.html', 'directives/demo/stopwatch/stopwatchDemo.tpl.html', 'AngularBlackBelt.demo/stopLight', 'AngularBlackBelt.demo/stopwatch'])
 
 .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
