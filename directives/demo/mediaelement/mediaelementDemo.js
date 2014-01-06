@@ -2,8 +2,8 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
 .controller('mediaelementCtrl', ['$scope', '$location', '$http', function($scope, $location, $http){
 
     var activeVideo = $location.search().activeVideo;
+    var activeYoutubeVideo = $location.search().youtube;
 
-    $scope.currentMediaPlayer = "directives/mediaelement/mediaelement.tpl.html";
     $scope.videos = [
       {
        filePath: 'https://ia700404.us.archive.org/11/items/LovingYouandDrinkingBeer/LovingYouandDrinkingBeer_512kb', 
@@ -38,15 +38,25 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
        if(typeof newV === 'object' && newV !== oldV){
          var src = $scope.result.content.src.split('?')[0];
          var splitArray = $scope.result.content.src.split('/');
-         src = 'http://www.youtube.com/watch?v=' + splitArray[splitArray.length-1].split('?')[0];
+         var token = splitArray[splitArray.length-1].split('?')[0];
+         src = 'http://www.youtube.com/watch?v=' + token;
          $scope.activeVideo = {
           filePath: src,
           thumbnail: $scope.result['media$group']['media$thumbnail'][0].url,
           title: $scope.result.title.$t
          };
+         $location.search('youtube', token);
          $scope.currentMediaPlayer = "directives/mediaelement/youtubeMediaelementPlayer.tpl.html";
        }
     });
 
-    $scope.activeVideo = $scope.videos[activeVideo?activeVideo:1];
+    if(!activeYoutubeVideo){
+      $scope.currentMediaPlayer = "directives/mediaelement/mediaelement.tpl.html";
+      $scope.activeVideo = $scope.videos[activeVideo?activeVideo:1];
+    } else {
+      $scope.currentMediaPlayer = "directives/mediaelement/youtubeMediaelementPlayer.tpl.html";
+      $scope.activeVideo = {
+        filePath: 'http://www.youtube.com/watch?v=' + activeYoutubeVideo
+      };
+    }
 }]);
