@@ -9,7 +9,7 @@
   <div media-player media-type="{{mediaType}}" video-config="activeVideo" template-url="{{currentFlowplayer}}"></div>
   <div ng-if="currentFlowplayer != 'directives/mediaPlayer/flowplayer.tpl.html'"  class="alert">Playlists
     <div class="btn-group">
-      <button ng-repeat="video in videos" class="btn" ng-click="setActiveVideo($index)">{{$index}}</button>
+      <button ng-repeat="video in videos" class="btn" ng-click="setActiveVideo($index)">{{$index+1}}</button>
     </div>
   </div>
 </div>
