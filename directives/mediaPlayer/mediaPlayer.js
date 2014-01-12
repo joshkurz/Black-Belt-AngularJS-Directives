@@ -54,16 +54,4 @@ angular.module('AngularBlackBelt.mediaPlayer', ['directives/mediaPlayer/flowplay
             };
         }
     };
-}]).directive('bbdPoster', function() {
-    return {
-        restrict: 'A',
-        compile: function(tElem,tAttrs){
-            
-            return function(scope, element, attrs) {            
-                attrs.$observe('bbdPoster', function(newv,oldv){
-                  attrs.$set('poster', attrs.bbdPoster);
-                });
-            };
-        }
-    };
-});
+}]);
