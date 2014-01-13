@@ -1,5 +1,5 @@
 
-angular.module('AngularBlackBelt.demo', ['ngRoute', 'ui.bootstrap', 'ngSocial', 'directives/demo/stopLight/stopLightView.tpl.html', 'directives/demo/stopwatch/stopwatchDemo.tpl.html', 'AngularBlackBelt.demo/stopLight', 'AngularBlackBelt.demo/stopwatch'])
+angular.module('AngularBlackBelt.demo', ['ngRoute', 'ui.bootstrap', 'ngSocial', 'directives/demo/stopLight/stopLightView.tpl.html', 'directives/demo/stopwatch/stopwatchDemo.tpl.html', 'AngularBlackBelt.demo/stopLight', 'AngularBlackBelt.demo/stopwatch', 'AngularBlackBelt.demo/treeNodes'])
 
 .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
@@ -26,6 +26,11 @@ angular.module('AngularBlackBelt.demo', ['ngRoute', 'ui.bootstrap', 'ngSocial', 
     templateUrl:'directives/demo/flowplayer/flowplayerDemo.tpl.html',
     reloadOnSearch: false,
     controller:'flowplayerCtrl'
+  });
+
+  $routeProvider.when('/treeNodes', {
+    templateUrl:'directives/demo/treeNodes/treeNodesDemo.tpl.html',
+    controller:'TreeNodesCtrl'
   });
 
 }]);

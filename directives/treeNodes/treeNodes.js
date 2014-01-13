@@ -1,0 +1,1 @@
+angular.module("AngularBlackBelt.treeNodes", ['treeNodeNoTemplateModule', 'treeNodeTemplateModule']);

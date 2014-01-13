@@ -25,6 +25,17 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
+    <script type="text/ng-template"  id="tree_item_renderer.tpl.html">
+      <ul class="list-group">
+          <li class="list-group-item">
+            <span class="btn" ng-show="data.children && !data.show" ng-click="data.show=!data.show">[+]</span>
+            <span class="btn" ng-show="data.children && data.show" ng-click="data.show=!data.show">[-]</span>
+            {{data.name}}
+          </li>
+          <li ng-if="$parent.data.show" class="list-group-item" ng-repeat="data in data.children" ng-include="'tree_item_renderer.tpl.html'"></li>
+      </ul>
+    </script>
+
   </head>
 
   <body ng-controller="demoCtrl">   
@@ -44,6 +55,7 @@
           <ul class="nav navbar-nav">
             <li ng-class="{'active':  currentRoute == '/stopwatch'}"><a ng-href="#/stopwatch">Stop Watch</a></li>
             <li ng-class="{'active':  currentRoute == '/stoplight'}"><a ng-href="#/stoplight">Stop Light</a></li>
+            <li ng-class="{'active':  currentRoute == '/treeNodes'}"><a ng-href="#/treeNodes">Recursive</a></li>
             <li class="dropdown" ng-class="{active:isNavbarActiveViews()}">
                 <a id="videomenu" href="" class="dropdown-toggle" data-toggle="videomenu">Video Players<b class="caret"></b></a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="videomenu">
@@ -68,9 +80,7 @@
 
     <div class="container">
 
-      <div class="jumbotron">
-        <div ng-view></div>
-      </div>
+      <div ng-view></div>
 
       <div class="footer">
         <p>&copy; Black Belt AngularJS Directives 2014</p>

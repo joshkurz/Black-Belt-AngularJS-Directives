@@ -1,0 +1,46 @@
+<div class="jumbotron">
+  <div class="container">
+  
+      <div class="col-md-4">
+          <div class="alert alert-success">
+            Recursion only using Transclusion
+          </div>
+          <div tree-node-no-template>
+            <!-- this breaks for some reason: <ol ng-show="showChildren"> -->
+            <ul class="list-group"> 
+              <li class="list-group-item">
+                <span class="btn" ng-show="node.children && !node.show" ng-click="node.show=!node.show">[+]</span>
+                <span class="btn" ng-show="node.children && node.show" ng-click="node.show=!node.show">[-]</span>
+                {{node.name}}
+              </li>
+              <li ng-if="$parent.node.show" class="list-group-item" ng-repeat="node in node.children" ng-transclude></li>
+            </ul>
+          </div>
+      </div>
+      
+      <div class="col-md-4">
+          <div class="alert alert-success">
+            Recursion Using a Template and Transclusion
+          </div>
+          <div tree-node-template family="node">           
+            <a href="" ng-click="family.show = !family.show">{{ family.name }}</a>
+          </div>
+      </div>
+      
+      <div class="col-md-4">
+          <div class="alert alert-success">
+            Recursion Using only ng-inlclude
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item">
+                <span class="btn" ng-show="node.children && !node.show" ng-click="node.show=!node.show">[+]</span>
+                <span class="btn" ng-show="node.children && node.show" ng-click="node.show=!node.show">[-]</span>
+                {{node.name}}
+            </li>
+            <li ng-if="$parent.node.show" class="list-group-item" ng-repeat="data in node.children" ng-include="'tree_item_renderer.tpl.html'"></li>
+          </ul>
+      </div>
+  </div>
+</div>
+
+  
