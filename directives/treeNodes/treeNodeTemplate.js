@@ -6,18 +6,17 @@ angular.module('treeNodeTemplateModule', ['directives/treeNodes/treeNodeTemplate
         transclude: true,
         scope: {family: '='},
         templateUrl: 'directives/treeNodes/treeNodeTemplate.tpl.html',
-        compile: function(tElement, tAttr, transclude) {
+        compile: function(tElement, tAttr) {
             var contents = tElement.contents().remove();
             var compiledContents;
-            return function(scope, iElement, iAttr) {
-                if(!compiledContents) {
-                    compiledContents = $compile(contents, transclude);
-                }
+            return function(scope, element, attrs, ctrl, transclude) {
                 
                 scope.family.show = true;
+                
+                compiledContents = $compile(contents, transclude);
                                
                 compiledContents(scope, function(clone, scope) {
-                         iElement.append(clone); 
+                  element.append(clone); 
                 });
             };
         }
