@@ -8,42 +8,23 @@ describe('TreeNodeTemplate', function () {
     scope = _$rootScope_.$new();
     $compile = _$compile_;
     scope.node = {
-        name : "Parent",
-        children: [{
-            name : "Child1",
-  
-            children: [{
-                name : "Grandchild1",
-      
-                children: [{
-                    name : "Super Man",
-          
-                    children: [{
-                      name : "Super Boy",
-            
-                      children: []
-                    },
-                      {
-                      name : "Super Girl",
-            
-                      children: []
-                    }]
-                }]
-            },{
-                name : "Grandchild2",
+          name : "Super Grandpa",
+
+          children: [{
+              name : "Super Man",
+    
+              children: [{
+                name : "Super Boy",
       
                 children: []
-            },{
-                name : "Grandchild3",
+              },
+                {
+                name : "Super Girl",
       
                 children: []
-            }]
-        }, {
-            name: "Child2",
-  
-            children: []
-        }]
-    };
+              }]
+          }]
+      };
   }));
 
   describe('Creating The Tree Node With A Template Directives', function () {
@@ -56,21 +37,26 @@ describe('TreeNodeTemplate', function () {
         expect(treeNode).not.toBe(undefined);
     }); 
 
+    it('should Expect the tree node to have the correct amount of a tags', function() {
+      expect(treeNode.find('a').length).toBe(4);
+    }); 
+
     it('should Expect the tree node to have the correct amount of children', function() {
-      expect(treeNode.children().length).toBe(1);
+      var treeANodes = treeNode.find('a');
+      expect($(treeANodes[0]).text()).toBe('Super Grandpa');
+      expect($(treeANodes[1]).text()).toBe('Super Man');
+      expect($(treeANodes[2]).text()).toBe('Super Boy');
+      expect($(treeANodes[3]).text()).toBe('Super Girl');
     }); 
 
     it('should Expect the tree node to update itself when the nodes change their visibility', function() {
-      expect(treeNode.find('li').length).toBe(17);
-      scope.node.children[0].children[0].show  = false;
-      scope.$apply();
-      expect(treeNode.find('li').length).toBe(11);
+      expect(treeNode.find('a').length).toBe(4);
       scope.node.children[0].show  = false;
       scope.$apply();
-      expect(treeNode.find('li').length).toBe(5);
-      scope.node.show = false;
+      expect(treeNode.find('a').length).toBe(2);
+      scope.node.show  = false;
       scope.$apply();
-      expect(treeNode.find('li').length).toBe(1);
+      expect(treeNode.find('a').length).toBe(1);
     }); 
 
   });

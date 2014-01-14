@@ -8,42 +8,23 @@ describe('TreeNodeNoTemplate', function () {
     scope = _$rootScope_.$new();
     $compile = _$compile_;
     scope.node = {
-        name : "Parent",
-        children: [{
-            name : "Child1",
-  
-            children: [{
-                name : "Grandchild1",
-      
-                children: [{
-                    name : "Super Man",
-          
-                    children: [{
-                      name : "Super Boy",
-            
-                      children: []
-                    },
-                      {
-                      name : "Super Girl",
-            
-                      children: []
-                    }]
-                }]
-            },{
-                name : "Grandchild2",
+          name : "Super Grandpa",
+
+          children: [{
+              name : "Super Man",
+    
+              children: [{
+                name : "Super Boy",
       
                 children: []
-            },{
-                name : "Grandchild3",
+              },
+                {
+                name : "Super Girl",
       
                 children: []
-            }]
-        }, {
-            name: "Child2",
-  
-            children: []
-        }]
-    };
+              }]
+          }]
+      };
   }));
 
   describe('Creating The Tree Node With No Template Directives', function () {
@@ -52,9 +33,9 @@ describe('TreeNodeNoTemplate', function () {
         treeNode = $compile('<div tree-node-no-template>' +
             '<ul id="testList" class="list-group">' +
               '<li class="list-group-item">' +
-                '<span class="btn" ng-show="node.children && !node.show" ng-click="node.show=!node.show">[+]</span>' +
+                '<a href=""><span class="btn" ng-show="node.children && !node.show" ng-click="node.show=!node.show">[+]</span>' +
                 '<span class="btn" ng-show="node.children && node.show" ng-click="node.show=!node.show">[-]</span>' +
-                '{{node.name}}' +
+                '{{node.name}}</a>' +
               '</li>' +
               '<li ng-if="$parent.node.show" class="list-group-item" ng-repeat="node in node.children" ng-transclude></li>' +
             '</ul>' +
@@ -63,21 +44,26 @@ describe('TreeNodeNoTemplate', function () {
         expect(treeNode).not.toBe(undefined);
     }); 
 
+    it('should Expect the tree node to have the correct amount of a tags', function() {
+      expect(treeNode.find('li').length).toBe(1);
+    }); 
+
     it('should Expect the tree node to have the correct amount of children', function() {
-      expect(treeNode.children().length).toBe(1);
+      var treeANodes = treeNode.find('a');
+      expect($(treeANodes[0]).text()).toBe('[+][-]Super Grandpa');
     }); 
 
     it('should Expect the tree node to update itself when the nodes change their visibility', function() {
-      expect(treeNode.find('li').length).toBe(1);
+      expect(treeNode.find('a').length).toBe(1);
       scope.node.show = true;
       scope.$apply();
-      expect(treeNode.find('li').length).toBe(5);
-      scope.node.children[0].show  = true;
+      expect(treeNode.find('a').length).toBe(2);
+      expect($(treeNode.find('a')[1]).text()).toBe('[+][-]Super Man');
+      scope.node.children[0].show = true;
       scope.$apply();
-      expect(treeNode.find('li').length).toBe(11);
-      scope.node.children[0].children[0].show  = true;
-      scope.$apply();
-      expect(treeNode.find('li').length).toBe(13);
+      expect(treeNode.find('a').length).toBe(4);
+      expect($(treeNode.find('a')[2]).text()).toBe('[+][-]Super Boy');
+      expect($(treeNode.find('a')[3]).text()).toBe('[+][-]Super Girl');
     }); 
 
   });
