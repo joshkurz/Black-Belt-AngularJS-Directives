@@ -1,0 +1,6 @@
+<ul class="list-group">
+  <li class="list-group-item" ng-transclude></li>
+  <li class="list-group-item" ng-if="family.show" ng-repeat="child in family.children">
+    <div tree-node-template family="child"><div ng-transclude></div></div>
+  </li>
+</ul>

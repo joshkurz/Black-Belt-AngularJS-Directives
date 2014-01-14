@@ -1,17 +1,11 @@
 //http://jsfiddle.net/joshkurz/DsvX6/26/
-angular.module('treeNodeTemplateModule', [])
+angular.module('treeNodeTemplateModule', ['directives/treeNodes/treeNodeTemplate.tpl.html'])
 .directive("treeNodeTemplate", function($compile) {
     return {
         restrict: "EA",
         transclude: true,
         scope: {family: '='},
-        template:       
-            '<ul class="list-group">' + 
-              '<li class="list-group-item" ng-transclude></li>' +
-               '<li class="list-group-item" ng-if="family.show" ng-repeat="child in family.children">' +
-                 '<div tree-node-template family="child"><div ng-transclude></div></div>' +
-                '</li>' +
-            '</ul>',
+        templateUrl: 'directives/treeNodes/treeNodeTemplate.tpl.html',
         compile: function(tElement, tAttr, transclude) {
             var contents = tElement.contents().remove();
             var compiledContents;
