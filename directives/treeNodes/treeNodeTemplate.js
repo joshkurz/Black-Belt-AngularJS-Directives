@@ -12,10 +12,10 @@ angular.module('treeNodeTemplateModule', ['directives/treeNodes/treeNodeTemplate
             return function(scope, element, attrs, ctrl, transclude) {
                 
                 scope.family.show = true;
-                
+
                 compiledContents = $compile(contents, transclude);
                                
-                compiledContents(scope, function(clone, scope) {
+                compiledContents(scope, function(clone) {
                   element.append(clone); 
                 });
             };
