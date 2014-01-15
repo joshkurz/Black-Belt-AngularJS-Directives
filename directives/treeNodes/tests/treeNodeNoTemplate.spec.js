@@ -31,13 +31,13 @@ describe('TreeNodeNoTemplate', function () {
     var treeNode;
     beforeEach(function(){
         treeNode = $compile('<div tree-node-no-template>' +
-            '<ul id="testList" class="list-group">' +
+            '<ul id="testList111" class="list-group">' +
               '<li class="list-group-item">' +
                 '<a href=""><span class="btn" ng-show="node.children && !node.show" ng-click="node.show=!node.show">[+]</span>' +
                 '<span class="btn" ng-show="node.children && node.show" ng-click="node.show=!node.show">[-]</span>' +
                 '{{node.name}}</a>' +
               '</li>' +
-              '<li ng-if="$parent.node.show" class="list-group-item" ng-repeat="node in node.children" ng-transclude></li>' +
+              '<li ng-if="$parent.node.show" class="list-group-item" ng-repeat="node in node.children"><div ng-transclude></div></li>' +
             '</ul>' +
           '</div>')(scope);
         scope.$apply();

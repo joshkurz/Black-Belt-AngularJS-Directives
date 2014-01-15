@@ -3,17 +3,16 @@ angular.module('treeNodeNoTemplateModule', [])
 .directive('treeNodeNoTemplate', ['$compile', function($compile) {
   return {
     restrict: 'EA',
-    scope: true,
-    terminal: true, 
     compile: function(element, attr) {
+
       var $template = element.clone().contents();
       element.html(''); // clear contents
 
-      var linkFn = $compile($template, function(scope, cloneAttachFn) {
-        return linkFn(scope, cloneAttachFn);
-      });
-
       return function($scope, $element, $attr) {
+        
+         var linkFn = $compile($template, function(scope, cloneAttachFn) {
+          return linkFn(scope, cloneAttachFn);
+        });
 
         linkFn($scope, function(contents) {
           $element.append(contents);

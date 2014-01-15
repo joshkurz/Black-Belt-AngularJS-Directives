@@ -11,10 +11,13 @@ angular.module('treeNodeTemplateModule', ['directives/treeNodes/treeNodeTemplate
             var compiledContents;
             return function(scope, element, attrs, ctrl, transclude) {
                 
+                //setting the value to true so the tree will always start open. This could be a configuration of some sort.
                 scope.family.show = true;
-
-                compiledContents = $compile(contents, transclude);
-                               
+                
+                if(!compiledContents){
+                  compiledContents = $compile(contents, transclude);
+                }
+                                  
                 compiledContents(scope, function(clone) {
                   element.append(clone); 
                 });
