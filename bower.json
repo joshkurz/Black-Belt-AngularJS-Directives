@@ -16,8 +16,8 @@
     "package.json"
   ],
   "dependencies": {
-    "angular": "~1.2.4",
-    "angular-route": "~1.2.4",
+    "angular": "~1.2.8",
+    "angular-route": "~1.2.8",
     "jquery": "~1.9.x"
   },
   "devDependencies": {
