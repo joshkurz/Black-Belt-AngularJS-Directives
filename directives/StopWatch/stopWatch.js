@@ -68,25 +68,30 @@ angular.module('AngularBlackBelt.StopWatch', ['directives/StopWatch/stopWatch.tp
         scope: {options: '='},
         replace: true,
         controller: 'stopwatchCtrl',
-        templateUrl: function(tElem, tAttrs){
-
-            if (!tAttrs.templateUrl){
-                 throw new Error('Must Give the stopwatch a templateUrl to look for.');
-            }
-            
-            return tAttrs.templateUrl;
-        },
+        transclude: true,
         compile: function(tElem, tAttrs){
-
+            
             if (!tAttrs.options){
                  throw new Error('Must Pass an options object from the Controller For the Stopwatch to Work Correctly.');
             }
+
+            var overrideScope = tAttrs.override;
             
-            return function(scope, elem, attrs, controller){    
+            return function(scope, elem, attrs, controller, transclude){   
+
+              function transcludeFn(clone){
+                elem.append(clone);
+              }
+
               scope.startTimer = controller.startTimer; 
               scope.stopTimer = controller.stopTimer;
               scope.resetTimer = controller.resetTimer;
               scope.getThis = controller.getThis;
+              if(overrideScope){
+                transclude(scope,transcludeFn);
+              } else {
+                transclude(transcludeFn);
+              }
             };
         }
     };

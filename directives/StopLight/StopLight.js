@@ -62,12 +62,16 @@ angular.module('AngularBlackBelt.StopLight',[])
         } else {
           $scope.options.state =  state==='red'?'green':state==='yellow'?'red':'yellow';   
         }
+        if(interval === null){
+          interval = $interval(this.setNextState,self.options.interval);
+        }
     };
 
     self.killInterval = function(){
       $interval.cancel(interval); 
+      interval = null;
     };
-    
+
     interval = $interval(this.setNextState,self.options.interval);
 
     $scope.$on('$destroy', function(node){

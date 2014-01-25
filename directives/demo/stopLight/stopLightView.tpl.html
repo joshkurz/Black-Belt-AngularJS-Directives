@@ -1,9 +1,21 @@
 <div class="jumbotron">
-  <button class="btn" ng-click="stopAllStates()">Stop!!!</button>   
+
    <div stop-light-container options="state" class="trafficlight" ng-repeat="state in states">
     <canvas class="light" stop-light state="red"></canvas>
     <canvas class="light" stop-light state="yellow"></canvas>
     <canvas class="light" stop-light state="green"></canvas>
+    <button class="btn" ng-click="resetState(state)">Reset!!!</button> 
+   </div>
+
+   <div stop-light-container options="fastClickState" class="trafficlight">
+    <canvas class="light" stop-light state="red"></canvas>
+    <canvas class="light" stop-light state="yellow"></canvas>
+    <canvas class="light" stop-light state="green"></canvas>
+    <fast-clicker options="stopwatch" stopwatch></fast-clicker>
+   </div>
+
+   <div class="log" ng-repeat="log in stopwatch.log">
+     <div was-fast time="log"></div>
    </div>
 </div>
     

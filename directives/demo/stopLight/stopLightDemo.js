@@ -15,11 +15,20 @@ angular.module('AngularBlackBelt.demo/stopLight', [])
         reverse: true,
         interval: 3000
     }];
+
+    $scope.fastClickState = {
+        lineWidth: 6,
+        strokeStyle: 'white',
+        radius: 60,
+        state: 'red',
+        reverse: true,
+        interval: 3000
+    };
+
+    $scope.stopwatch = {interval: 100, log: []};
     
-    $scope.stopAllStates = function(){
-        for(var i = 0;i < $scope.states.length;i++){
-            $scope.states[i].state = 'red';
-        }
+    $scope.resetState = function(state){
+      state.state = 'red';
     };
         
 }]);
