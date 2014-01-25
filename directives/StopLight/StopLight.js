@@ -68,8 +68,10 @@ angular.module('AngularBlackBelt.StopLight',[])
     };
 
     self.killInterval = function(){
-      $interval.cancel(interval); 
-      interval = null;
+      if(interval){
+        $interval.cancel(interval); 
+        interval = null;
+      }
     };
 
     interval = $interval(this.setNextState,self.options.interval);
