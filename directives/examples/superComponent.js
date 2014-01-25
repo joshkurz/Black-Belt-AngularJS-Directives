@@ -24,7 +24,7 @@ var myModule = angular.module('myModule', [])
             transclude(scope, function(clone){
               element.append(clone);                       
             });
-           }            
+           };            
         }
     };
 })
