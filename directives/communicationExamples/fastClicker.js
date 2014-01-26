@@ -34,6 +34,7 @@ var myModule = angular.module('AngularBlackBelt.fastClicker', ['AngularBlackBelt
            var speedClass = '',
                runner = '',
                runnerSpeed = 0;
+
            scope.logText = scope[attrs.time]/1000 + ' seconds';
 
            if(scope[attrs.time] < 1000){  

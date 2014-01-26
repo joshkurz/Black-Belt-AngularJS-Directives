@@ -60,4 +60,43 @@ describe('fastClicker', function () {
     });
   });
 
+  describe('Integration between the wasFast and fastRunner directives, which use the stopLight and stopWatch to get fed data', function () {
+    
+    var stopLight,
+        logs,
+        fastClicker;
+
+    beforeEach(function(){
+      stopLight = $compile('<div>' +
+                            '<div stop-light-container options="options">' +
+                               '<canvas stop-light></canvas>' +
+                               '<canvas stop-light></canvas>' +
+                               '<canvas stop-light></canvas>' +
+                               '<fast-clicker options="stopwatch" stopwatch></fast-clicker>' +
+                             '</div>'+
+                             '<div class="logs" ng-repeat="log in stopwatch.log">'+
+                              ' <div class="wasFast" was-fast time="log">' +
+                            '</div>' +
+                           '</div>')(scope);
+      scope.$apply();
+      fastClicker = stopLight.find('fast-clicker');
+      ctrl = $controller('stopLightCtrl', {$scope:  scope, $interval: $interval});
+      scope.$apply();
+    });  
+
+    it('should append a super fast child to the directive', function() {
+        logs = stopLight.find('.logs');
+        expect(logs.children().length).toBe(0);
+        expect(scope.stopwatch.log.length).toBe(0);
+        ctrl.setNextState();
+        ctrl.setNextState();
+        scope.$apply();
+        $(fastClicker.children()[0]).click();
+        logs = stopLight.find('.logs');
+        expect(logs.children().length).toBe(1);
+        expect($(logs.children()[0]).text().split('(')[1]).toBe('Super Dog Speed)');
+        expect(stopLight.find('.wasFast').find('img').attr('src')).toBe('http://www.picgifs.com/dog-graphics/dog-graphics/hunting-dog/dog-graphics-hunting-dog-047205.GIF');
+    });
+  });
+
 });
