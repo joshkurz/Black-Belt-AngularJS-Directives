@@ -3,6 +3,7 @@ describe('fastClicker', function () {
   //These are integration tests. This directive relies on the stopwatch and stopLight directives to be able to perform its own functionality.
   var scope, $compile, ctrl, $interval;
 
+  beforeEach(module('AngularBlackBelt.communicationExamples'));
   beforeEach(module('AngularBlackBelt.fastClicker'));
   beforeEach(module('AngularBlackBelt.StopLight'));
   beforeEach(module('AngularBlackBelt.StopWatch'));
