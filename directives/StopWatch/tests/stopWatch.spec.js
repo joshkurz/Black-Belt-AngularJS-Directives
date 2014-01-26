@@ -26,7 +26,8 @@ describe('StopWatch', function () {
 
     it('Should not throw an error with an empty options object', function() {
       expect(function(){
-        var stopwatch = $compile('<div stopwatch options="options">test transclusion</div>')(scope);
+        scope.emptyObject = {};
+        var stopwatch = $compile('<div stopwatch options="emptyObject">test transclusion</div>')(scope);
         scope.$apply();
       }).not.toThrow();
     });

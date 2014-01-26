@@ -26,16 +26,16 @@ angular.module('AngularBlackBelt.StopWatch', ['directives/StopWatch/stopWatch.tp
         }
     }
      
-    self.updateTime = function(){
+    function updateTime(){
         currentTime = new Date().getTime();
         var timeElapsed = offset + (currentTime - startTime);
         self.options.elapsedTime.setTime(timeElapsed);
-    };
+    }
 
     self.startTimer = function(){
         if(self.running === false){
             startTime = new Date().getTime();
-            interval = $interval(self.updateTime,$scope.options.interval);
+            interval = $interval(updateTime,$scope.options.interval);
             self.running = true;
         }
     };
@@ -44,7 +44,7 @@ angular.module('AngularBlackBelt.StopWatch', ['directives/StopWatch/stopWatch.tp
         if( self.running === false) {
             return;
         }
-        self.updateTime();
+        updateTime();
         offset = offset + currentTime - startTime;
         pushToLog(currentTime - startTime);
         $interval.cancel(interval);  
