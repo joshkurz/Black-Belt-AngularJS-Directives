@@ -6,3 +6,4 @@ dist/*.js
 dist/*.css
 directives/**/*.html.js
 *.iml
+npm-debug.log
