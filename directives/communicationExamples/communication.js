@@ -1,1 +1,1 @@
-angular.module('AngularBlackBelt.communicationExamples', ['AngularBlackBelt.fastClicker', 'broadcastingDirectives', 'controllerPlayers']);
+angular.module('AngularBlackBelt.communicationExamples', ['AngularBlackBelt.fastClicker', 'broadcastingDirectives', 'controllerPlayers', 'BasicCommunicationExamples']);
