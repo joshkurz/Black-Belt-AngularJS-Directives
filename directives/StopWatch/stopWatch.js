@@ -87,6 +87,7 @@ angular.module('AngularBlackBelt.StopWatch', ['directives/StopWatch/stopWatch.tp
               scope.stopTimer = controller.stopTimer;
               scope.resetTimer = controller.resetTimer;
               scope.getThis = controller.getThis;
+
               if(overrideScope){
                 transclude(scope,transcludeFn);
               } else {

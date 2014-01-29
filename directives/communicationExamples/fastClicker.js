@@ -28,47 +28,48 @@ var myModule = angular.module('AngularBlackBelt.fastClicker', ['AngularBlackBelt
     return {
         restrict:'EA',
         scope: true,
-        template: '<p class="wideLoad">{{logText}}<p>',
-        link: function(scope, element, attrs, ctrl){
-
-           var speedClass = '',
-               runner = '',
-               runnerSpeed = 0;
+        template: '<p class="wideLoad" ng-class="speedClass">{{logText}}<p>',
+        link: function(scope, element, attrs){
 
            scope.logText = scope[attrs.time]/1000 + ' seconds';
 
            if(scope[attrs.time] < 1000){  
-             speedClass = 'fast';
-             runnerSpeed = 100;
-             runner = 'http://www.picgifs.com/dog-graphics/dog-graphics/hunting-dog/dog-graphics-hunting-dog-047205.GIF';
+             scope.speedClass = 'fast';
+             scope.runnerSpeed = 100;
+             scope.runner = 'http://www.picgifs.com/dog-graphics/dog-graphics/hunting-dog/dog-graphics-hunting-dog-047205.GIF';
              scope.logText += ' (Super Dog Speed)';
            } else if(scope[attrs.time] < 5000){
-             speedClass = 'average';
-             runnerSpeed = 10;
-             runner = 'http://www.picgifs.com/sport-graphics/sport-graphics/running/sport-graphics-running-371709.gif';
+             scope.speedClass = 'average';
+             scope.runnerSpeed = 10;
+             scope.runner = 'http://www.picgifs.com/sport-graphics/sport-graphics/running/sport-graphics-running-371709.gif';
              scope.logText += ' (Human Speed)';
            } else {
-             speedClass = 'slow';
-             runnerSpeed = 1;
-             runner = 'http://www.picgifs.com/sport-graphics/sport-graphics/running/sport-graphics-running-510249.gif';
+             scope.speedClass = 'slow';
+             scope.runnerSpeed = 1;
+             scope.runner = 'http://www.picgifs.com/sport-graphics/sport-graphics/running/sport-graphics-running-510249.gif';
              scope.logText += ' (Super Slow Speed)';
            }  
 
-           element.addClass(speedClass);
-           var runnerNode = $compile(angular.element('<div fast-runner runner="' + runner + '" speed="' + runnerSpeed + '"></div>'))(scope);
+           var fastRunnerElem = angular.element('<marquee behavior="scroll" scrollamount="{{runnerSpeed}}" direction="right"><img ng-src="{{runner}}"/></marquee>');
+           var runnerNode = $compile(fastRunnerElem)(scope);
            element.append(runnerNode);
         }
     };
 }])
-.directive('fastRunner', ['$interval', function ($interval) {
+.directive('fastRunner', function () {
     return {
         restrict:'EA',
-        scope: true,
         template: '<marquee behavior="scroll" scrollamount="{{speed}}" direction="right"><img ng-src="{{runner}}"/></marquee>',
-        link: function(scope, element, attrs, ctrl){
+        link: function(scope, element, attrs){
             
-            scope.runner = attrs.runner;
-            scope.speed = parseInt(attrs.speed,10);
+            function getTheAttrs(){
+              return attrs.runner + attrs.speed;
+            }
+
+            scope.$watch(getTheAttrs, function(){
+              scope.runner = attrs.runner;
+              scope.speed = parseInt(attrs.speed,10);
+            });
         }
     };
-}]);
+});
