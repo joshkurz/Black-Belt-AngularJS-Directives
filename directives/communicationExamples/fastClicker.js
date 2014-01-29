@@ -67,7 +67,6 @@ var myModule = angular.module('AngularBlackBelt.fastClicker', ['AngularBlackBelt
         template: '<marquee behavior="scroll" scrollamount="{{speed}}" direction="right"><img ng-src="{{runner}}"/></marquee>',
         link: function(scope, element, attrs, ctrl){
             
-            var interval;
             scope.runner = attrs.runner;
             scope.speed = parseInt(attrs.speed,10);
         }

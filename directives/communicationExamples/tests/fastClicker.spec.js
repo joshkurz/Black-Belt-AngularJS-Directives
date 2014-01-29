@@ -1,6 +1,6 @@
 describe('fastClicker', function () {
   
-  //These are integration tests. This directive relies on the stopwatch and stopLight directives to be able to perform its own functionality.
+  //These are unit and integration tests. This directive relies on the stopwatch and stopLight directives to be able to perform its own functionality.
   var scope, $compile, ctrl, $interval;
 
   beforeEach(module('AngularBlackBelt.communicationExamples'));
@@ -96,6 +96,38 @@ describe('fastClicker', function () {
         expect(logs.children().length).toBe(1);
         expect($(logs.children()[0]).text().split('(')[1]).toBe('Super Dog Speed)');
         expect(stopLight.find('.wasFast').find('img').attr('src')).toBe('http://www.picgifs.com/dog-graphics/dog-graphics/hunting-dog/dog-graphics-hunting-dog-047205.GIF');
+    });
+  });
+
+
+  describe('The wasFast directive', function () {
+    
+    var wasFast;
+
+    function compileWasFast(){
+      wasFast = $compile('<div was-fast time="testLog"></div>')(scope);
+      scope.$apply();
+    }  
+
+    it('should append the correct super fast text and the fast class to the directive', function() {
+        scope.testLog = 100;
+        compileWasFast();
+        expect(wasFast.text()).toBe('0.1 seconds (Super Dog Speed)');
+        expect(wasFast.hasClass('fast')).toBe(true);
+    });
+
+    it('should append the correct text and the average class to the directive', function() {
+        scope.testLog = 2000;
+        compileWasFast();
+        expect(wasFast.text()).toBe('2 seconds (Human Speed)');
+        expect(wasFast.hasClass('average')).toBe(true);
+    });
+
+    it('should append the correct text and the slow class to the directive', function() {
+        scope.testLog = 6000;
+        compileWasFast();
+        expect(wasFast.text()).toBe('6 seconds (Super Slow Speed)');
+        expect(wasFast.hasClass('slow')).toBe(true);
     });
   });
 
