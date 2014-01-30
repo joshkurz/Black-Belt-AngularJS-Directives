@@ -7,12 +7,7 @@ angular.module('controllerPlayers', [])
             replace: false,
             require: '^bbPlayerContainer',
             scope: true,
-            templateUrl: function(tElem, tAttrs){
-              if (!tAttrs.template){
-                 throw new Error('Must Give bbPlayer a template to render.');
-              }
-              return tAttrs.template;
-            },
+            templateUrl: 'directives/communicationExamples/playerTemplate.tpl.html',
             link: function (scope, iElement, iAttrs, controller) {
                 
                 scope.player = {isPlaying : 'no'};

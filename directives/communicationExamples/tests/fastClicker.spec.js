@@ -20,6 +20,11 @@ describe('fastClicker', function () {
         reverse: true
     };
     scope.stopwatch = {interval: 1000, log: []};
+    scope.testPics = {
+                      100: 'http://www.picgifs.com/dog-graphics/dog-graphics/hunting-dog/dog-graphics-hunting-dog-047205.GIF',
+                      10:  'http://www.picgifs.com/sport-graphics/sport-graphics/running/sport-graphics-running-371709.gif',
+                      1 :  'http://www.picgifs.com/sport-graphics/sport-graphics/running/sport-graphics-running-510249.gif'
+                     };
   }));
 
   describe('Creating A fastClicker directive inside a stopLight directive', function () {
@@ -76,6 +81,7 @@ describe('fastClicker', function () {
                              '</div>'+
                              '<div class="logs" ng-repeat="log in stopwatch.log">'+
                               ' <div class="wasFast" was-fast time="log"></div>' +
+                              ' <div class="fastRunner" fast-runner time="log" pics="testPics"></div>' +
                             '</div>' +
                            '</div>')(scope);
       scope.$apply();
@@ -93,9 +99,8 @@ describe('fastClicker', function () {
         scope.$apply();
         $(fastClicker.children()[0]).click();
         logs = stopLight.find('.logs');
-        expect(logs.children().length).toBe(1);
-        expect($(logs.children()[0]).text().split('(')[1]).toBe('Super Dog Speed)');
-        expect(stopLight.find('.wasFast').find('img').attr('src')).toBe('http://www.picgifs.com/dog-graphics/dog-graphics/hunting-dog/dog-graphics-hunting-dog-047205.GIF');
+        expect(logs.children().eq(0).text().split('(')[1]).toBe('Super Dog Speed)');
+        expect(logs.children().eq(1).find('img').attr('src')).toBe('http://www.picgifs.com/dog-graphics/dog-graphics/hunting-dog/dog-graphics-hunting-dog-047205.GIF');
     });
   });
 
@@ -144,7 +149,8 @@ describe('Integration between the stopwatch and the wasFast directive', function
                                  '<button ng-click="stopTimer()">stop</button>'+
                               '</div>' +
                                '<div class="logs" ng-repeat="log in stopwatch.log">'+
-                                 ' <div class="wasFast" was-fast time="log">' +
+                                 ' <div class="wasFast" was-fast time="log"></div>' +
+                                 ' <div class="fastRunner" fast-runner time="log" pics="testPics"></div>' +
                                '</div>' +
                              '</div>');
 
@@ -161,7 +167,6 @@ describe('Integration between the stopwatch and the wasFast directive', function
         $(stopwatch.children()[1]).click();
         logs = integration.find('.logs');
         expect(scope.stopwatch.log.length).toBe(1);
-        expect(logs.children().length).toBe(1);
         expect(logs.children().eq(0).text().split('(')[1]).toBe('Super Dog Speed)');
         expect(integration.find('marquee').attr('scrollamount')).toBe('100');
         expect(integration.find('img').attr('src')).toBe('http://www.picgifs.com/dog-graphics/dog-graphics/hunting-dog/dog-graphics-hunting-dog-047205.GIF');

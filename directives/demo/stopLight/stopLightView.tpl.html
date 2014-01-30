@@ -1,12 +1,5 @@
 <div class="jumbotron">
 
-   <!-- <div stop-light-container options="state" class="trafficlight" ng-repeat="state in states">
-    <canvas class="light" stop-light state="red"></canvas>
-    <canvas class="light" stop-light state="yellow"></canvas>
-    <canvas class="light" stop-light state="green"></canvas>
-    <button class="btn" ng-click="resetState(state)">Reset!!!</button> 
-   </div> -->
-
    <div class="alert alert-success">When the light turns Green. Its on.</div>
 
    <div stop-light-container options="fastClickState" class="trafficlight">
@@ -15,9 +8,15 @@
     <canvas class="light" stop-light state="green"></canvas>
     <fast-clicker options="stopwatch" stopwatch></fast-clicker>
    </div>
+   
+   <!-- <div ng-if="stopwatch.log[stopwatch.log.length-1]">
+     <div was-fast time="stopwatch.log[stopwatch.log.length-1]"></div>
+     <div class="fastRunner" fast-runner time="stopwatch.log[stopwatch.log.length-1]" pics="pics"></div>
+   </div> -->
 
    <div class="log" ng-repeat="log in stopwatch.log">
      <div was-fast time="log"></div>
+     <div class="fastRunner" fast-runner time="log" pics="pics"></div>
    </div>
 </div>
     

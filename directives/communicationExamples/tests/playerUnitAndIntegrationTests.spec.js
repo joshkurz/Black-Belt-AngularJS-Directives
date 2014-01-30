@@ -1,4 +1,4 @@
-describe('fastClicker', function () {
+describe('bbPlayer', function () {
   
   //These are integration tests. 
   //bbPlayer relies on bbPlayerContainer to allow for cross directive communication
@@ -18,12 +18,14 @@ describe('fastClicker', function () {
     var controllerPlayer;
 
     beforeEach(function(){
-      controllerPlayer = $compile('<div bb-player-container>' + 
-                                    '<div class="player" bb-player template="directives/communicationExamples/playerTemplate.tpl.html"></div>' +
-                                    '<div class="player" bb-player template="directives/communicationExamples/playerTemplate.tpl.html"></div>' +
-                                    '<div class="player" bb-player template="directives/communicationExamples/playerTemplate.tpl.html"></div>' +
-                                    '<div class="player" bb-player template="directives/communicationExamples/playerTemplate.tpl.html"></div>' +
-                                  '</div>')(scope);
+      var integration = angular.element('<div bb-player-container>' + 
+                                    '<div class="player" bb-player></div>' +
+                                    '<div class="player" bb-player></div>' +
+                                    '<div class="player" bb-player></div>' +
+                                    '<div class="player" bb-player></div>' +
+                                  '</div>');
+
+      controllerPlayer = $compile(integration)(scope);
       scope.$apply();
     });
 
@@ -63,12 +65,13 @@ describe('fastClicker', function () {
     var controllerPlayer;
 
     beforeEach(function(){
-      controllerPlayer = $compile('<div>' + 
-                                    '<div class="player" bb-broadcast-player template="directives/communicationExamples/playerTemplate.tpl.html"></div>' +
-                                    '<div class="player" bb-broadcast-player template="directives/communicationExamples/playerTemplate.tpl.html"></div>' +
-                                    '<div class="player" bb-broadcast-player template="directives/communicationExamples/playerTemplate.tpl.html"></div>' +
-                                    '<div class="player" bb-broadcast-player template="directives/communicationExamples/playerTemplate.tpl.html"></div>' +
-                                  '</div>')(scope);
+      var integration = angular.element('<div>' + 
+                                    '<div class="player" bb-broadcast-player></div>' +
+                                    '<div class="player" bb-broadcast-player></div>' +
+                                    '<div class="player" bb-broadcast-player></div>' +
+                                    '<div class="player" bb-broadcast-player></div>' +
+                                  '</div>');
+      controllerPlayer = $compile(integration)(scope);
       scope.$apply();
     });
 
