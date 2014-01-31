@@ -1,16 +1,16 @@
-var myModule = angular.module('AngularBlackBelt.fastClicker', ['AngularBlackBelt.StopWatch'])
+angular.module('AngularBlackBelt.fastClicker', ['AngularBlackBelt.StopWatch'])
 .directive('fastClicker', function () {
     return {
         restrict:'EA',
-        template: '<button class="btn" ng-click="stopRaceTimer()" ng-disabled="canClick() == false">Race</buton>',
-        require: ['stopwatch', '^stopLightContainer'],
+        templateUrl: 'directives/communicationExamples/fastClicker.tpl.html',
+        require: ['?stopwatch', '^stopLightContainer'],
         link: function(scope, element, attrs, ctrl){
             
            var raceTime = new Date();
            scope.canClick = function(){
              if(ctrl[1].options.state === 'green'){
                 ctrl[1].killInterval();
-                ctrl[0].startTimer();
+                ctrl[0] && ctrl[0].startTimer();
                 return true;
              } else {
                 return false;
@@ -18,7 +18,7 @@ var myModule = angular.module('AngularBlackBelt.fastClicker', ['AngularBlackBelt
            };
 
            scope.stopRaceTimer = function(){
-             ctrl[0].stopTimer();
+             ctrl[0] && ctrl[0].stopTimer();
              ctrl[1].setNextState();
            };            
         }

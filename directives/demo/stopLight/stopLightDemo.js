@@ -1,4 +1,4 @@
-angular.module('AngularBlackBelt.demo/stopLight', [])
+angular.module('AngularBlackBelt.demo/stopLight', ['directives/communicationExamples/fastClicker.tpl.html'])
 .controller('demoStopLightCtrl', ['$scope', function($scope){
     
     $scope.states = [{
