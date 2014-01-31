@@ -12,7 +12,6 @@ angular.module('AngularBlackBelt.demo/flowplayer', ['directives/demo/flowplayer/
         options: {},
         playlist: [
            "https://ia700602.us.archive.org/29/items/Spartans/spartan_512kb",
-           "https://ia700703.us.archive.org/5/items/TheAmericanDreamFilm-FullLength/TheAmericanDreamFilm-fullLength",
            "https://ia700404.us.archive.org/11/items/LovingYouandDrinkingBeer/LovingYouandDrinkingBeer_512kb",
            "https://ia700204.us.archive.org/23/items/Dragon_Ball_Z_Bitches/DBZBitches_512kb",
            "https://ia600302.us.archive.org/32/items/StarWarsGangsterRap/StarWarsGangstaRap_512kb"

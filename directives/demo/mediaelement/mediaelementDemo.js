@@ -16,9 +16,9 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
        title: 'Tom and Jerry in A Night Before Christmas'
       },
       {
-       filePath: 'https://ia700703.us.archive.org/5/items/TheAmericanDreamFilm-FullLength/TheAmericanDreamFilm-fullLength', 
-       thumbnail: 'http://www.theamericandreamfilm.com/images/home/logo.png',
-       title: 'The American Dream'
+       filePath: 'https://ia600302.us.archive.org/22/items/Herman_CheeseBurglar/Herman_CheeseBurglar_512kb', 
+       thumbnail: 'http://i1.ytimg.com/vi/Q9NLrobVDMg/hqdefault.jpg',
+       title: 'Herman CheeseBurglar'
       }
     ];
 
