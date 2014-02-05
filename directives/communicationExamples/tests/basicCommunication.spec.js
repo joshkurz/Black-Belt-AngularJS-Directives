@@ -43,10 +43,11 @@ describe('BasicCommunication', function () {
         bbDirective2;
 
     beforeEach(function(){
-      directives = $compile('<div>' + 
+      var integration = angular.element('<div>' + 
                               '<div bb-directive1></div>' +
                               '<div bb-directive2></div>' +
-                            '</div>')(scope);
+                            '</div>');
+      directives = $compile(integration)(scope);
       scope.$apply();
       bbDirective1 = $(directives.find('.directive')[0]);
       bbDirective2 = $(directives.find('.directive')[1]);
