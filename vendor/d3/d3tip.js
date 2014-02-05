@@ -13,7 +13,8 @@ d3.tip = function() {
       node      = initNode(),
       svg       = null,
       point     = null,
-      target    = null
+      target    = null,
+      bodyNode = d3.select('body').node();
 
   function tip(vis) {
     svg = getSVGNode(vis)
@@ -39,9 +40,10 @@ d3.tip = function() {
 
     while(i--) nodel.classed(directions[i], false)
     coords = direction_callbacks.get(dir).apply(this)
+    var absoluteMousePos = d3.mouse(bodyNode);
     nodel.classed(dir, true).style({
-      top: (coords.top +  poffset[0]) + 'px',
-      left: (coords.left + poffset[1]) + 'px'
+      top: (absoluteMousePos[1]) + 'px',
+      left: (absoluteMousePos[0] + 5)+'px',
     })
 
     return tip
