@@ -59,8 +59,12 @@ for (i = 0; i < 4; i++) {
 
         vis.call(tip); 
           
-          svg.selectAll("rect").on('mouseover', tip.show)
-               .on('mouseout', tip.hide);
+        svg.selectAll("rect").on('mouseover', tip.show)
+                             .on('mouseout', tip.hide)
+                             .on('click', function(event,clickData){
+                               scope.setTheModel(clickData);
+                               scope.$apply();
+                             });
       }
 
       scope.$watch('data', function(newO,oldO){
@@ -83,7 +87,7 @@ for (i = 0; i < 4; i++) {
     
     return {
         restrict: 'A',
-        scope: {data: '='},
+        scope: {data: '=', setTheModel: "="},
         link: link
     };
     
