@@ -1,4 +1,4 @@
-angular.module('AngularBlackBelt.BigData', [])
+angular.module('AngularBlackBelt.BigData', ['AngularBlackBelt.BigDataCharts'])
 .controller('d3ExampleController', function($scope){
 // Generate some random data
 $scope.data = [];

@@ -33,6 +33,11 @@ angular.module('AngularBlackBelt.demo', ['ngRoute', 'ui.bootstrap', 'ngSocial', 
     controller:'TreeNodesCtrl'
   });
 
+  $routeProvider.when('/bigdata', {
+    templateUrl:'directives/demo/BigData/bigDataView.tpl.html',
+    controller:'BigDataCtrl'
+  });
+
 }]);
 
 
