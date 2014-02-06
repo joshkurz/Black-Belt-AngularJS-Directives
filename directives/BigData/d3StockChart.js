@@ -5,20 +5,30 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
     
     var limit = 60 * 1,
           duration = 750,
-          now = new Date(Date.now() - duration);
+          now = new Date(Date.now() - duration),
+          color = d3.scale.category20();
 
       var width = element.width(),
-          height = 500;
+          height = 500,
+          groups = {};
 
-      var groups = {
-          current: {
+      var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .html(function(d) { return '<span> $' + d[d.length-1] + '</span>' ;})
+        .offset([0 ,-65]);
+
+      function rangeFunc(){
+        return 0;
+      }
+      
+      for(var i in scope.tickers){
+         
+         groups[scope.tickers[i]] = {
               value: 0,
-              color: 'orange',
-              data: d3.range(limit).map(function() {
-                  return 0;
-              })
-          }
-      };
+              color: color(i),
+              data: d3.range(limit).map(rangeFunc)
+          };
+      }
 
       var x = d3.time.scale()
           .domain([now - (limit - 2), now - duration])
@@ -42,6 +52,8 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
           .attr('width', width)
           .attr('height', height + 50);
 
+      svg.call(tip);
+
       var axis = svg.append('g')
           .attr('class', 'x axis')
           .attr('transform', 'translate(0,' + height + ')')
@@ -54,20 +66,22 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
           group.path = paths.append('path')
               .data([group.data])
               .attr('class', name + ' group')
-              .style('stroke', group.color);
+              .style({'stroke-width': '3px', 'stroke': group.color})
+              .on('mouseover', tip.show)
+              .on('mouseout', tip.hide);
       }
 
       function tick() {
          
           now = new Date();
           var group,
-              name;
+              name,
+              tic;
 
           // Add new values
-          for (name in groups) {
-              group = groups[name];
-              //group.data.push(group.value) // Real values arrive at irregular intervals
-              group.data.push(scope.data?scope.data.price?parseFloat(scope.data.price,10):0:0);
+          for (tic in scope.data) {
+              group = groups[tic];
+              group.data.push(scope.data[tic].price?parseFloat(scope.data[tic].price,10):0);
               group.path.attr('d', line);
           }
 
@@ -89,21 +103,23 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
               .each('end', tick);
 
           // Remove oldest data point from each group
-          for (name in groups) {
-              group = groups[name];
+          for (tic in scope.data) {
+              group = groups[tic];
               group.data.shift();
           }
       }
       
       scope.$watch('data', function(newO,oldO){
-        tick();
+        if(newO){
+          tick();
+        }
       },true);
 
     }
     
     return {
         restrict: 'A',
-        scope: {data: '='},
+        scope: {data: '=',tickers: '='},
         link: link
     };
     

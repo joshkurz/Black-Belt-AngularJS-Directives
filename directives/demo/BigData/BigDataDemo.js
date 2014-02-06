@@ -1,25 +1,39 @@
+/*jshint -W083 */
 angular.module('AngularBlackBelt.demo/BigData', ['directives/demo/BigData/bigDataView.tpl.html'])
-.controller('BigDataCtrl', ['$scope', '$timeout', 'pubnubService', function($scope, $timeout, pubnubService){
+.controller('BigDataCtrl', ['$scope', 'pubnubService', function($scope, pubnubService){
    
-   var pubnub = pubnubService.pubnub;
-
-   function receiver(update) { 
-     $timeout(function(){
-       $scope.stockData = update; 
-     });
+   $scope.tickers = ['ORCL', 'ZNGA', 'EA', 'F', 'FB' , 'TRI'];
+   
+   for(var tic in $scope.tickers){
+     pubnubService.subscribeToTicker($scope.tickers[tic]);
    }
 
-   pubnub.subscribe({
-            channel : ['ORCL', 'ZNGA'],
-            message : receiver
-   });
+   $scope.stockData = pubnubService.pubnubStockData;
 
 }])
-.service('pubnubService', function(){
+.service('pubnubService', ['$timeout', function($timeout){
   
-  this.pubnub = PUBNUB.init({
+  var self = this;
+
+  self.pubnub = PUBNUB.init({
       subscribe_key : 'demo',
       publish_key   : 'demo'
   });
 
-});
+  self.pubnubStockData = {};
+
+  self.subscribeToTicker = function(ticker){
+
+    function receiver(update){
+      $timeout(function(){
+          self.pubnubStockData[ticker] = update; 
+       });
+    }
+
+    self.pubnub.subscribe({
+      channel : [ticker],
+      message : receiver
+    });
+  };
+
+}]);
