@@ -1,15 +1,4 @@
 angular.module('AngularBlackBelt.BigData', ['AngularBlackBelt.BigDataCharts'])
-.controller('d3ExampleController', function($scope){
-// Generate some random data
-$scope.data = [];
-for (i = 0; i < 4; i++) {
-    $scope.data.push({
-        "value": Math.random(),
-        "label": i
-    });
-}
-    
-})
 .directive('svgD3MenuBar', [ function(){
     
     function link(scope,element,attrs){
