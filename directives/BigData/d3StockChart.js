@@ -109,7 +109,7 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
           }
       }
       
-      scope.$watch('data', function(newO,oldO){
+      scope.$watchCollection('data', function(newO,oldO){
         if(newO){
           tick();
         }
