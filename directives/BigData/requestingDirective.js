@@ -28,7 +28,7 @@ app.factory('phoneFactory', function($http, $q) {
        });
        return deferred.promise;
      }
-   }
+   };
 });
 
 
@@ -44,9 +44,9 @@ app.controller('requestingCtrl', ['$scope','phoneFactory', function($scope,phone
        },function(error){
          $scope.phone.details = 'error: no file exists';
        });
-     }
+     };
         
-}])
+}]);
 
 app.directive('bbPhoneDetails', [ function(){
 

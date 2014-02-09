@@ -17,18 +17,17 @@ angular.module('AngularBlackBelt.BigData', ['AngularBlackBelt.BigDataCharts'])
         .attr('class', 'd3-tip')
         .html(function(d) { return '<span>' + d.label + '<br><br> ' + d.value + '</span>' + ' Views' ;})
         .offset([-17 ,-65]);
-
+      
+      //Create SVG element
+      var svg = d3.select(element[0])
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
 
       function redraw(data){
-
+        svg.selectAll('*').remove();
         x.domain(data.map(function(d) { return d.label; }));
         y.domain([0, d3.max(data, function(d) { return d.value; })]);
-        
-        //Create SVG element
-        var svg = d3.select(element[0])
-              .append("svg")
-              .attr("width", w)
-              .attr("height", h);
 
         var vis = svg.selectAll("rect")
            .data(data)
@@ -48,17 +47,17 @@ angular.module('AngularBlackBelt.BigData', ['AngularBlackBelt.BigDataCharts'])
 
         vis.call(tip); 
           
-        svg.selectAll("rect").on('mouseover', tip.show)
-                             .on('mouseout', tip.hide)
-                             .on('click', function(event,clickData){
-                               scope.setTheModel(clickData);
-                               scope.$apply();
-                             });
+        svg.selectAll("rect")
+              .on('mouseover', tip.show)
+              .on('mouseout', tip.hide)
+              .on('click', function(event,clickData){
+                scope.setTheModel(clickData);
+                scope.$apply();
+              });
       }
 
       scope.$watch('data', function(newO,oldO){
         var newData = [];
-        element.html('');
         for(var da in scope.data){
           if(scope.data[da].model['yt$statistics']){
             var newVideoObj = {};
