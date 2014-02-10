@@ -24,7 +24,7 @@ angular.module('AngularBlackBelt.demo/BigData', ['directives/demo/BigData/bigDat
 
   self.subscribeToTicker = function(ticker){
 
-    function receiver(update){
+    function receiver(update,data){
       $timeout(function(){
           self.pubnubStockData[ticker] = update; 
        });
