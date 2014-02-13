@@ -89,7 +89,7 @@ angular.module('AngularBlackBelt.StopLight',[])
 }]).directive('stopLight', ['svgService', function(svgService) {
     return {
         require: '^stopLightContainer',
-        scope: {},
+        scope: true,
         compile: function(tElem,tAttrs){
           
             if ( tElem[0].tagName !== 'CANVAS' ) {
