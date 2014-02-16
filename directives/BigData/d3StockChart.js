@@ -121,7 +121,7 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
       
       var killWatcher = scope.$watchCollection('data', function(newO,oldO){
         if(newO){
-          //tick();
+          tick();
         }
       },true);
 

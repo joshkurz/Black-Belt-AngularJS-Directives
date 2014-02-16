@@ -100,7 +100,7 @@ angular.module('AngularBlackBelt.StopLight',[])
             
                 var context = element[0].getContext('2d');
                 
-                scope.options =  angular.extend({ 
+                scope.options = angular.extend({ 
                   attrsState: attrs.state,
                   height: element[0].height,
                   width: element[0].width
