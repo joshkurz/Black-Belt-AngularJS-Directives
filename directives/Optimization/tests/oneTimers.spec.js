@@ -15,7 +15,7 @@ describe('Creating The bbOneBind* directive', function () {
        var oneBindNode;
       //Should create bbOneBind*
       beforeEach(function(){
-          scope.testValue = 'tester+tester+tester';
+          scope.testValue = 'tester+tester+tester' + v;
           oneBindNode = $compile('<div bb-one-bind-' + v + '="testValue"></div>')(scope);
           scope.$apply();
           expect(oneBindNode).not.toBe(undefined);
@@ -23,11 +23,11 @@ describe('Creating The bbOneBind* directive', function () {
       
       it('should have the correct text for the oneTime directive', function() {
         if(v === 'text'){
-          expect(oneBindNode[v]()).toBe('tester+tester+tester');
+          expect(oneBindNode[v]()).toBe('tester+tester+tester' + v);
         } else if(v === 'class'){
-          expect(oneBindNode.hasClass('tester+tester+tester')).toBe(true);
+          expect(oneBindNode.hasClass('tester+tester+tester' + v)).toBe(true);
         } else {
-          expect(oneBindNode.attr(v)).toBe('tester+tester+tester');
+          expect(oneBindNode.attr(v)).toBe('tester+tester+tester' + v);
         }
       });
 
