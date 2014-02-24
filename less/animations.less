@@ -1,0 +1,15 @@
+/* Styles go here */
+.childNode.ng-enter, .childNode.ng-leave {
+ -webkit-transition:all 0.5s;
+  transition:all  0.5s;
+}
+
+.childNode.ng-enter,
+.childNode.ng-leave.ng-leave-active {
+    opacity:0;
+}
+
+.childNode.ng-leave,
+.childNode.ng-enter.ng-enter-active {
+    opacity:1;
+}

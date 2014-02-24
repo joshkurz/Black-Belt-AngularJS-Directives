@@ -1,4 +1,6 @@
-//http://plnkr.co/edit/QD8KfOhwy2xOoxb0NN6g?p=preview
+//http://plnkr.co/edit/QD8KfOhwy2xOoxb0NN6g?p=preview Regular
+//http://plnkr.co/edit/VndYa0NotSDX600Peqbu?p=preview Animation
+//http://plnkr.co/edit/sKg6Wj0y2zRaRpJkSwgc?p=preview Staggering Animation
 angular.module('treeNodeNoTemplateModule', [])
 .directive('treeNodeNoTemplate', ['$compile', function($compile) {
   return {

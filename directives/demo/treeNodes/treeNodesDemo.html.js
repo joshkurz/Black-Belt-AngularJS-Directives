@@ -14,7 +14,7 @@ angular.module("directives/demo/treeNodes/treeNodesDemo.tpl.html", []).run(["$te
     "                <span class=\"btn\" ng-show=\"node.children && node.show\" ng-click=\"node.show=!node.show\">[-]</span>\n" +
     "                {{node.name}}\n" +
     "              </li>\n" +
-    "              <li ng-if=\"$parent.node.show\" class=\"list-group-item\" ng-repeat=\"node in node.children\" ng-transclude></li>\n" +
+    "              <li ng-if=\"$parent.node.show\" class=\"list-group-item childNode\" ng-repeat=\"node in node.children\" ng-transclude></li>\n" +
     "            </ul>\n" +
     "          </div>\n" +
     "      </div>\n" +
@@ -38,7 +38,7 @@ angular.module("directives/demo/treeNodes/treeNodesDemo.tpl.html", []).run(["$te
     "                <span class=\"btn\" ng-show=\"node.children && node.show\" ng-click=\"node.show=!node.show\">[-]</span>\n" +
     "                {{node.name}}\n" +
     "            </li>\n" +
-    "            <li ng-if=\"$parent.node.show\" class=\"list-group-item\" ng-repeat=\"data in node.children\" ng-include=\"'tree_item_renderer.tpl.html'\"></li>\n" +
+    "            <li ng-if=\"$parent.node.show\" class=\"list-group-item childNode\" ng-repeat=\"data in node.children\" ng-include=\"'tree_item_renderer.tpl.html'\"></li>\n" +
     "          </ul>\n" +
     "      </div>\n" +
     "  </div>\n" +

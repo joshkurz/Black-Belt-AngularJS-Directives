@@ -12,7 +12,7 @@
                 <span class="btn" ng-show="node.children && node.show" ng-click="node.show=!node.show">[-]</span>
                 {{node.name}}
               </li>
-              <li ng-if="$parent.node.show" class="list-group-item" ng-repeat="node in node.children" ng-transclude></li>
+              <li ng-if="$parent.node.show" class="list-group-item childNode" ng-repeat="node in node.children" ng-transclude></li>
             </ul>
           </div>
       </div>
@@ -36,7 +36,7 @@
                 <span class="btn" ng-show="node.children && node.show" ng-click="node.show=!node.show">[-]</span>
                 {{node.name}}
             </li>
-            <li ng-if="$parent.node.show" class="list-group-item" ng-repeat="data in node.children" ng-include="'tree_item_renderer.tpl.html'"></li>
+            <li ng-if="$parent.node.show" class="list-group-item childNode" ng-repeat="data in node.children" ng-include="'tree_item_renderer.tpl.html'"></li>
           </ul>
       </div>
   </div>

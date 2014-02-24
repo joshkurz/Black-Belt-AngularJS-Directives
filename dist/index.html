@@ -15,6 +15,7 @@
     <script src="../vendor/d3/d3tip.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
     <script src="../vendor/ui-bootstrap/customBootstrapBuild.js"></script>
     <script src="../vendor/mediaelement/mediaelement-and-player.js"></script>
     <script src="http://releases.flowplayer.org/5.4.6/flowplayer.js?c"></script>
@@ -35,7 +36,7 @@
             <span class="btn" ng-show="data.children && data.show" ng-click="data.show=!data.show">[-]</span>
             {{data.name}}
           </li>
-          <li ng-if="$parent.data.show" class="list-group-item" ng-repeat="data in data.children" ng-include="'tree_item_renderer.tpl.html'"></li>
+          <li ng-if="$parent.data.show" class="list-group-item childNode" ng-repeat="data in data.children" ng-include="'tree_item_renderer.tpl.html'"></li>
       </ul>
     </script>
 
