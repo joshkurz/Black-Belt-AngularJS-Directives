@@ -1,0 +1,16 @@
+<div class="well container adjustTop">
+    <br>
+    <h3>Animated Table</h3>
+    <div class="bb-table-div">
+        <table class="table">
+          <thead>
+            <th>Name</th>
+          </thead>
+          <tbody>
+            <tr class="bb-simple-animation" ng-class="{'bb-cool-trick': player.hasEffect == true}" ng-mouseenter="player.hasEffect = true;" ng-mouseleave="player.hasEffect = false;" ng-repeat="player in players">
+              <td>{{player.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</div>

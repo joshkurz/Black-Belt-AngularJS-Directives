@@ -31,7 +31,7 @@ var app = angular.module('effecktDemo', [])
                     element.removeAttr('data-loading');
                   },2000);
                 }
-             }    
+             };    
         }
-    }
+    };
 }]);
