@@ -1,0 +1,1 @@
+angular.module('AngularBlackBelt.Effeckt', ['bbEffecktListModule', 'bbEffectButtonModule']);

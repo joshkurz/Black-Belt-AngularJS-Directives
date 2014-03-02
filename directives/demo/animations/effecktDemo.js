@@ -8,30 +8,12 @@
 
 //http://jsfiddle.net/joshkurz/EsPde/
 
-var app = angular.module('effecktDemo', [])
-.controller('demoCtrl', ['$scope', '$timeout', function($scope, $timeout){
+var app = angular.module('Effects', [])
+.controller('effecktCtrl', ['$scope', '$timeout', function($scope, $timeout){
     
-    $scope.animationType = 'slide-right';
-    $scope.animationOptions = ['slide-right', 'expand-right', 'expand-left', 'expand-up', 'expand-down', 'slide-left', 'slide-up', 'slide-down', 'zoom-in', 'zoom-out'];
-    $scope.players = [{"name": "Johnny Bravo", "powers": ["mojo"]},{"name": "Superman", "powers": ["*"]},{"name": "Catwoman", "powers": ["climbing","scratching"]},{"name": "Robin", "powers": ["sidekicking", "diversions"]},{"name": "Yoda", "power": ["force","lightsaber"]}];
+    $scope.buttonAnimationType = 'slide-right';
+    $scope.buttonAnimationOptions = ['slide-right', 'expand-right', 'expand-left', 'expand-up', 'expand-down', 'slide-left', 'slide-up', 'slide-down', 'zoom-in', 'zoom-out'];
+    $scope.listAnimationType = 'grow';
+    $scope.listAnimationOptions = ['grow', 'curl', 'wave', 'fan', 'fade', 'fly', 'landing', 'swing-front', 'swing-back', 'twist', 'door', 'climb'];
     
-}])
-.directive('effecktButton', ['$timeout', function($timeout){
-    
-    return {
-        restrict: 'AC',
-        link: function(scope, element, attrs){
-           
-            scope.loadPowers = function(){
-                if(element.attr('data-loading')){
-                    element.removeAttr('data-loading');
-                } else {
-                  element.attr('data-loading', true);
-                  $timeout(function(){
-                    element.removeAttr('data-loading');
-                  },2000);
-                }
-             };    
-        }
-    };
 }]);
