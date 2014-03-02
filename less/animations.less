@@ -15,22 +15,50 @@
 }
 
 
-/* table animations */
-.bb-simple-animation {
+/* table transitions */
+
+.bb-cool-trick-add{
+	background-color: skyblue;
+}
+
+.bb-cool-trick-add-active{
+	font-weight: bold;
+}
+
+.bb-cool-trick {
+	font-size: 16px;
 	-webkit-transition:all linear 0.2s;
 	transition:all linear 0.2s;
-	opacity:1;
 	padding:10px;
-	list-style: none;
 }
 
-.bb-simple-animation.bb-cool-trick-add{
+/* table keyframe animations */
+.bb-show-powers {
+  -webkit-animation: super-cool-animation 0.2s;
+  -moz-animation:    super-cool-animation 0.2s;
+  -o-animation:      super-cool-animation 0.2s;
+  animation:         super-cool-animation 0.2s; 
+  font-size: 30px;
   background-color: skyblue;
-  background:white;
 }
 
-.bb-simple-animation.bb-cool-trick {
-	line-height:0;
-	padding:0 10px;
-	font-size: 16px;
+@-webkit-keyframes super-cool-animation {
+  0%   { opacity: 0; font-size: 10px;}
+  50%  {opacity: 0.5; font-size: 20px;}
+  100% { opacity: 1; font-size: 30px;}
+}
+@-moz-keyframes super-cool-animation {
+  0%   { opacity: 0; font-size: 10px;}
+  50%  {opacity: 0.5; font-size: 20px;}
+  100% { opacity: 1; font-size: 30px;}
+}
+@-o-keyframes super-cool-animation {
+  0%   { opacity: 0; font-size: 10px;}
+  50%  {opacity: 0.5; font-size: 20px;}
+  100% { opacity: 1; font-size: 30px;}
+}
+@keyframes super-cool-animation {
+  0%   { opacity: 0; font-size: 10px;}
+  50%  {opacity: 0.5; font-size: 20px;}
+  100% { opacity: 1; font-size: 30px;}
 }

@@ -1,7 +1,7 @@
-var app = angular.module('AngularBlackBelt.demo/animations', ['ngAnimate'])
+var app = angular.module('AngularBlackBelt.demo/animations', [])
     .controller('animationsCtrl', ['$scope', function ($scope) {
 
-    $scope.players = [{
+    $scope.superheroes = [{
         "name": "Johnny Bravo",
         "powers": ["mojo"]
     }, {
@@ -15,14 +15,11 @@ var app = angular.module('AngularBlackBelt.demo/animations', ['ngAnimate'])
         "powers": ["sidekicking", "diversions"]
     }, {
         "name": "Yoda",
-        "power": ["force", "lightsaber"]
+        "powers": ["force", "lightsaber"]
     }];
 
     for (var i = 0; i < 100; i++) {
-        $scope.players.push({
-            "name": "Yoda",
-            "power": ["force", "lightsaber"]
-        });
+        $scope.superheroes.push(angular.copy($scope.superheroes[Math.floor((Math.random()*5)+1)]));
     }
 
 }]);
