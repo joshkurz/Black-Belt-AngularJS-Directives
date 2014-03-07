@@ -1,17 +1,20 @@
 /* Styles go here */
 .childNode.ng-enter, .childNode.ng-leave {
- -webkit-transition:all 0.5s;
-  transition:all  0.5s;
+ -webkit-transition:all 0.2s;
+  transition:all  0.2s;
 }
 
-.childNode.ng-enter,
-.childNode.ng-leave.ng-leave-active {
-    opacity:0;
+.childNode.ng-leave.ng-leave-active,
+.childNode.ng-move,
+.childNode.ng-enter {
+  opacity:0;
+  max-height:0;
 }
 
 .childNode.ng-leave,
 .childNode.ng-enter.ng-enter-active {
-    opacity:1;
+  opacity:1;
+  max-height:80px;
 }
 
 
@@ -39,7 +42,7 @@
   -o-animation:      super-cool-animation 0.2s;
   animation:         super-cool-animation 0.2s; 
   font-size: 30px;
-  background-color: skyblue;
+  background-color: rgba(0,0,0,0.05);
 }
 
 @-webkit-keyframes super-cool-animation {
