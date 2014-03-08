@@ -29,22 +29,20 @@ describe('Animation Tests', function () {
 
   describe('Scrolling the EffecktDirective', function () {
       
-      var effecktNode;
+      var effecktNode, scrollEvent;
       beforeEach(function(){
+        scrollEvent = new Event('scroll');
         effecktNode = $compile('<ul style="height: 10px; overflow: hidden;" class="effeckt-list-scroll" bb-custom-effeckt-list>' +
             '<li class="effeckt-list-item" ng-repeat="superhero in superheroes track by $index">{{superhero.name}}</li>' +
             '</ul>')(scope);
         spyOn($animate, 'addClass');
-        spyOn($animate, 'removeClass');
         scope.$apply();
       });
 
       it('should call the addClass method when the element is scrolled', function(){
-        $(effecktNode).scroll();
+        effecktNode[0].dispatchEvent(scrollEvent);
         expect($animate.addClass.callCount).toBe(5);
         expect($animate.addClass.mostRecentCall.args[1]).toBe('past');
-        expect($animate.removeClass.callCount).toBe(10);
-        expect($animate.removeClass.mostRecentCall.args[1]).toBe('normal');
       });
 
 

@@ -111,40 +111,46 @@ angular.module('bbEffecktListModule', [])
                     if (isIn = scrollService.checkElement(childTop, childHeight, scrollTop, elHeight)) {
 
                         if (isIn === true) {
-                            $animate.removeClass(childEl, 'past');
-                            $animate.removeClass(childEl, 'future');
                             $animate.addClass(childEl, 'normal');
                         } else if (isIn === 'past') {
-                            $animate.removeClass(childEl, 'future');
-                            $animate.removeClass(childEl, 'normal');
                             $animate.addClass(childEl, 'past');
                         } else if (isIn === 'future') {
-                            $animate.removeClass(childEl, 'past');
-                            $animate.removeClass(childEl, 'normal');
                             $animate.addClass(childEl, 'future');
                         } else {
-                            $animate.removeClass(childEl, 'past');
-                            $animate.removeClass(childEl, 'normal');
                             $animate.addClass(childEl, 'future');
                         }
                     }
                 }
             }
 
-            element.scroll(animateList);
+            element[0].addEventListener('scroll', animateList);
         }
     };
 }]).animation('.effeckt-list-item', function() {
   return {
 
     addClass : function(element, className, done) { 
+        
+       function realDone(){
+         if(className === 'normal'){
+           element.removeClass('past');
+           element.removeClass('future');
+         } else if(className === 'future'){
+           element.removeClass('normal');
+           element.removeClass('past');
+         } else {
+           element.removeClass('normal');
+           element.removeClass('future');
+         }
+         done();
+       }
 
        if(className === 'future'){
-         TweenMax.from(element, 1.5, {rotationY:360, transformOrigin:"left 50% 200", onComplete: done});
+         TweenMax.from(element, 1.5, {opacity: 0, rotation:-360, transformOrigin:"left 50% 200", onComplete: realDone});
        } else if(className === 'normal'){
-         TweenMax.to(element, 0.5, {opacity: 1, left: 0, rotationY: 0, onComplete: done});
+         TweenMax.to(element, 0.5, {opacity: 1, left: 0, rotation: 0, onComplete: realDone});
        } else if(className === 'past') {
-         TweenMax.to(element, 1.5, {rotationY:360, transformOrigin:"left 50% -200", onComplete: done});
+         TweenMax.to(element, 1.5, {opacity: 0, rotation:360, transformOrigin:"left 50% -200", onComplete: realDone});
        }
     }
   };

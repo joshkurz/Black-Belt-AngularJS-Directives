@@ -26,7 +26,7 @@ var app = angular.module('Effects', ['directives/demo/animations/animateMe.tpl.h
 
         var parentNode = element.parent();
         scope.addElement = function(){
-            var toBeAnimatedNode = angular.element('<div class="animateMe">Hey Animate Me</div>');
+            var toBeAnimatedNode = angular.element('<div class="animateMe">E.T. phone home</div>');
             $animate.enter(toBeAnimatedNode, parentNode, element);
         };
       }
