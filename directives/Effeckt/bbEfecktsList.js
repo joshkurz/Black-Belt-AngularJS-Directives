@@ -14,15 +14,16 @@ angular.module('bbEffecktListModule', [])
                     velocity = 'up';
                 }
                 lastScrollTop = elTop;
+
                 if (elTop - elHeight < scrollHeight && elTop + elHeight > scrollHeight - parentHeight) {
                     return true;
-                } else if (elTop > scrollHeight) {
+                } else if (elTop >= scrollHeight) {
                     if (velocity === 'up') {
                         return 'past';
                     } else {
                         return 'future';
                     }
-                } else if (elTop < scrollHeight) {
+                } else if (elTop <= scrollHeight) {
                     if (velocity === 'up') {
                         return 'future';
                     } else {
@@ -93,7 +94,7 @@ angular.module('bbEffecktListModule', [])
 
             function animateList(event) {
                 
-                var scrollTop = event.srcElement.scrollTop + elHeight,
+                var scrollTop = event.currentTarget.scrollTop + elHeight,
                     children = element.find('li'),
                     childTop,
                     childHeight;
@@ -106,13 +107,15 @@ angular.module('bbEffecktListModule', [])
                     if(!childTop || !childHeight){
                         childHeight = children[i].offsetHeight;
                     }
+
                     if (isIn = scrollService.checkElement(childTop, childHeight, scrollTop, elHeight)) {
+
                         if (isIn === true) {
                             $animate.removeClass(childEl, 'past');
                             $animate.removeClass(childEl, 'future');
                             $animate.addClass(childEl, 'normal');
                         } else if (isIn === 'past') {
-                            childEl.removeClass('future');
+                            $animate.removeClass(childEl, 'future');
                             $animate.removeClass(childEl, 'normal');
                             $animate.addClass(childEl, 'past');
                         } else if (isIn === 'future') {
@@ -128,7 +131,7 @@ angular.module('bbEffecktListModule', [])
                 }
             }
 
-            element[0].addEventListener('scroll', animateList);
+            element.scroll(animateList);
         }
     };
 }]).animation('.effeckt-list-item', function() {
