@@ -31,6 +31,9 @@
             <li class="effeckt-list-item" ng-repeat="superhero in superheroes3 track by $index">{{superhero.name}}</li>
         </ul>
 
+        <h3>Animate on DOM Enter with AngularJS</h3>
+        <div move-over></div>
+
         <h3>Effeckt Lists with AngularJS</h3>
         <select ng-model="listAnimationType" ng-options="option for option in listAnimationOptions"></select>
         <ul class="effeckt-list-scroll" data-effeckt-type="{{listAnimationType}}" bb-effeckt-list>
@@ -45,6 +48,7 @@
                 <span class="spinner"></span>
             </button>
         </div>
+        
     </div>
 
 

@@ -8,7 +8,7 @@
 
 //http://jsfiddle.net/joshkurz/EsPde/
 
-var app = angular.module('Effects', [])
+var app = angular.module('Effects', ['directives/demo/animations/animateMe.tpl.html'])
 .controller('effecktCtrl', ['$scope', '$timeout', function($scope, $timeout){
     
     $scope.buttonAnimationType = 'slide-right';
@@ -16,4 +16,34 @@ var app = angular.module('Effects', [])
     $scope.listAnimationType = 'grow';
     $scope.listAnimationOptions = ['grow', 'curl', 'wave', 'fan', 'fade', 'fly', 'landing', 'swing-front', 'swing-back', 'twist', 'door', 'climb'];
     
-}]);
+}])
+.directive('moveOver', ['$animate', function($animate){
+   return {
+      restrict: 'AC',
+      scope: true,
+      templateUrl: 'directives/demo/animations/animateMe.tpl.html',
+      link: function(scope, element, attrs){
+
+        var parentNode = element.parent();
+        scope.addElement = function(){
+            var toBeAnimatedNode = angular.element('<div class="animateMe">Hey Animate Me</div>');
+            $animate.enter(toBeAnimatedNode, parentNode, element);
+        };
+      }
+   };
+}])
+.animation('.animateMe', function(){
+  return {
+    enter: function(element, done){
+        TweenMax.fromTo(element, 0.7, {
+            boxShadow: "0px 0px 0px 0px rgba(0,255,0,0.3)"
+        }, {
+            boxShadow: "0px 0px 20px 10px rgba(0,255,0,0.7)",
+            repeat: -1,
+            yoyo: true,
+            ease: Linear.easeNone,
+            onComplete: done
+        });
+    }
+  };
+});
