@@ -60,7 +60,14 @@
           <ul class="nav navbar-nav">
             <li ng-class="{'active':  currentRoute == '/stopwatch'}"><a ng-href="#/stopwatch">Stop Watch</a></li>
             <li ng-class="{'active':  currentRoute == '/stoplight'}"><a ng-href="#/stoplight">Stop Light</a></li>
-            <li ng-class="{'active':  currentRoute == '/treeNodes'}"><a ng-href="#/treeNodes">Recursive</a></li>
+            <li ng-class="{'active':  currentRoute == '/bigdata'}"><a ng-href="#/bigdata">Big Data</a></li>
+            <li class="dropdown" ng-class="{active:isNavbarActiveViews()}">
+                <a id="animateMenu" href="" class="dropdown-toggle" data-toggle="animateMenu">Animations<b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="animateMenu">
+                    <li ng-class="{'active':  currentRoute == '/animations'}"><a ng-href="#/animations">Animations</a></li>
+                    <li ng-class="{'active':  currentRoute == '/treeNodes'}"><a ng-href="#/treeNodes">Tree Menu</a></li>
+                </ul>
+            </li>
             <li class="dropdown" ng-class="{active:isNavbarActiveViews()}">
                 <a id="videomenu" href="" class="dropdown-toggle" data-toggle="videomenu">Video Players<b class="caret"></b></a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="videomenu">
@@ -77,7 +84,6 @@
               <li class="ng-social-google-plus">Google+</li>
               <li class="ng-social-twitter">Twitter</li>
               <li class="ng-social-github" user="joshkurz" repository="Black-Belt-AngularJS-Directives">GitHub</li>
-              <li class="ng-social-github-forks" user="joshkurz" repository="Black-Belt-AngularJS-Directives">Forks</li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -85,7 +91,7 @@
 
     <div class="container">
 
-      <div ng-view></div>
+      <div class="mainContainer" ng-view></div>
 
       <div class="footer">
         <p>&copy; Black Belt AngularJS Directives 2014</p>
