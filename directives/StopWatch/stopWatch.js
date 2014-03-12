@@ -66,7 +66,6 @@ angular.module('AngularBlackBelt.StopWatch', ['directives/StopWatch/stopWatch.tp
     return {
         restrict: 'EA',
         scope: {options: '='},
-        replace: true,
         controller: 'stopwatchCtrl',
         transclude: true,
         compile: function(tElem, tAttrs){
