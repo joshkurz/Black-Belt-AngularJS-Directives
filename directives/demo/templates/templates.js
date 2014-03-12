@@ -1,0 +1,1 @@
+angular.module('AngularBlackBelt.demo/templates', ['directives/demo/templates/bbNavMenu.tpl.html']);

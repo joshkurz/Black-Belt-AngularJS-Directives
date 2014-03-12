@@ -57,25 +57,7 @@
           <a class="navbar-brand" href="#">Black Belt Directives</a>
         </div>
         <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li ng-class="{'active':  currentRoute == '/stopwatch'}"><a ng-href="#/stopwatch">Stop Watch</a></li>
-            <li ng-class="{'active':  currentRoute == '/stoplight'}"><a ng-href="#/stoplight">Stop Light</a></li>
-            <li ng-class="{'active':  currentRoute == '/bigdata'}"><a ng-href="#/bigdata">Big Data</a></li>
-            <li class="dropdown" ng-class="{active:isNavbarActiveViews()}">
-                <a id="animateMenu" href="" class="dropdown-toggle" data-toggle="animateMenu">Animations<b class="caret"></b></a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="animateMenu">
-                    <li ng-class="{'active':  currentRoute == '/animations'}"><a ng-href="#/animations">Animations</a></li>
-                    <li ng-class="{'active':  currentRoute == '/treeNodes'}"><a ng-href="#/treeNodes">Tree Menu</a></li>
-                </ul>
-            </li>
-            <li class="dropdown" ng-class="{active:isNavbarActiveViews()}">
-                <a id="videomenu" href="" class="dropdown-toggle" data-toggle="videomenu">Video Players<b class="caret"></b></a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="videomenu">
-                    <li ng-class="{'active':  currentRoute == '/mediaelement'}"><a ng-href="#/mediaelement">Mediaelement</a></li>
-                    <li ng-class="{'active':  currentRoute == '/flowplayer'}"><a ng-href="#/flowplayer">Flowplayer</a></li>
-                </ul>
-            </li>
-          </ul>
+          <div bb-nav-menu></div>
           <ul class="pull-right" ng-social-buttons
               data-url="'http://angulardirectives.joshkurz.net/'"
               data-title="'AngularJS Black Belt Directives'"
