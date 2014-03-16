@@ -9,7 +9,7 @@ module.exports = function (config) {
         'bower_components/angular-mocks/angular-mocks.js',
         'vendor/mediaelement/mediaelement-and-player.js',
         'vendor/flowplayer/flowplayer-3.2.13.min.js',
-        'https://rawgithub.com/bernii/gauge.js/gh-pages/dist/gauge.js',
+        'https://raw.github.com/bernii/gauge.js/gh-pages/dist/gauge.js',
         'dist/*.js',
         'directives/**/tests/*.spec.js'
     ],
