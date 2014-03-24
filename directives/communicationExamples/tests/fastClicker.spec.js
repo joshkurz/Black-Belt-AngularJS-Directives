@@ -68,7 +68,7 @@ describe('fastClicker', function () {
                                  '<canvas stop-light></canvas>' +
                                  '<canvas stop-light></canvas>' +
                                  '<canvas stop-light></canvas>' +
-                                 '<fast-clicker options="stopwatch" stopwatch></fast-clicker>' +
+                                 '<fast-clicker options="stopwatch" bb-stopwatch></fast-clicker>' +
                                '</div>');
       stopLight = $compile(integration)(scope);
       scope.$apply();
@@ -111,7 +111,7 @@ describe('fastClicker', function () {
                                '<canvas stop-light></canvas>' +
                                '<canvas stop-light></canvas>' +
                                '<canvas stop-light></canvas>' +
-                               '<fast-clicker options="stopwatch" stopwatch></fast-clicker>' +
+                               '<fast-clicker options="stopwatch" bb-stopwatch></fast-clicker>' +
                              '</div>'+
                              '<div class="logs" ng-repeat="log in stopwatch.log">'+
                               ' <div class="wasFast" was-fast time="log"></div>' +
@@ -180,7 +180,7 @@ describe('Integration between the stopwatch and the wasFast directive', function
 
     beforeEach(function(){
       var preCompileElement = angular.element('<div>' +
-                               '<div class="stopwatch" options="stopwatch" stopwatch override="true">' +
+                               '<div class="stopwatch" options="stopwatch" bb-stopwatch override="true">' +
                                  '<button ng-click="startTimer()">start</button>'+
                                  '<button ng-click="stopTimer()">stop</button>'+
                               '</div>' +

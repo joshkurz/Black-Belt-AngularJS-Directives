@@ -1,10 +1,10 @@
 <div class="jumbotron">
   <div ng-repeat="options in stopwatches">
-    <div stopwatch options="options" override="true">
+    <div bb-stopwatch options="options" override="true">
         <div class="container">
           <div class="stopwatch numbers">
             {{options.elapsedTime | stopwatchTime}}
-           </div>
+          </div>
           <button class="btn" ng-click="startTimer()">Start</button>
           <button class="btn" ng-click="stopTimer()">Stop</button>
           <button class="btn" ng-click="resetTimer()">Reset</button>

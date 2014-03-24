@@ -3,14 +3,14 @@ angular.module('AngularBlackBelt.fastClicker', ['AngularBlackBelt.StopWatch'])
     return {
         restrict:'EA',
         templateUrl: 'directives/communicationExamples/fastClicker.tpl.html',
-        require: ['?stopwatch', '^stopLightContainer'],
+        require: ['?bbStopwatch', '^stopLightContainer'],
         link: function(scope, element, attrs, ctrl){
             
            var raceTime = new Date();
            scope.canClick = function(){
              if(ctrl[1].options.state === 'green'){
                 ctrl[1].killInterval();
-                ctrl[0] && ctrl[0].startTimer();
+                ctrl[0] && ctrl[0].stopwatchService.startTimer();
                 return true;
              } else {
                 return false;
@@ -18,7 +18,7 @@ angular.module('AngularBlackBelt.fastClicker', ['AngularBlackBelt.StopWatch'])
            };
 
            scope.stopRaceTimer = function(){
-             ctrl[0] && ctrl[0].stopTimer();
+             ctrl[0] && ctrl[0].stopwatchService.stopTimer();
              ctrl[1].setNextState();
            };            
         }

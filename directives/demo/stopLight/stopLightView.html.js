@@ -8,7 +8,7 @@ angular.module("directives/demo/stopLight/stopLightView.tpl.html", []).run(["$te
     "    <canvas class=\"light\" stop-light state=\"red\"></canvas>\n" +
     "    <canvas class=\"light\" stop-light state=\"yellow\"></canvas>\n" +
     "    <canvas class=\"light\" stop-light state=\"green\"></canvas>\n" +
-    "    <fast-clicker options=\"stopwatch\" stopwatch></fast-clicker>\n" +
+    "    <fast-clicker options=\"stopwatch\" bb-stopwatch></fast-clicker>\n" +
     "   </div>\n" +
     "   \n" +
     "   <!-- <div ng-if=\"stopwatch.log[stopwatch.log.length-1]\">\n" +

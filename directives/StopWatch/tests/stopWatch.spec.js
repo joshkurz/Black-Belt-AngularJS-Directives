@@ -19,7 +19,7 @@ describe('StopWatch', function () {
   describe('Creating A Stopwatch Directive', function () {
     it('throw an error if there are no options set on the element', function() {
       expect(function(){
-        var stopwatch = $compile('<div stopwatch></div>')(scope);
+        var stopwatch = $compile('<div bb-stopwatch></div>')(scope);
         scope.$apply();
       }).toThrow('Must Pass an options object from the Controller For the Stopwatch to Work Correctly.');
     });   
@@ -27,22 +27,23 @@ describe('StopWatch', function () {
     it('Should not throw an error with an empty options object', function() {
       expect(function(){
         scope.emptyObject = {};
-        var stopwatch = $compile('<div stopwatch options="emptyObject">test transclusion</div>')(scope);
+        var stopwatch = $compile('<div bb-stopwatch options="emptyObject"></div>')(scope);
         scope.$apply();
       }).not.toThrow();
     });
 
     it('Should set the default interval value to 100 milliseconds', function() {
-      var stopwatch = $compile('<div stopwatch options="newObject"></div>')(scope);
+      var stopwatch = $compile('<div bb-stopwatch options="newObject"></div>')(scope);
       scope.$apply();
       expect(stopwatch.isolateScope().options.interval).toBe(100);
     }); 
 
-    it('Should set the value of the options to 1000', function() {
-      scope.newObject = {interval: 1000};
-      var stopwatch = $compile('<div stopwatch options="newObject"></div>')(scope);
+    it('Should contain all relative functions', function() {
+      var stopwatch = $compile('<div bb-stopwatch options="options"></div>')(scope);
       scope.$apply();
-      expect(stopwatch.isolateScope().options.interval).toBe(1000);
+      expect(stopwatch.isolateScope().stopTimer).not.toBe(undefined);
+      expect(stopwatch.isolateScope().startTimer).not.toBe(undefined);
+      expect(stopwatch.isolateScope().resetTimer).not.toBe(undefined);
     }); 
 
   });
@@ -55,7 +56,7 @@ describe('StopWatch', function () {
          container;
 
      beforeEach(inject(function (_$rootScope_, _$compile_,_$controller_,_$interval_) {
-      stopwatch = $compile('<div stopwatch options="options" override="true">' +
+      stopwatch = $compile('<div bb-stopwatch options="options" override="true">' +
               '<div class="container">' +
                 '<div class="stopwatch numbers">' +
                   '{{options.elapsedTime | stopwatchTime}}' +
@@ -66,7 +67,7 @@ describe('StopWatch', function () {
               '</div>' +
           '</div>')(scope);
       scope.$apply();
-      stopwatchCtrl = stopwatch.controller('stopwatch');
+      stopwatchCtrl = stopwatch.controller('bbStopwatch');
       container = $(stopwatch).find('.container');
     }));
 
@@ -79,33 +80,33 @@ describe('StopWatch', function () {
     }); 
 
     it('Should not call startTimer() when the DOM is linked, but should start when the start button is clicked', function() {      
-      expect(stopwatchCtrl.running).toBe(false);
+      expect(stopwatchCtrl.stopwatchService.running).toBe(false);
       $(container.children()[1]).click();
-      expect(stopwatchCtrl.running).toBe(true);
+      expect(stopwatchCtrl.stopwatchService.running).toBe(true);
     }); 
 
     it('Should call stopTimer() when the Stop button is clicked', function() {
       $(container.children()[1]).click();
-      expect(stopwatchCtrl.running).toBe(true);
+      expect(stopwatchCtrl.stopwatchService.running).toBe(true);
       $(container.children()[2]).click();
-      expect(stopwatchCtrl.running).toBe(false);
+      expect(stopwatchCtrl.stopwatchService.running).toBe(false);
     }); 
 
     it('Should call stopTimer() when the Stop button is clicked and append the time to the directives defining scope', function() {
       $(container.children()[1]).click();
       $interval.flush(10000);
-      expect(stopwatchCtrl.options.log.length).toBe(0);
+      expect(scope.options.log.length).toBe(0);
       $(container.children()[2]).click();
-      expect(stopwatchCtrl.running).toBe(false);
+      expect(stopwatchCtrl.stopwatchService.running).toBe(false);
       expect(scope.options.log.length).toBe(1);
     }); 
 
      it('Should not append to the log if the timer is stoped and stop is clicked', function() {
       $(container.children()[1]).click();
       $interval.flush(10000);
-      expect(stopwatchCtrl.options.log.length).toBe(0);
+      expect(scope.options.log.length).toBe(0);
       $(container.children()[2]).click();
-      expect(stopwatchCtrl.running).toBe(false);
+      expect(stopwatchCtrl.stopwatchService.running).toBe(false);
       expect(scope.options.log.length).toBe(1);
       $(container.children()[2]).click();
       expect(scope.options.log.length).toBe(1);
@@ -134,7 +135,7 @@ describe('StopWatch', function () {
          container;
 
      beforeEach(inject(function (_$rootScope_, _$compile_,_$controller_,_$interval_) {
-      stopwatch = $compile('<div stopwatch options="options" override="true">' +
+      stopwatch = $compile('<div bb-stopwatch options="options" override="true">' +
               '<div class="container">' +
                 '<div class="stopwatch numbers">' +
                   '{{options.elapsedTime | stopwatchTime}}' +
@@ -145,7 +146,7 @@ describe('StopWatch', function () {
               '</div>' +
           '</div>')(scope);
       scope.$apply();
-      stopwatchCtrl = stopwatch.controller('stopwatch');
+      stopwatchCtrl = stopwatch.controller('bbStopwatch');
       container = stopwatch.find('.container');
     }));
 
@@ -158,33 +159,33 @@ describe('StopWatch', function () {
     }); 
 
     it('Should not call startTimer() when the DOM is linked, but should start when the start button is clicked', function() {      
-      expect(stopwatchCtrl.running).toBe(false);
+      expect(stopwatchCtrl.stopwatchService.running).toBe(false);
       $(container.children()[3]).click();
-      expect(stopwatchCtrl.running).toBe(true);
+      expect(stopwatchCtrl.stopwatchService.running).toBe(true);
     }); 
 
     it('Should call stopTimer() when the Stop button is clicked', function() {
       $(container.children()[3]).click();
-      expect(stopwatchCtrl.running).toBe(true);
+      expect(stopwatchCtrl.stopwatchService.running).toBe(true);
       $(container.children()[2]).click();
-      expect(stopwatchCtrl.running).toBe(false);
+      expect(stopwatchCtrl.stopwatchService.running).toBe(false);
     }); 
 
     it('Should call stopTimer() when the Stop button is clicked and append the time to the directives defining scope', function() {
       $(container.children()[3]).click();
       $interval.flush(10000);
-      expect(stopwatchCtrl.options.log.length).toBe(0);
+      expect(scope.options.log.length).toBe(0);
       $(container.children()[2]).click();
-      expect(stopwatchCtrl.running).toBe(false);
+      expect(stopwatchCtrl.stopwatchService.running).toBe(false);
       expect(scope.options.log.length).toBe(1);
     }); 
 
      it('Should not append to the log if the timer is stoped and stop is clicked', function() {
       $(container.children()[3]).click();
       $interval.flush(10000);
-      expect(stopwatchCtrl.options.log.length).toBe(0);
+      expect(scope.options.log.length).toBe(0);
       $(container.children()[2]).click();
-      expect(stopwatchCtrl.running).toBe(false);
+      expect(stopwatchCtrl.stopwatchService.running).toBe(false);
       expect(scope.options.log.length).toBe(1);
       $(container.children()[2]).click();
       expect(scope.options.log.length).toBe(1);
@@ -205,45 +206,61 @@ describe('StopWatch', function () {
 
   });
 
-  describe('Stopwatch Controller', function () {
+  describe('Stopwatch Factory Function', function () {
+   
+    var stopwatchService;
 
-    beforeEach(inject(function (_$rootScope_,_$controller_,_$interval_) {
+    beforeEach(inject(function (_$rootScope_,_$interval_,StopwatchFactory) {
       scope = _$rootScope_.$new();
       $interval = _$interval_;
       scope.options = {
-          interval: 100
-          // no log array to prove that the controller does not throw errors when one is not present.
+          interval: 100,
+          log: []
       };
-      ctrl = _$controller_('stopwatchCtrl', {$scope:  scope, $interval: $interval});
+      stopwatchService = new StopwatchFactory(scope.options);
     }));
 
 
     it('Should call updateTime when the timer is started and should call it every 100 milliseconds', function() {
-      spyOn(ctrl, 'updateTime');
-      ctrl.startTimer();
+      spyOn(stopwatchService, 'updateTime');
+      jasmine.Clock.useMock();
+      stopwatchService.startTimer();
       $interval.flush(1000);
-      expect(ctrl.updateTime.callCount).toBe(10);
+      expect(stopwatchService.updateTime.callCount).toBe(10);
+      $interval.flush(1000);
+      expect(stopwatchService.updateTime.callCount).toBe(20);
+      $interval.flush(1000);
+      expect(stopwatchService.updateTime.callCount).toBe(30);
     }); 
 
-    it('Should not call updateTime if the timer is stoped', function() {
-      spyOn(ctrl , 'updateTime');
-      ctrl.startTimer();
+    it('Should not call updateTime if the timer is stopped', function() {
+      spyOn(stopwatchService , 'updateTime');
+      stopwatchService.startTimer();
       $interval.flush(1000);
-      expect(ctrl.updateTime.callCount).toBe(10);
+      expect(stopwatchService.updateTime.callCount).toBe(10);
       //calls update time one more time whenvever we stop the timer so the elapsedTime has the most up to date time.
-      ctrl.stopTimer();
+      stopwatchService.stopTimer();
       $interval.flush(1000);
-      expect(ctrl.updateTime.callCount).toBe(11);
+      expect(stopwatchService.updateTime.callCount).toBe(11);
     });
 
-    it('Should not call updateTime if the scope has been destroyed', function() {
-      spyOn(ctrl , 'updateTime');
-      ctrl.startTimer();
+    it('Should append to the options log object', function() {
+      spyOn(stopwatchService , 'updateTime');
+      stopwatchService.startTimer();
       $interval.flush(1000);
-      expect(ctrl.updateTime.callCount).toBe(10);
-      scope.$destroy();
+      //calls update time one more time whenvever we stop the timer so the elapsedTime has the most up to date time.
+      stopwatchService.stopTimer();
+      expect(scope.options.log.length).toBe(1);
+    });
+
+    it('Should not call updateTime if the interval has been destroyed', function() {
+      spyOn(stopwatchService , 'updateTime');
+      stopwatchService.startTimer();
       $interval.flush(1000);
-      expect(ctrl.updateTime.callCount).toBe(10);
+      expect(stopwatchService.updateTime.callCount).toBe(10);
+      stopwatchService.cancelTimer();
+      $interval.flush(1000);
+      expect(stopwatchService.updateTime.callCount).toBe(10);
     });
 
   });
@@ -270,7 +287,7 @@ describe('StopWatch', function () {
           interval: 200,
           log: []
       };
-      stopwatch = $compile('<div stopwatch options="options" override="true">' +
+      stopwatch = $compile('<div bb-stopwatch options="options" override="true">' +
               '<div class="container">' +
                 '<div class="stopwatch numbers">' +
                   '{{options.elapsedTime | stopwatchTime}}' +
@@ -280,7 +297,7 @@ describe('StopWatch', function () {
                 '<button class="btn" ng-click="resetTimer()">Reset</button>' +
               '</div>' +
           '</div>')(scope);
-      stopwatch2 = $compile('<div stopwatch options="options2" override="true">' +
+      stopwatch2 = $compile('<div bb-stopwatch options="options2" override="true">' +
               '<div class="container">' +
                 '<div class="stopwatch numbers">' +
                   '{{options.elapsedTime | stopwatchTime}}' +
@@ -290,7 +307,7 @@ describe('StopWatch', function () {
                  '<button class="btn" ng-click="startTimer()">Start</button>' +
               '</div>' +
           '</div>')(scope);
-      stopwatch3 = $compile('<div stopwatch options="options3" override="true">' +
+      stopwatch3 = $compile('<div bb-stopwatch options="options3" override="true">' +
               '<div class="container">' +
                 '<div class="stopwatch numbers">' +
                   '{{options.elapsedTime | stopwatchTime}}' +
@@ -304,9 +321,9 @@ describe('StopWatch', function () {
       container = stopwatch.find('.container');
       container2 = stopwatch2.find('.container');
       container3 = stopwatch3.find('.container');
-      stopwatchCtrl = stopwatch.controller('stopwatch');
-      stopwatchCtrl2 = stopwatch2.controller('stopwatch');
-      stopwatchCtrl3 = stopwatch3.controller('stopwatch');
+      stopwatchCtrl = stopwatch.controller('bbStopwatch');
+      stopwatchCtrl2 = stopwatch2.controller('bbStopwatch');
+      stopwatchCtrl3 = stopwatch3.controller('bbStopwatch');
     }));
 
      it('All of the stopwatches should append to their own log array', function() {
@@ -314,15 +331,15 @@ describe('StopWatch', function () {
       $(container2.children()[3]).click();
       $(container3.children()[1]).click();
       $interval.flush(10000);
-      expect(stopwatchCtrl.options.log.length).toBe(0);
-      expect(stopwatchCtrl2.options.log.length).toBe(0);
-      expect(stopwatchCtrl3.options.log.length).toBe(0);
+      expect(scope.options.log.length).toBe(0);
+      expect(scope.options2.log.length).toBe(0);
+      expect(scope.options3.log.length).toBe(0);
       $(container.children()[2]).click();
       $(container2.children()[2]).click();
       $(container3.children()[2]).click();
-      expect(stopwatchCtrl.running).toBe(false);
-      expect(stopwatchCtrl2.running).toBe(false);
-      expect(stopwatchCtrl3.running).toBe(false);
+      expect(stopwatchCtrl.stopwatchService.running).toBe(false);
+      expect(stopwatchCtrl2.stopwatchService.running).toBe(false);
+      expect(stopwatchCtrl3.stopwatchService.running).toBe(false);
       expect(scope.options.log.length).toBe(1);
       expect(scope.options2.log.length).toBe(1);
       expect(scope.options3.log.length).toBe(1);

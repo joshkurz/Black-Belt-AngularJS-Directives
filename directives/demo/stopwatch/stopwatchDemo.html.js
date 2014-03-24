@@ -2,7 +2,7 @@ angular.module("directives/demo/stopwatch/stopwatchDemo.tpl.html", []).run(["$te
   $templateCache.put("directives/demo/stopwatch/stopwatchDemo.tpl.html",
     "<div class=\"jumbotron\">\n" +
     "  <div ng-repeat=\"options in stopwatches\">\n" +
-    "    <div stopwatch options=\"options\" override=\"true\">\n" +
+    "    <div bb-stopwatch options=\"options\" override=\"true\">\n" +
     "        <div class=\"container\">\n" +
     "          <div class=\"stopwatch numbers\">\n" +
     "            {{options.elapsedTime | stopwatchTime}}\n" +
