@@ -54,7 +54,7 @@ angular.module('bbEffecktListModule', [])
                 
                 for (var i = 0; i < children.length; i++) {
                     
-                    var childEl = angular.element(children[i]);
+                    var childEl = $(children[i]);
                     childTop = children[i].offsetTop;
 
                     if(!childTop || !childHeight){
@@ -62,17 +62,17 @@ angular.module('bbEffecktListModule', [])
                     }
                     if (isIn = scrollService.checkElement(childTop, childHeight*4, scrollTop, elHeight)) {
                         if (isIn === true) {
-                            childEl.removeClass('future')
-                                   .removeClass('past');
+                            $animate.removeClass(childEl, 'future');
+                            $animate.removeClass(childEl, 'past');
                         } else if (isIn === 'past') {
-                            childEl.removeClass('future')
-                                   .addClass('past');
+                            $animate.removeClass(childEl, 'future');
+                            $animate.addClass(childEl, 'past');
                         } else if (isIn === 'future') {
-                            childEl.removeClass('past')
-                                   .addClass('future');
+                            $animate.removeClass(childEl, 'past');
+                            $animate.addClass(childEl, 'future');
                         } else {
-                            childEl.addClass('future')
-                                   .removeClass('past');
+                            $animate.addClass(childEl, 'future');
+                            $animate.removeClass(childEl, 'past');
                         }
                     }
                 }
