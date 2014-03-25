@@ -120,7 +120,7 @@ describe('StopWatch', function () {
       $(container.children()[1]).click();
       expect(domTime.html().trim()).toBe('0:0:0:0');
       $interval.flush(10000);
-      expect(domTime.html().trim()).toNotBe('0:0:0:0');
+      expect(domTime.html().trim()).not.toBe('0:0:0:0');
       $(container.children()[3]).click();
       expect(domTime.html().trim()).toBe('0:0:0:0');
     }); 
@@ -199,7 +199,7 @@ describe('StopWatch', function () {
       $(container.children()[3]).click();
       expect(domTime.html().trim()).toBe('0:0:0:0');
       $interval.flush(10000);
-      expect(domTime.html().trim()).toNotBe('0:0:0:0');
+      expect(domTime.html().trim()).not.toBe('0:0:0:0');
       $(container.children()[1]).click();
       expect(domTime.html().trim()).toBe('0:0:0:0');
     }); 
@@ -354,7 +354,7 @@ describe('StopWatch', function () {
       expect(domTime2.html().trim()).toBe('0:0:0:0');
       expect(domTime3.html().trim()).toBe('0:0:0:0');
       $interval.flush(10000);
-      expect(domTime.html().trim()).toNotBe('0:0:0:0');
+      expect(domTime.html().trim()).not.toBe('0:0:0:0');
       expect(domTime2.html().trim()).toBe('0:0:0:0');
       expect(domTime3.html().trim()).toBe('0:0:0:0');
       $(container.children()[3]).click();

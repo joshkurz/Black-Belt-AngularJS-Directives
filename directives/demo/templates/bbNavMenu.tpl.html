@@ -1,7 +1,19 @@
 <ul class="nav navbar-nav">
-    <li ng-class="{'active':  currentRoute == '/stopwatch'}"><a ng-href="#/stopwatch">Stop Watch</a></li>
-    <li ng-class="{'active':  currentRoute == '/stoplight'}"><a ng-href="#/stoplight">Stop Light</a></li>
-    <li ng-class="{'active':  currentRoute == '/bigdata'}"><a ng-href="#/bigdata">Big Data</a></li>
+    <li class="dropdown" ng-class="{active:isNavbarActiveViews()}">
+        <a id="stopMenu" href="" class="dropdown-toggle" data-toggle="stopMenu">Stops<b class="caret"></b></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="stopMenu">
+            <li ng-class="{'active':  currentRoute == '/stopwatch'}"><a ng-href="#/stopwatch">Stop Watch</a></li>
+            <li ng-class="{'active':  currentRoute == '/stoplight'}"><a ng-href="#/stoplight">Stop Light</a></li>
+        </ul>
+    </li>
+    <li class="dropdown" ng-class="{active:isNavbarActiveViews()}">
+        <a id="bigDataMenu" href="" class="dropdown-toggle" data-toggle="bigDataMenu">D3<b class="caret"></b></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="bigDataMenu">
+            <li ng-class="{'active':  currentRoute == '/bigdata'}"><a ng-href="#/bigdata">Big Data</a></li>
+            <li ng-class="{'active':  currentRoute == '/timeline'}"><a ng-href="#/timeline">Timeline</a></li>
+            <li ng-class="{'active':  currentRoute == '/heatmap'}"><a ng-href="#/heatmap">Heat Map</a></li>
+        </ul>
+    </li>
     <li class="dropdown" ng-class="{active:isNavbarActiveViews()}">
         <a id="animateMenu" href="" class="dropdown-toggle" data-toggle="animateMenu">Animations<b class="caret"></b></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="animateMenu">

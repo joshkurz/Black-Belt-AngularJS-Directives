@@ -43,6 +43,16 @@ angular.module('AngularBlackBelt.demo', ['ngRoute', 'ngAnimate', 'ui.bootstrap',
     controller:'animationsCtrl'
   });
 
+  $routeProvider.when('/heatmap', {
+    templateUrl:'directives/demo/heatMap/heatMapDemo.tpl.html',
+    controller:'demoHeatMapCtrl'
+  });
+
+  $routeProvider.when('/timeline', {
+    templateUrl:'directives/demo/timeline/timelineDemo.tpl.html',
+    controller:'demoTimelineCtrl'
+  });
+
 }]);
 
 

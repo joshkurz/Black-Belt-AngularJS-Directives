@@ -35,8 +35,8 @@ module.exports = function (grunt) {
         tasks: []
       },
       js: {
-        files: ['directives/**/*.js','directives/**/demo/*.js'],
-        tasks: ['jshint', 'recess', 'build']
+        files: ['directives/**/*.js','directives/**/demo/*.js', '!directives/**/*.html.js','!directives/**/demo/*.html.js'],
+        tasks: ['recess', 'html2js', 'build']
       }
     },
     karma: {
@@ -94,6 +94,13 @@ module.exports = function (grunt) {
         }
       }
     },
+    browserSync: {
+        dev: {
+            bsFiles: {
+                src : ['<%= dist %>/<%= filename %>-<%= pkg.version %>.js','<%= dist %>/<%= pkg.name %>.css']
+            }
+        }
+    }
   });
 
   grunt.registerTask('dist', 'Override dist directory', function() {
