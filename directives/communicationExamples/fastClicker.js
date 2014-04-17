@@ -101,9 +101,7 @@ angular.module('AngularBlackBelt.fastClicker', ['AngularBlackBelt.StopWatch'])
              }  
           }
 
-          scope.$watch('time', function(newV,oldV){
-            changeSpeed();
-          });
+          scope.$watch('time', changeSpeed);
         }
     };
 });

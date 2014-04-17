@@ -22,23 +22,21 @@ describe('gauge-js', function () {
 
   describe('Creating A gauge-js Directive', function () {
 
-    it('throw an error if not set on a canvas element', function() {
+    it('should throw an error if not set on a canvas element', function() {
       expect(function(){
         var gauge = $compile('<div gauge-js></div>')(scope);
-        scope.$apply();
       }).toThrow('guage-js can only be set on a canvas element. DIV will not work.');
     });   
 
-    it('do not throw an error when creating on a canvas element', function() {
+    it('should not throw an error when creating on a canvas element', function() {
       expect(function(){
-        var gauge = $compile('<canvas gauge-js current-value="value" options="configOptions"></canvas>')(scope);
-        scope.$apply();
+        var gauge = $compile('<canvas gauge-js ng-module="value" options="configOptions"></canvas>')(scope);
       }).not.toThrow();
     });  
 
-    it('Gauge is called when the directive is compiled and linked to the DOM', function() {
+    it('should set the Gauge when the directive is compiled and linked to the DOM', function() {
       spyOn(Gauge.prototype, 'setOptions').andCallThrough();
-      var gauge = $compile('<canvas gauge-js current-value="value" options="configOptions"></canvas>')(scope);
+      var gauge = $compile('<canvas gauge-js ng-module="value" options="configOptions"></canvas>')(scope);
       scope.$apply();
       expect(Gauge.prototype.setOptions).toHaveBeenCalledWith(scope.configOptions);
     }); 
@@ -50,8 +48,7 @@ describe('gauge-js', function () {
     var gauge,
         gaugeScope;
     beforeEach(function(){
-      gauge = $compile('<canvas gauge-js current-value="value" options="configOptions"></canvas>')(scope);
-      scope.$apply();
+      gauge = $compile('<canvas gauge-js ng-module="value" options="configOptions"></canvas>')(scope);
       gaugeScope = gauge.isolateScope();
     });
 

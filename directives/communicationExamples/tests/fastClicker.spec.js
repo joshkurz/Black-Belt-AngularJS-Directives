@@ -21,9 +21,9 @@ describe('fastClicker', function () {
     };
     scope.stopwatch = {interval: 1000, log: []};
     scope.testPics = {
-                      100: 'http://www.picgifs.com/dog-graphics/dog-graphics/hunting-dog/dog-graphics-hunting-dog-047205.GIF',
-                      10:  'http://www.picgifs.com/sport-graphics/sport-graphics/running/sport-graphics-running-371709.gif',
-                      1 :  'http://www.picgifs.com/sport-graphics/sport-graphics/running/sport-graphics-running-510249.gif'
+                      100: '/images/runningDog.gif',
+                      10:  '/images/runningHuman.gif',
+                      1 :  '/images/runningSuperSlow.gif'
                      };
   }));
 
@@ -136,7 +136,7 @@ describe('fastClicker', function () {
         $(fastClicker.children()[0]).click();
         logs = stopLight.find('.logs');
         expect(logs.children().eq(0).text().split('(')[1]).toBe('Super Dog Speed)');
-        expect(logs.children().eq(1).find('img').attr('src')).toBe('http://www.picgifs.com/dog-graphics/dog-graphics/hunting-dog/dog-graphics-hunting-dog-047205.GIF');
+        expect(logs.children().eq(1).find('img').attr('src')).toBe('/images/runningDog.gif');
     });
   });
 
@@ -205,7 +205,7 @@ describe('Integration between the stopwatch and the wasFast directive', function
         expect(scope.stopwatch.log.length).toBe(1);
         expect(logs.children().eq(0).text().split('(')[1]).toBe('Super Dog Speed)');
         expect(integration.find('marquee').attr('scrollamount')).toBe('100');
-        expect(integration.find('img').attr('src')).toBe('http://www.picgifs.com/dog-graphics/dog-graphics/hunting-dog/dog-graphics-hunting-dog-047205.GIF');
+        expect(integration.find('img').attr('src')).toBe('/images/runningDog.gif');
     });
   });
 

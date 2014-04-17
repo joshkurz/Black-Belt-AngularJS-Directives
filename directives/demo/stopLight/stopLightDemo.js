@@ -26,9 +26,9 @@ angular.module('AngularBlackBelt.demo/stopLight', ['directives/communicationExam
     };
 
     $scope.pics = {
-                      100: 'http://www.picgifs.com/dog-graphics/dog-graphics/hunting-dog/dog-graphics-hunting-dog-047205.GIF',
-                      10:  'http://www.picgifs.com/sport-graphics/sport-graphics/running/sport-graphics-running-371709.gif',
-                      1 :  'http://www.picgifs.com/sport-graphics/sport-graphics/running/sport-graphics-running-510249.gif'
+                      100: '/images/runningDog.gif',
+                      10:  '/images/runningHuman.gif',
+                      1 :  '/images/runningSuperSlow.gif'
                      };
 
     $scope.stopwatch = {interval: 100, log: []};

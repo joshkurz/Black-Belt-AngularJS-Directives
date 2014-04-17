@@ -25,7 +25,7 @@ angular.module('gauge-js', [])
         restrict: 'A',
         scope: {
             options:'=',
-            currentValue: '='    
+            currentValue: '=ngModule'    
         },
         compile: function(tElem, tAttrs){
 
