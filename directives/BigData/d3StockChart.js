@@ -3,7 +3,7 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
     
   function link(scope,element,attrs){
     
-    var limit = 60 * 1,
+      var limit = 60 * 1,
           duration = 750,
           now = new Date(Date.now() - duration),
           color = d3.scale.category20(),

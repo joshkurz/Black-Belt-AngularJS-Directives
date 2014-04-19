@@ -207,6 +207,6 @@ describe('Integration between the stopwatch and the wasFast directive', function
         expect(integration.find('marquee').attr('scrollamount')).toBe('100');
         expect(integration.find('img').attr('src')).toBe('/images/runningDog.gif');
     });
-  });
+});
 
 });
