@@ -7,8 +7,9 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
           duration = 750,
           now = new Date(Date.now() - duration),
           color = d3.scale.category20(),
+          padding = 50,
           max = 20,
-          x, y, line, svg, axis, paths;
+          x, y, line, svg, xAxis, yAxis, paths;
 
       var width = element.width(),
           height = 500,
@@ -24,18 +25,21 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
       }
       
       function resetGroups(tickers){
+
         for(var i in tickers){
-           
-           groups[tickers[i]] = {
+
+          if(!groups[tickers[i]]){
+            groups[tickers[i]] = {
                 value: 0,
                 color: color(i),
                 data: d3.range(limit).map(rangeFunc)
-            };
+            }; 
+          }
         }
 
         x = d3.time.scale()
           .domain([now - (limit - 2), now - duration])
-          .range([0, width]);
+          .range([padding+0.5, width]);
 
         y = d3.scale.linear()
             .domain([0, max])
@@ -61,10 +65,16 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
 
         svg.call(tip);
 
-        axis = svg.append('g')
+        xAxis = svg.append('g')
             .attr('class', 'x axis')
             .attr('transform', 'translate(0,' + height + ')')
             .call(x.axis = d3.svg.axis().scale(x).orient('bottom'));
+
+        //Define Y axis
+        yAxis = svg.append('g')
+            .attr('class', 'y axis')
+            .attr("transform", "translate(" + padding + ",0)")
+            .call(y.axis = d3.svg.axis().scale(y).orient('left'));
 
         paths = svg.append('g');
 
@@ -88,23 +98,30 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
 
           // Add new values
           for (tic in scope.data) {
-              var ticData = {tic: tic, value: scope.data[tic].price?parseFloat(scope.data[tic].price,10):0};
-              group = groups[tic];
-              group.data.push(ticData);
-              group.path.attr('d', line);
-              if(max < ticData.value){
-                max = ticData.value;
-                y.domain([0, max]);
-              }
+            if(groups[tic]){
+                var ticData = {tic: tic, value: scope.data[tic].price?parseFloat(scope.data[tic].price,10):0};
+                group = groups[tic];
+                group.data.push(ticData);
+                group.path.attr('d', line);
+                if(max < ticData.value){
+                  max = ticData.value;
+                  y.domain([0, max]);
+                }
+             }
           }
 
           // Shift domain
           x.domain([now - (limit - 2) * duration, now - duration]);
           // Slide x-axis left
-          axis.transition()
+          xAxis.transition()
               .duration(duration)
               .ease('linear')
               .call(x.axis);
+
+          // Slide x-axis left
+          yAxis.transition()
+              .call(y.axis);
+
 
           // Slide paths left
           paths.attr('transform', null)
@@ -118,7 +135,9 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
           // Remove oldest data point from each group
           for (tic in scope.data) {
               group = groups[tic];
-              group.data.shift();
+              if(group.data.length > 60){
+                group.data.shift();
+              }
           }
       }
       
@@ -128,11 +147,7 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
         resetGroups(scope.tickers);
       });
 
-      var killWatcher = scope.$watchCollection('data', function(newO,oldO){
-        if(newO){
-          tick();
-        }
-      });
+      var killWatcher = scope.$watchCollection('data', tick);
 
       scope.$on('$destroy', function(elem){
         killWatcher();

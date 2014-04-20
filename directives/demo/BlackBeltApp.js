@@ -33,8 +33,8 @@ angular.module('AngularBlackBelt.demo', ['ngRoute', 'ngAnimate', 'ui.bootstrap',
     controller:'TreeNodesCtrl'
   });
 
-  $routeProvider.when('/bigdata', {
-    templateUrl:'directives/demo/BigData/bigDataView.tpl.html',
+  $routeProvider.when('/stockchart', {
+    templateUrl:'directives/demo/BigData/stockchartView.tpl.html',
     controller:'BigDataCtrl'
   });
 
@@ -43,7 +43,7 @@ angular.module('AngularBlackBelt.demo', ['ngRoute', 'ngAnimate', 'ui.bootstrap',
     controller:'animationsCtrl'
   });
 
-  $routeProvider.when('/heatmap', {
+  $routeProvider.when('/d3map', {
     templateUrl:'directives/demo/heatMap/heatMapDemo.tpl.html',
     controller:'demoHeatMapCtrl'
   });

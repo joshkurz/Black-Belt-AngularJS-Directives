@@ -1,4 +1,4 @@
-<ul class="nav navbar-nav">
+<ul class="nav navbar-nav alignTextLeft">
     <li class="dropdown" ng-class="{active:isNavbarActiveViews()}">
         <a id="stopMenu" href="" class="dropdown-toggle" data-toggle="stopMenu">Stops<b class="caret"></b></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="stopMenu">
@@ -9,9 +9,9 @@
     <li class="dropdown" ng-class="{active:isNavbarActiveViews()}">
         <a id="bigDataMenu" href="" class="dropdown-toggle" data-toggle="bigDataMenu">D3<b class="caret"></b></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="bigDataMenu">
-            <li ng-class="{'active':  currentRoute == '/bigdata'}"><a ng-href="#/bigdata">Big Data</a></li>
+            <li ng-class="{'active':  currentRoute == '/stockchart'}"><a ng-href="#/stockchart">Stock Chart</a></li>
             <li ng-class="{'active':  currentRoute == '/timeline'}"><a ng-href="#/timeline">Timeline</a></li>
-            <li ng-class="{'active':  currentRoute == '/heatmap'}"><a ng-href="#/heatmap">Heat Map</a></li>
+            <li ng-class="{'active':  currentRoute == '/d3map'}"><a ng-href="#/d3map">D3 map</a></li>
         </ul>
     </li>
     <li class="dropdown" ng-class="{active:isNavbarActiveViews()}">

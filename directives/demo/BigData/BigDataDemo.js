@@ -1,8 +1,9 @@
 /*jshint -W083 */
-angular.module('AngularBlackBelt.demo/BigData', ['directives/demo/BigData/bigDataView.tpl.html'])
+angular.module('AngularBlackBelt.demo/BigData', ['directives/demo/BigData/stockchartView.tpl.html'])
 .controller('BigDataCtrl', ['$scope', 'pubnubService', function($scope, pubnubService){
    
    $scope.tickers = ['ORCL', 'ZNGA', 'EA', 'F', 'FB' , 'TRI'];
+   $scope.addTickers = ['GOOG'];
    $scope.newTicker = "";
    
    for(var tic in $scope.tickers){
@@ -14,13 +15,13 @@ angular.module('AngularBlackBelt.demo/BigData', ['directives/demo/BigData/bigDat
    $scope.removeTicker = function(index){
      var removedTicker = $scope.tickers.splice(index,1);
      pubnubService.unsubscribeToTicker(removedTicker);
+     $scope.addTickers.push(removedTicker[0]);
    };
 
-   $scope.addTicker = function(){
-     var upperCaseTicker = $scope.newTicker.toUpperCase();
-     $scope.tickers.push(upperCaseTicker);
-     pubnubService.subscribeToTicker(upperCaseTicker);
-     $scope.newTicker = "";
+   $scope.addTicker = function(index){
+     var tickValue = $scope.addTickers.splice(index,1);
+     $scope.tickers.push(tickValue[0]);
+     pubnubService.subscribeToTicker(tickValue);
    }
 
    $scope.$on('$destroy', function(event){

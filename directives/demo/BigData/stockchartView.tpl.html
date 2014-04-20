@@ -8,12 +8,9 @@
     <p>Hover over a line to see its symbol and its current value</p>
     <p><b>Disclaimer:</b> This is using sample data from the pubnub demo service.</p>
   </div>
-  <div class="add-tickers offsetTop">
-    <button class="btn btn-default" ng-click="addTicker()">Add New Ticker</button>
-    <input ng-model="newTicker">
-  </div>
   <div class="btn-group offsetTop">
     <button class="btn btn-default" ng-repeat="ticker in tickers" ng-click="removeTicker($index)">Remove {{ticker}}</button>
+    <button class="btn btn-primary" ng-repeat="ticker in addTickers" ng-click="addTicker($index)">Add {{ticker}}</button>
   </div>
-  <div class="graph offsetTop" d3-stock-chart tickers="tickers" data="stockData"></div>
+  <div class="graph offsetTop" bb-stock-chart tickers="tickers" data="stockData"></div>
 </div>
