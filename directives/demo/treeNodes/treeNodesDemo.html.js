@@ -6,7 +6,7 @@ angular.module("directives/demo/treeNodes/treeNodesDemo.tpl.html", []).run(["$te
     "        <span>\n" +
     "          <h1>Recursive Directives</h1>\n" +
     "        </span>\n" +
-    "        <p>These directives are using recursion to accomplish thier final DOM. Each of them have thier own special way to achieve \n" +
+    "        <p>These directives are using recursion to accomplish thier final DOM. Each of them have their own special way to achieve \n" +
     "          the same result. The purpose of these examples is to showcase how powerful a recursive directive can be, in terms of simplicity and effectivness.</p>\n" +
     "      </div>\n" +
     "      <div class=\"col-md-4\">\n" +

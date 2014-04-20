@@ -5,8 +5,8 @@ angular.module("directives/demo/mediaelement/mediaelementView.tpl.html", []).run
     "    <span>\n" +
     "        <h1>Mediaelement</h1>\n" +
     "    </span>\n" +
-    "    <p>This media-player directive is using a You Tube mediaelement template, that allows the video player to play You Tube vides. \n" +
-    "       If you type into the search box you will see a D3 bar chart of YouTube statistics of views alongside of the search result</p>\n" +
+    "    <p>This media-player directive is using a YouTube mediaelement template, that allows the video player to play YouTube videos. \n" +
+    "       If you type into the search box you will see YouTube statistics of views alongside of the search result</p>\n" +
     "  </div>\n" +
     "  <div class=\"alert alert-warning alignTextLeft\">\n" +
     "    <label for=\"youtubeSearch\">Search YouTube</label>\n" +

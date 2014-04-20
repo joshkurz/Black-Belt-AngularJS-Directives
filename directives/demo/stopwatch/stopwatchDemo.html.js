@@ -5,7 +5,7 @@ angular.module("directives/demo/stopwatch/stopwatchDemo.tpl.html", []).run(["$te
     "    <span>\n" +
     "        <h1>Stopwatch Demo</h1>\n" +
     "    </span>\n" +
-    "    <p>These stopwatches are each working off of different configurations. The first stopwatch updates every 100 millisecods. The second updates every 1 second and the third every 2 seconds. These stopwatches are very flexible and can be used in many different ways.</p>\n" +
+    "    <p>These stopwatches are each working off of different configurations. The first stopwatch updates every 100 millisecods. The second updates every 1 second and the third every 2 seconds. Their purpose is to showcase what pure AngularJS directives can do.</p>\n" +
     "  </div>\n" +
     "  <div ng-repeat=\"options in stopwatches\">\n" +
     "    <div bb-stopwatch options=\"options\" override=\"true\">\n" +

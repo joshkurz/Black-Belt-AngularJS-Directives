@@ -107,6 +107,9 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
                   max = ticData.value;
                   y.domain([0, max]);
                 }
+                if(group.data.length > 60){
+                  group.data.shift();
+                } 
              }
           }
 
@@ -117,12 +120,9 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
               .duration(duration)
               .ease('linear')
               .call(x.axis);
-
-          // Slide x-axis left
+          // Slide y-axis if needed
           yAxis.transition()
               .call(y.axis);
-
-
           // Slide paths left
           paths.attr('transform', null)
               .transition()
@@ -130,15 +130,6 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
               .ease('linear')
               .attr('transform', 'translate(' + x(now - (limit - 1) * duration) + ')')
               .each('end', tick);
-          
-          function returnData(d) { return d.value; }
-          // Remove oldest data point from each group
-          for (tic in scope.data) {
-              group = groups[tic];
-              if(group.data.length > 60){
-                group.data.shift();
-              }
-          }
       }
       
       var killLengthWatcher = scope.$watch('tickers.length', function(newVal){

@@ -13,21 +13,21 @@ angular.module('AngularBlackBelt.demo/BigData', ['directives/demo/BigData/stockc
    $scope.stockData = pubnubService.pubnubStockData;
 
    $scope.removeTicker = function(index){
-     var removedTicker = $scope.tickers.splice(index,1);
+     var removedTicker = $scope.tickers.splice(index,1)[0];
      pubnubService.unsubscribeToTicker(removedTicker);
-     $scope.addTickers.push(removedTicker[0]);
+     $scope.addTickers.push(removedTicker);
    };
 
    $scope.addTicker = function(index){
      var tickValue = $scope.addTickers.splice(index,1);
      $scope.tickers.push(tickValue[0]);
      pubnubService.subscribeToTicker(tickValue);
-   }
+   };
 
    $scope.$on('$destroy', function(event){
     for(var tic in $scope.tickers){
        pubnubService.unsubscribeToTicker($scope.tickers[tic]);
-     };
+     }
    });
 
 }])
@@ -61,6 +61,6 @@ angular.module('AngularBlackBelt.demo/BigData', ['directives/demo/BigData/stockc
     delete self.pubnubStockData[ticker];
     self.pubnub.unsubscribe({channel: ticker});
 
-  }
+  };
 
 }]);
