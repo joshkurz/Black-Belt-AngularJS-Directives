@@ -1,8 +1,15 @@
 angular.module("directives/demo/stopLight/stopLightView.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("directives/demo/stopLight/stopLightView.tpl.html",
-    "<div class=\"jumbotron\">\n" +
-    "\n" +
-    "   <div class=\"alert alert-success\">When the light turns Green. Its on.</div>\n" +
+    "<div class=\"well jumbotron container\">\n" +
+    "   \n" +
+    "   <div class=\"bs-callout bs-callout-info alignTextLeft\">\n" +
+    "    <span>\n" +
+    "        <h1>Stop Light Demo</h1>\n" +
+    "    </span>\n" +
+    "    <p>This demo's main purpose is to showcase how directives can communicate with each other. The stop-light directive\n" +
+    "       is communicating with a fast-clicker directive, which communicates with the stopwatch directive. The end result is a \n" +
+    "       mini game to see how fast you can click the button when the light turns green.</p>\n" +
+    "   </div>\n" +
     "\n" +
     "   <div stop-light-container options=\"fastClickState\" class=\"trafficlight\">\n" +
     "    <canvas class=\"light\" stop-light state=\"red\"></canvas>\n" +

@@ -1,5 +1,5 @@
 angular.module('AngularBlackBelt.BigData', ['AngularBlackBelt.BigDataCharts'])
-.directive('svgD3MenuBar', [ function(){
+.directive('bbBarChart', [ function(){
     
     function link(scope,element,attrs){
        
@@ -56,20 +56,22 @@ angular.module('AngularBlackBelt.BigData', ['AngularBlackBelt.BigDataCharts'])
               });
       }
 
-      scope.$watch('data', function(newO,oldO){
-        var newData = [];
-        for(var da in scope.data){
-          if(scope.data[da].model['yt$statistics']){
-            var newVideoObj = {};
-            newVideoObj.label = scope.data[da].label;
-            newVideoObj.value = parseInt(scope.data[da].model['yt$statistics'].viewCount,10);
-            newData.push(newVideoObj);
+      scope.$watch('data', function(newData) {
+        var graphData = [];
+        angular.forEach(newData, function(dataItem) {
+         var stats = dataItem.model['yt$statistics'];
+          if (stats) {
+            graphData.push({
+              label: dataItem.label,
+              value: parseInt(stats.viewCount, 10)
+            });
           }
+        });
+        if (graphData.length>0) {
+          redraw(graphData);
         }
-        if(newData.length>0){
-          redraw(newData);
-        }
-      },true);
+      }, true);
+
        
     }
     

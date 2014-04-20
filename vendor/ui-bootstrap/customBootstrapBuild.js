@@ -448,7 +448,7 @@ angular.module("template/typeahead/typeahead-match.html", []).run(["$templateCac
 angular.module("template/typeahead/typeahead-popup.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("template/typeahead/typeahead-popup.html",
     "<ul class=\"typeahead dropdown-menu\" ng-style=\"{'text-align': 'left', display: isOpen()&&'block' || 'none', top: position.top+'px', left: position.left+'px'}\">\n" +
-    "    <li><div svg-d3-menu-bar data=\"matches\" set-the-model=\"selectMatch\"></li>\n" +
+    "    <li><div bb-bar-chart data=\"matches\" set-the-model=\"selectMatch\"></li>\n" +
     "    <li ng-repeat=\"match in matches\" ng-class=\"{active: isActive($index) }\" ng-mouseenter=\"selectActive($index)\" ng-click=\"selectMatch($index)\">\n" +
     "        <div typeahead-match index=\"$index\" match=\"match\" query=\"query\" template-url=\"templateUrl\"></div>\n" +
     "    </li>\n" +

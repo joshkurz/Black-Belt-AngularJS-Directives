@@ -1,5 +1,11 @@
-<div class="well container adjustTop">
-    <br>
+<div class="well jumbotron container">
+    <div class="bs-callout bs-callout-info alignTextLeft">
+        <span>
+            <h1>Animation Demo</h1>
+        </span>
+        <p>A collaboration of different types of examples using ngAnimate. Some of these examples are using pure
+                AngularJS and some are using mixtures of different libraries.</p>
+    </div>
     <div  class="col-md-6">
         <h3>Animated Table</h3>
         <div class="bb-table-div">
@@ -42,7 +48,7 @@
 
         <h3>Effeckt Buttons with AngularJS</h3>
         <select class="buttonSelect" ng-model="buttonAnimationType" ng-options="option for option in buttonAnimationOptions"></select>
-        <div class="bb-table-div">
+        <div>
             <button class="effeckt-button btn" ng-repeat="superhero in superheroes4 track by $index" data-effeckt-type="{{buttonAnimationType}}" ng-click="loadPowers()" bb-effeckt-button> 
                 <span class="label">{{superhero.name}}</span> 
                 <span class="spinner"></span>

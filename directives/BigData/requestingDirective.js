@@ -1,3 +1,4 @@
+//http://plnkr.co/edit/f4ZDCyOcud5WSEe9L0GO?p=preview
 var app = angular.module('angularjs-promise-example', ['ngRoute']);
 
 app.config(function($routeProvider){
@@ -10,7 +11,7 @@ app.config(function($routeProvider){
       }
     }
   }).otherwise({ redirectTo: '/' });
-})
+});
 
 app.controller('PhoneListCtrl', function($scope, phones) {
   

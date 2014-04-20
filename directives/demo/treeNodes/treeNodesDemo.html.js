@@ -1,8 +1,14 @@
 angular.module("directives/demo/treeNodes/treeNodesDemo.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("directives/demo/treeNodes/treeNodesDemo.tpl.html",
-    "<div class=\"jumbotron\">\n" +
+    "<div class=\"well jumbotron container\">\n" +
     "  <div class=\"container\">\n" +
-    "  \n" +
+    "      <div class=\"bs-callout bs-callout-info alignTextLeft\">\n" +
+    "        <span>\n" +
+    "          <h1>Recursive Directives</h1>\n" +
+    "        </span>\n" +
+    "        <p>These directives are using recursion to accomplish thier final DOM. Each of them have thier own special way to achieve \n" +
+    "          the same result. The purpose of these examples is to showcase how powerful a recursive directive can be, in terms of simplicity and effectivness.</p>\n" +
+    "      </div>\n" +
     "      <div class=\"col-md-4\">\n" +
     "          <div class=\"alert alert-success\">\n" +
     "            Recursion only using Transclusion\n" +

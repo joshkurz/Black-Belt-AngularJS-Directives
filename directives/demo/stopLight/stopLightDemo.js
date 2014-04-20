@@ -26,10 +26,10 @@ angular.module('AngularBlackBelt.demo/stopLight', ['directives/communicationExam
     };
 
     $scope.pics = {
-                      100: '/images/runningDog.gif',
-                      10:  '/images/runningHuman.gif',
-                      1 :  '/images/runningSuperSlow.gif'
-                     };
+                      100: '/dist/images/runningDog.gif',
+                      10:  '/dist/images/runningHuman.gif',
+                      1 :  '/dist/images/runningSuperSlow.gif'
+                   };
 
     $scope.stopwatch = {interval: 100, log: []};
     

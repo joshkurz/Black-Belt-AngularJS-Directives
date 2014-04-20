@@ -1,5 +1,12 @@
-<div class="jumbotron">
-  <div class="alert alert-warning">
+<div class="well jumbotron container">
+  <div class="bs-callout bs-callout-info alignTextLeft">
+    <span>
+        <h1>Mediaelement</h1>
+    </span>
+    <p>This media-player directive is using a You Tube mediaelement template, that allows the video player to play You Tube vides. 
+       If you type into the search box you will see a D3 bar chart of YouTube statistics of views alongside of the search result</p>
+  </div>
+  <div class="alert alert-warning alignTextLeft">
     <label for="youtubeSearch">Search YouTube</label>
     <input type="text" name="youtubeSearch" ng-model="result" typeahead="suggestion as suggestion.title.$t for suggestion in videoSearch($viewValue)">
   </div>

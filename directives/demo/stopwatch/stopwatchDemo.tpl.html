@@ -1,4 +1,10 @@
-<div class="jumbotron">
+<div class="well jumbotron container">
+  <div class="bs-callout bs-callout-info alignTextLeft">
+    <span>
+        <h1>Stopwatch Demo</h1>
+    </span>
+    <p>These stopwatches are each working off of different configurations. The first stopwatch updates every 100 millisecods. The second updates every 1 second and the third every 2 seconds. These stopwatches are very flexible and can be used in many different ways.</p>
+  </div>
   <div ng-repeat="options in stopwatches">
     <div bb-stopwatch options="options" override="true">
         <div class="container">

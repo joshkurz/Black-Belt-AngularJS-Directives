@@ -1,12 +1,18 @@
-<div class="jumbotron">
-  <label>Flowplayer</label>
-  <div ng-if="buttonText == 'Playlist Player'" class="alert">Select the Dots to change the Video.</div>
-  <div class="btn-group">
-    <div class="btn btn-primary" ng-class="{'active': currentFlowplayer == 'directives/mediaPlayer/pureHtml5Player.tpl.html'}" ng-click="changeFlowPlayer('directives/mediaPlayer/pureHtml5Player.tpl.html')">Pure HTML 5</div>
-    <div class="btn btn-primary" ng-class="{'active': currentFlowplayer == 'directives/mediaPlayer/flowplayer.tpl.html'}" ng-click="changeFlowPlayer('directives/mediaPlayer/flowplayer.tpl.html')">Pre-Roll</div>
-    <div class="btn btn-primary" ng-class="{'active': currentFlowplayer == 'directives/mediaPlayer/flowplayerSlideshow.tpl.html'}" ng-click="changeFlowPlayer('directives/mediaPlayer/flowplayerSlideshow.tpl.html')">Playlist</div>
+<div class="well jumbotron container">
+  <div class="bs-callout bs-callout-info alignTextLeft">
+    <span>
+        <h1>Flowplayer</h1>
+    </span>
+    <p>The flowplayer demo shows how important the $compile service can be to a directive.</p>
+    <p>All of the different types of flowplayers that are available here are being created by the same directive.<p>
   </div>
-  <div media-player media-type="{{mediaType}}" video-config="activeVideo" template-url="{{currentFlowplayer}}"></div>
+  <div ng-if="buttonText == 'Playlist Player'" class="alert">Select the Dots to change the Video.</div>
+  <div class="btn-group offsetTop">
+    <div class="btn btn-default" ng-class="{'active': currentFlowplayer == 'directives/mediaPlayer/pureHtml5Player.tpl.html'}" ng-click="changeFlowPlayer('directives/mediaPlayer/pureHtml5Player.tpl.html')">Pure HTML 5</div>
+    <div class="btn btn-default" ng-class="{'active': currentFlowplayer == 'directives/mediaPlayer/flowplayer.tpl.html'}" ng-click="changeFlowPlayer('directives/mediaPlayer/flowplayer.tpl.html')">Pre-Roll</div>
+    <div class="btn btn-default" ng-class="{'active': currentFlowplayer == 'directives/mediaPlayer/flowplayerSlideshow.tpl.html'}" ng-click="changeFlowPlayer('directives/mediaPlayer/flowplayerSlideshow.tpl.html')">Playlist</div>
+  </div>
+  <div class="offsetTop" media-player media-type="{{mediaType}}" video-config="activeVideo" template-url="{{currentFlowplayer}}"></div>
   <div ng-if="currentFlowplayer != 'directives/mediaPlayer/flowplayer.tpl.html'"  class="alert">Playlists
     <div class="btn-group">
       <button ng-repeat="video in videos" class="btn" ng-click="setActiveVideo($index)">{{$index+1}}</button>
