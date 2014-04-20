@@ -1,5 +1,5 @@
 angular.module('AngularBlackBelt.BigDataCharts', [])
-.directive('d3StockChart', [ function(){
+.directive('bbStockChart', [ function(){
     
   function link(scope,element,attrs){
     
