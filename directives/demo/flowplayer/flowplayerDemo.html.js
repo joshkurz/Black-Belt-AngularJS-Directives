@@ -5,7 +5,8 @@ angular.module("directives/demo/flowplayer/flowplayerDemo.tpl.html", []).run(["$
     "    <span>\n" +
     "        <h1>Flowplayer</h1>\n" +
     "    </span>\n" +
-    "    <p>The flowplayer demo shows how important the $compile service can be to a directive.</p>\n" +
+    "    <p>A demo showcasing the power of <a href=\"https://flowplayer.org/\">flowplayer.js</a> and <a href=\"https://angularjs.org/\">AngularJS</a></p>\n" +
+    "    <p>This directive can work with more libraries than just flowplayer. Its purpose is to showcase how important the $compile service can be to a directive.</p>\n" +
     "    <p>All of the different types of flowplayers that are available here are being created by the same directive.<p>\n" +
     "  </div>\n" +
     "  <div ng-if=\"buttonText == 'Playlist Player'\" class=\"alert\">Select the Dots to change the Video.</div>\n" +
