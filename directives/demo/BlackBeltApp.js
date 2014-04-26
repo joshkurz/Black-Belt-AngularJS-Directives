@@ -1,10 +1,10 @@
 
-angular.module('AngularBlackBelt.demo', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'directives/demo/stopLight/stopLightView.tpl.html', 'directives/demo/stopwatch/stopwatchDemo.tpl.html', 'AngularBlackBelt.demo/stopLight', 'AngularBlackBelt.demo/stopwatch', 'AngularBlackBelt.demo/treeNodes', 'directives/demo/animations/animations.tpl.html'])
+angular.module('AngularBlackBelt.demo', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'directives/demo/stopLight/stopLightView.tpl.html', 'directives/demo/stopwatch/stopwatchDemo.tpl.html', 'AngularBlackBelt.demo/stopLight', 'AngularBlackBelt.demo/stopwatch', 'AngularBlackBelt.demo/treeNodes', 'directives/demo/animations/animations.tpl.html', 'directives/demo/homepage.tpl.html'])
 
 .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
   $locationProvider.html5Mode(false);
-  $routeProvider.otherwise({redirectTo:'/stopwatch'});
+  $routeProvider.otherwise({redirectTo:'/'});
 
   $routeProvider.when('/stopwatch', {
     templateUrl:'directives/demo/stopwatch/stopwatchDemo.tpl.html',
@@ -51,6 +51,11 @@ angular.module('AngularBlackBelt.demo', ['ngRoute', 'ngAnimate', 'ui.bootstrap',
   $routeProvider.when('/timeline', {
     templateUrl:'directives/demo/timeline/timelineDemo.tpl.html',
     controller:'demoTimelineCtrl'
+  });
+
+  $routeProvider.when('/', {
+    templateUrl:'directives/demo/homepage.tpl.html',
+    controller:'demoCtrl'
   });
 
 }]);
