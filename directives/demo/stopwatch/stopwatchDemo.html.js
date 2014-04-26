@@ -3,7 +3,7 @@ angular.module("directives/demo/stopwatch/stopwatchDemo.tpl.html", []).run(["$te
     "<div class=\"well jumbotron container\">\n" +
     "  <div class=\"bs-callout bs-callout-info alignTextLeft\">\n" +
     "    <span>\n" +
-    "        <h1>Stopwatch Demo</h1>\n" +
+    "        <h1>Stopwatch</h1>\n" +
     "    </span>\n" +
     "    <p>These stopwatches are each working off of different configurations. The first stopwatch updates every 100 milliseconds. The second updates every 1 second and the third every 2 seconds. Their purpose is to give a tiny glimpse into the possibilities of what pure AngularJS directives can accomplish.</p>\n" +
     "  </div>\n" +

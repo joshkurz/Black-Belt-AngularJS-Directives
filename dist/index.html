@@ -65,9 +65,19 @@
       </div>
     </div>
 
-    <div ng-class="{'hexigons': currentRoute == '/'}">
-      <div class="container">
+    <div>
+      
+      <div ng-if="currentRoute == '/'" class="jumbotron" ng-class="{'hexigons': currentRoute == '/'}">
+          <center>
+            <h1>Mastering<br>
+              Angular<span class="jsRed">JS</span> Directives
+            </h1>
+            <p>A set of directives, whose purpose is to showcase different Angular<span class="jsRed">JS</span> techniques.</p>
+            <img class="mainA" src="/dist/images/angularBlackBelt.png">
+          </center>
+      </div>
 
+      <div class="container">
         <div class="mainContainer" ng-view></div>
 
         <div class="footer">

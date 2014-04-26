@@ -4,7 +4,7 @@ angular.module("directives/demo/stopLight/stopLightView.tpl.html", []).run(["$te
     "   \n" +
     "   <div class=\"bs-callout bs-callout-info alignTextLeft\">\n" +
     "    <span>\n" +
-    "        <h1>Stop Light Demo</h1>\n" +
+    "        <h1>Stop Light</h1>\n" +
     "    </span>\n" +
     "    <p>This demo's main purpose is to showcase how directives can communicate with each other. The stop-light directive\n" +
     "       is communicating with a fast-clicker directive, which communicates with the stopwatch directive. The end result is a \n" +
