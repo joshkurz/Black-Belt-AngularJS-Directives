@@ -4,7 +4,7 @@
             <h1>Animation Demo</h1>
         </span>
         <p>A collaboration of different types of examples using ngAnimate. Some of these examples are using pure
-                AngularJS and some are using mixtures of different libraries.</p>
+                Angular<span class="jsRed">JS</span> and some are using mixtures of different libraries.</p>
     </div>
     <div  class="col-md-6">
         <h3>Animated Table</h3>
@@ -32,21 +32,21 @@
     </div>
     <div class="col-md-6" ng-controller="effecktCtrl">
 
-        <h3>Crazy Animations with Greenstock & AngularJS</h3>
+        <h3>Crazy Animations with Greenstock & Angular<span class="jsRed">JS</span></h3>
         <ul class="effeckt-list-scroll" bb-custom-effeckt-list>
             <li class="effeckt-list-item" ng-repeat="superhero in superheroes3 track by $index">{{superhero.name}}</li>
         </ul>
 
-        <h3>Animate on DOM Enter with AngularJS</h3>
+        <h3>Animate on DOM Enter with Angular<span class="jsRed">JS</span></h3>
         <div move-over></div>
 
-        <h3>Effeckt Lists with AngularJS</h3>
+        <h3>Effeckt Lists with Angular<span class="jsRed">JS</span></h3>
         <select ng-model="listAnimationType" ng-options="option for option in listAnimationOptions"></select>
         <ul class="effeckt-list-scroll" data-effeckt-type="{{listAnimationType}}" bb-effeckt-list>
             <li ng-repeat="superhero in superheroes2 track by $index">{{superhero.name}}</li>
         </ul>
 
-        <h3>Effeckt Buttons with AngularJS</h3>
+        <h3>Effeckt Buttons with Angular<span class="jsRed">JS</span></h3>
         <select class="buttonSelect" ng-model="buttonAnimationType" ng-options="option for option in buttonAnimationOptions"></select>
         <div>
             <button class="effeckt-button btn" ng-repeat="superhero in superheroes4 track by $index" data-effeckt-type="{{buttonAnimationType}}" ng-click="loadPowers()" bb-effeckt-button> 
