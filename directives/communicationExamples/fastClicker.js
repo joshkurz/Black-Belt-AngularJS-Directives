@@ -3,7 +3,7 @@ angular.module('AngularBlackBelt.fastClicker', ['AngularBlackBelt.StopWatch'])
     return {
         restrict:'EA',
         templateUrl: 'directives/communicationExamples/fastClicker.tpl.html',
-        require: ['?bbStopwatch', '^stopLightContainer'],
+        require: ['?bbStopwatch', '^bbStopLightContainer'],
         link: function(scope, element, attrs, ctrl){
             
            var raceTime = new Date();

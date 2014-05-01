@@ -4,15 +4,15 @@
     <span>
         <h1>Stop Light</h1>
     </span>
-    <p>This demo's main purpose is to showcase how directives can communicate with each other. The stop-light directive
+    <p>This demo's main purpose is to showcase how directives can communicate with each other. The bb-stop-light directive
        is communicating with a fast-clicker directive, which communicates with the stopwatch directive. The end result is a 
        mini game to see how fast you can click the button when the light turns green.</p>
    </div>
 
-   <div stop-light-container options="fastClickState" class="trafficlight">
-    <canvas class="light" stop-light state="red"></canvas>
-    <canvas class="light" stop-light state="yellow"></canvas>
-    <canvas class="light" stop-light state="green"></canvas>
+   <div bb-stop-light-container options="fastClickState" class="trafficlight">
+    <canvas class="light" bb-stop-light state="red"></canvas>
+    <canvas class="light" bb-stop-light state="yellow"></canvas>
+    <canvas class="light" bb-stop-light state="green"></canvas>
     <fast-clicker options="stopwatch" bb-stopwatch></fast-clicker>
    </div>
    

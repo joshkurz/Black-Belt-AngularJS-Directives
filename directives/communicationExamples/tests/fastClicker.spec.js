@@ -33,16 +33,16 @@ describe('fastClicker', function () {
           fastClicker;
 
       beforeEach(function(){
-        var integration = angular.element('<div stop-light-container options="options">' +
-                                   '<canvas stop-light></canvas>' +
-                                   '<canvas stop-light></canvas>' +
-                                   '<canvas stop-light></canvas>' +
+        var integration = angular.element('<div bb-stop-light-container options="options">' +
+                                   '<canvas bb-stop-light></canvas>' +
+                                   '<canvas bb-stop-light></canvas>' +
+                                   '<canvas bb-stop-light></canvas>' +
                                '<fast-clicker></fast-clicker>' +
                                  '</div>');
         stopLight = $compile(integration)(scope);
         scope.$apply();
         fastClicker = stopLight.find('fast-clicker');
-        ctrl = $controller('stopLightCtrl', {$scope:  scope, $interval: $interval
+        ctrl = $controller('bbStopLightCtrl', {$scope:  scope, $interval: $interval
       });
         scope.$apply();
       });  
@@ -64,16 +64,16 @@ describe('fastClicker', function () {
         fastClicker;
 
     beforeEach(function(){
-      var integration = angular.element('<div stop-light-container options="options">' +
-                                 '<canvas stop-light></canvas>' +
-                                 '<canvas stop-light></canvas>' +
-                                 '<canvas stop-light></canvas>' +
+      var integration = angular.element('<div bb-stop-light-container options="options">' +
+                                 '<canvas bb-stop-light></canvas>' +
+                                 '<canvas bb-stop-light></canvas>' +
+                                 '<canvas bb-stop-light></canvas>' +
                                  '<fast-clicker options="stopwatch" bb-stopwatch></fast-clicker>' +
                                '</div>');
       stopLight = $compile(integration)(scope);
       scope.$apply();
       fastClicker = stopLight.find('fast-clicker');
-      ctrl = $controller('stopLightCtrl', {$scope:  scope, $interval: $interval});
+      ctrl = $controller('bbStopLightCtrl', {$scope:  scope, $interval: $interval});
       scope.$apply();
     });  
 
@@ -107,10 +107,10 @@ describe('fastClicker', function () {
 
     beforeEach(function(){
       var integration = '<div>' +
-                            '<div stop-light-container options="options">' +
-                               '<canvas stop-light></canvas>' +
-                               '<canvas stop-light></canvas>' +
-                               '<canvas stop-light></canvas>' +
+                            '<div bb-stop-light-container options="options">' +
+                               '<canvas bb-stop-light></canvas>' +
+                               '<canvas bb-stop-light></canvas>' +
+                               '<canvas bb-stop-light></canvas>' +
                                '<fast-clicker options="stopwatch" bb-stopwatch></fast-clicker>' +
                              '</div>'+
                              '<div class="logs" ng-repeat="log in stopwatch.log">'+
@@ -122,7 +122,7 @@ describe('fastClicker', function () {
       stopLight = $compile(integration)(scope);
       scope.$apply();
       fastClicker = stopLight.find('fast-clicker');
-      ctrl = $controller('stopLightCtrl', {$scope:  scope, $interval: $interval});
+      ctrl = $controller('bbStopLightCtrl', {$scope:  scope, $interval: $interval});
       scope.$apply();
     });  
 

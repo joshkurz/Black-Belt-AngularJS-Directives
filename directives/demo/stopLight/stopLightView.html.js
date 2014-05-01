@@ -6,15 +6,15 @@ angular.module("directives/demo/stopLight/stopLightView.tpl.html", []).run(["$te
     "    <span>\n" +
     "        <h1>Stop Light</h1>\n" +
     "    </span>\n" +
-    "    <p>This demo's main purpose is to showcase how directives can communicate with each other. The stop-light directive\n" +
+    "    <p>This demo's main purpose is to showcase how directives can communicate with each other. The bb-stop-light directive\n" +
     "       is communicating with a fast-clicker directive, which communicates with the stopwatch directive. The end result is a \n" +
     "       mini game to see how fast you can click the button when the light turns green.</p>\n" +
     "   </div>\n" +
     "\n" +
-    "   <div stop-light-container options=\"fastClickState\" class=\"trafficlight\">\n" +
-    "    <canvas class=\"light\" stop-light state=\"red\"></canvas>\n" +
-    "    <canvas class=\"light\" stop-light state=\"yellow\"></canvas>\n" +
-    "    <canvas class=\"light\" stop-light state=\"green\"></canvas>\n" +
+    "   <div bb-stop-light-container options=\"fastClickState\" class=\"trafficlight\">\n" +
+    "    <canvas class=\"light\" bb-stop-light state=\"red\"></canvas>\n" +
+    "    <canvas class=\"light\" bb-stop-light state=\"yellow\"></canvas>\n" +
+    "    <canvas class=\"light\" bb-stop-light state=\"green\"></canvas>\n" +
     "    <fast-clicker options=\"stopwatch\" bb-stopwatch></fast-clicker>\n" +
     "   </div>\n" +
     "   \n" +

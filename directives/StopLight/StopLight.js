@@ -48,7 +48,7 @@ angular.module('AngularBlackBelt.StopLight',[])
     
         
 }])
-.controller('stopLightCtrl', ['$scope','$interval', function($scope,$interval){
+.controller('bbStopLightCtrl', ['$scope','$interval', function($scope,$interval){
     
     var interval = null,
         self = this;
@@ -81,14 +81,14 @@ angular.module('AngularBlackBelt.StopLight',[])
     });
     
         
-}]).directive('stopLightContainer', [ function() {
+}]).directive('bbStopLightContainer', [ function() {
     return {
-        controller: 'stopLightCtrl',
+        controller: 'bbStopLightCtrl',
         scope: {options: '='}
     };
-}]).directive('stopLight', ['svgService', function(svgService) {
+}]).directive('bbStopLight', ['svgService', function(svgService) {
     return {
-        require: '^stopLightContainer',
+        require: '^bbStopLightContainer',
         scope: true,
         compile: function(tElem,tAttrs){
           
