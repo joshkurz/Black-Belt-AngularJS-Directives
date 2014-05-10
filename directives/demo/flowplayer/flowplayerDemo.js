@@ -11,9 +11,9 @@ angular.module('AngularBlackBelt.demo/flowplayer', ['directives/demo/flowplayer/
       {
         options: {},
         playlist: [
-           "https://ia700204.us.archive.org/23/items/Dragon_Ball_Z_Bitches/DBZBitches_512kb",
-           "https://ia700602.us.archive.org/29/items/Spartans/spartan_512kb",
-           "https://ia700404.us.archive.org/11/items/LovingYouandDrinkingBeer/LovingYouandDrinkingBeer_512kb",
+           "http://archive.org/download/Superman-1941/Cartoon-SupermanBLP-VCD",
+           "https://ia600301.us.archive.org/29/items/KevinBatman/Batman_Dead_End_512kb",
+           "https://ia601200.us.archive.org/26/items/Tom.and.Jerry/Tom.and.Jerry.%26.The.Wizard.of.Oz.2011.1080p.BluRay.x264-DON",
            "https://ia600302.us.archive.org/32/items/StarWarsGangsterRap/StarWarsGangstaRap_512kb"
         ]
       },
@@ -21,17 +21,10 @@ angular.module('AngularBlackBelt.demo/flowplayer', ['directives/demo/flowplayer/
         options: {},
         playlist: [
            "https://ia700701.us.archive.org/21/items/TomAndJerryInANightBeforeChristmas/TomAndJerry-003-NightBeforeChristmas1941",
-           "https://ia601903.us.archive.org/12/items/CountOfMonteChristoCanadianFilm/count%20of%20monte%20christo%20-%20canadian%20film",
-           "https://ia600204.us.archive.org/2/items/020347/020347_512kb"
+           "http://archive.org/download/Superman-1941/Cartoon-SupermanBLP-VCD"
         ]
       }
     ];
-
-    $scope.videoSearch = function(youtubeTitle) {
-      return $http.jsonp("https://gdata.youtube.com/feeds/api/videos?alt=json-in-script&orderby=viewCount&start-index=11&max-results=30&v=2&callback=JSON_CALLBACK&q="+youtubeTitle).then(function(response){
-        return response.data.feed.entry;
-      });
-    };
 
     $scope.changeFlowPlayer = function(template){
       $scope.currentFlowplayer = template;
@@ -48,4 +41,5 @@ angular.module('AngularBlackBelt.demo/flowplayer', ['directives/demo/flowplayer/
     };
 
     $scope.activeVideo = $scope.videos[activeVideo?activeVideo:0];
+    
 }]);

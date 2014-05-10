@@ -1,5 +1,5 @@
 angular.module('AngularBlackBelt.mediaPlayer', ['directives/mediaPlayer/flowplayer.tpl.html','directives/mediaPlayer/flowplayerSlideshow.tpl.html', 'directives/mediaPlayer/pureHtml5Player.tpl.html'])
-.directive('mediaPlayer', ['$sce', '$compile', '$templateCache', '$timeout', function($sce, $compile, $templateCache, $timeout) {
+.directive('bbMediaPlayer', ['$sce', '$compile', '$templateCache', '$timeout', function($sce, $compile, $templateCache, $timeout) {
     return {
         restrict: 'A',
         scope: {
@@ -8,7 +8,7 @@ angular.module('AngularBlackBelt.mediaPlayer', ['directives/mediaPlayer/flowplay
         compile: function(tElem,tAttrs){
 
             if (!tAttrs.templateUrl){
-                 throw new Error('Must Give media-player a templateUrl to look for.');
+                 throw new Error('Must Give bb-media-player a templateUrl to look for.');
             }
             
             return function(scope, element, attrs) {
