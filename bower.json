@@ -16,9 +16,9 @@
     "package.json"
   ],
   "dependencies": {
-    "angular": "~1.2.*",
-    "angular-route": "~1.2.*",
-    "angular-animate": "~1.2.*",
+    "angular": "1.2.16",
+    "angular-route": "1.2.16",
+    "angular-animate": "1.2.16",
     "jquery": "~1.9.x",
     "gsap": "1.11.5"
   },

@@ -9,10 +9,11 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
           color = d3.scale.category20(),
           padding = 50,
           max = 20,
-          x, y, line, svg, xAxis, yAxis, paths;
+          x, y, line, svg, xAxis, yAxis, paths,
+          margin = {top: 20, right: 10, bottom: 20, left: 10};
 
-      var width = element.width(),
-          height = 500,
+      var width = element.width() - margin.left - margin.right,
+          height = 500 - margin.bottom - margin.top,
           groups = {};
 
       var tip = d3.tip()
@@ -39,7 +40,7 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
 
         x = d3.time.scale()
           .domain([now - (limit - 2), now - duration])
-          .range([padding+0.5, width]);
+          .range([padding+16.5, width]);
 
         y = d3.scale.linear()
             .domain([0, max])
@@ -83,7 +84,7 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
             group.path = paths.append('path')
                 .data([group.data])
                 .attr('class', name + ' group')
-                .style({'stroke-width': '3px', 'stroke': group.color})
+                .style({'stroke-width': '2.5px', 'stroke': group.color})
                 .on('mouseover', tip.show)
                 .on('mouseout', tip.hide);
         }
@@ -99,7 +100,9 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
           // Add new values
           for (tic in scope.data) {
             if(groups[tic]){
-                var ticData = {tic: tic, value: scope.data[tic].price?parseFloat(scope.data[tic].price,10):0};
+                var ticData = {tic: tic, 
+                               time: scope.data[tic].time,
+                               value: scope.data[tic].price?parseFloat(scope.data[tic].price,10):0};
                 group = groups[tic];
                 group.data.push(ticData);
                 group.path.attr('d', line);
@@ -113,23 +116,20 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
              }
           }
 
-          // Shift domain
-          x.domain([now - (limit - 2) * duration, now - duration]);
-          // Slide x-axis left
+          // slide the x-axis left
           xAxis.transition()
-              .duration(duration)
-              .ease('linear')
-              .call(x.axis);
-          // Slide y-axis if needed
+            .call(x.axis);
+
+          // // Shift domain
+          x.domain([now - (limit - 2) * duration, now - duration]);
+          //scale the y axis
           yAxis.transition()
               .call(y.axis);
-          // Slide paths left
-          paths.attr('transform', null)
-              .transition()
-              .duration(duration)
-              .ease('linear')
-              .attr('transform', 'translate(' + x(now - (limit - 1) * duration) + ')')
-              .each('end', tick);
+
+                  // slide the line left
+          paths.select('g').attr("d", line)
+            .attr("transform", "translate(" + x(now - (limit - 1) * duration) + ")")
+            .transition();
       }
       
       var killLengthWatcher = scope.$watch('tickers.length', function(newVal){
