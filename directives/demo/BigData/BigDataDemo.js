@@ -46,7 +46,7 @@ angular.module('AngularBlackBelt.demo/BigData', ['directives/demo/BigData/stockc
 
     self.pubnub.subscribe({
       channel : ticker,
-      message : $.throttle(100, function(update,data){
+      message : $.throttle(500, function(update,data){
         $timeout(function(){
           self.pubnubStockData[ticker] = update; 
         });

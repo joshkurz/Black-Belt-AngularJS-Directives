@@ -5,7 +5,7 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'html2js', 'recess', 'build', 'karma']);
+  grunt.registerTask('default', ['jshint', 'html2js', 'recess', 'build', 'karma', 'protractor']);
 
   var testConfig = function(configFile, customOptions) {
     var options = { configFile: configFile, keepalive: true };
@@ -100,6 +100,17 @@ module.exports = function (grunt) {
                 src : ['<%= dist %>/<%= filename %>-<%= pkg.version %>.js','<%= dist %>/<%= pkg.name %>.css']
             }
         }
+    },
+    protractor: {
+      options: {
+        configFile: "tests/e2e.conf.js", // Default config file
+        keepAlive: true, // If false, the grunt process stops when the test fails.
+        noColor: false, // If true, protractor will not use colors in its output.
+        debug: true,
+        args: {
+          // Arguments passed to the command
+        }
+      }
     }
   });
 
