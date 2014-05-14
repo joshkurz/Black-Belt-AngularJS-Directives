@@ -1,2 +1,0 @@
-// describe("hello-protractor", function () {
-// });

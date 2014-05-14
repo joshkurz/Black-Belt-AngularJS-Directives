@@ -31,9 +31,10 @@ angular.module('AngularBlackBelt.demo/BigData', ['directives/demo/BigData/stockc
    });
 
 }])
-.service('pubnubService', ['$timeout', function($timeout){
+.service('pubnubService', ['$rootScope', function($rootScope){
   
-  var self = this;
+  var self = this,
+      unsubscribed = {};
 
   self.pubnub = PUBNUB.init({
       subscribe_key : 'demo',
@@ -43,21 +44,24 @@ angular.module('AngularBlackBelt.demo/BigData', ['directives/demo/BigData/stockc
   self.pubnubStockData = {};
 
   self.subscribeToTicker = function(ticker){
-
+    delete unsubscribed[ticker];
     self.pubnub.subscribe({
       channel : ticker,
-      message : $.throttle(500, function(update,data){
-        $timeout(function(){
-          self.pubnubStockData[ticker] = update; 
-        });
+      message : $.throttle(3000, function(update,data){
+        if(!unsubscribed[ticker]){
+          $rootScope.$apply(function(){
+            self.pubnubStockData[ticker] = update; 
+          });
+        }
       })
     });
   };
 
   self.unsubscribeToTicker = function(ticker){
-
-    delete self.pubnubStockData[ticker];
-    self.pubnub.unsubscribe({channel: ticker});
+    
+      delete self.pubnubStockData[ticker];
+      unsubscribed[ticker] = true;
+      self.pubnub.unsubscribe({channel: ticker});
 
   };
 

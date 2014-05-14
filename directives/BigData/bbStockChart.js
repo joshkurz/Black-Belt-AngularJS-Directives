@@ -4,7 +4,7 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
   function link(scope,element,attrs){
     
       var limit = 60 * 1,
-          duration = 750,
+          duration = 500,
           now = new Date(Date.now() - duration),
           color = d3.scale.category20(),
           padding = 50,
@@ -95,7 +95,15 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
           now = new Date();
           var group,
               name,
-              tic;
+              tic,
+              scaleY;
+
+          // slide the x-axis left
+          xAxis.transition()
+            .call(x.axis);
+
+          // // Shift domain
+          x.domain([now - (limit - 2) * duration, now - duration]);
 
           // Add new values
           for (tic in scope.data) {
@@ -108,28 +116,22 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
                 group.path.attr('d', line);
                 if(max < ticData.value){
                   max = ticData.value;
-                  y.domain([0, max]);
+                  scaleY = true;
                 }
                 if(group.data.length > 60){
                   group.data.shift();
                 } 
              }
           }
+          
+          //if true then scale the y axis
+          if(scaleY === true){
+            y.domain([0, max]);
+            scaleY = false;
+          }
 
-          // slide the x-axis left
-          xAxis.transition()
-            .call(x.axis);
-
-          // // Shift domain
-          x.domain([now - (limit - 2) * duration, now - duration]);
-          //scale the y axis
           yAxis.transition()
               .call(y.axis);
-
-                  // slide the line left
-          paths.select('g').attr("d", line)
-            .attr("transform", "translate(" + x(now - (limit - 1) * duration) + ")")
-            .transition();
       }
       
       var killLengthWatcher = scope.$watch('tickers.length', function(newVal){
