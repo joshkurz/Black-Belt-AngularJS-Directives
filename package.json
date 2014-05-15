@@ -29,7 +29,8 @@
     "grunt-protractor-runner": "^0.2.4"
   },
   "scripts": {
-    "test": "grunt"
+    "test": "grunt",
+    "install": "node node_modules/protractor/bin/webdriver-manager update"
   },
   "repository": {
     "type": "git",

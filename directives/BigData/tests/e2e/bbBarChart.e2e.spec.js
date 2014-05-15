@@ -3,7 +3,7 @@ describe("bbBarChart live data interaction", function () {
       browser.get('/dist/#/mediaelement');
     });
 
-    it("should contain a typeahead element and a mediaelement which communicate", function () {
+    it("should contain a typeahead element and a mediaelement which can communicate", function () {
       var typeahead = element(by.model('result')),
           bars = $$('.menuBar'),
           mediaelementSource = $$('.youtubeSourceObj');
