@@ -26,16 +26,15 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
       }
       
       function resetGroups(tickers){
-
+        
+        groups = {};
         for(var i in tickers){
-
-          if(!groups[tickers[i]]){
+            
             groups[tickers[i]] = {
                 value: 0,
                 color: color(i),
                 data: d3.range(limit).map(rangeFunc)
             }; 
-          }
         }
 
         x = d3.time.scale()
