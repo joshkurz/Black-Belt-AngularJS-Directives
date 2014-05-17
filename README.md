@@ -1,4 +1,4 @@
-# Black Belt AngularJS Directives [![Build Status](https://travis-ci.org/joshkurz/black-belt-AngularJS-directives.png?branch=master)](https://travis-ci.org/joshkurz/black-belt-AngularJS-directives)
+# Black Belt AngularJS Directives [![Build Status](https://travis-ci.org/joshkurz/Black-Belt-AngularJS-Directives.png?branch=master)](https://travis-ci.org/joshkurz/Black-Belt-AngularJS-Directives)
 
 A set of directives that showcase the many techniques AngularJS holds in the HTML5 world.
 
