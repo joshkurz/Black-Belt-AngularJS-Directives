@@ -1,4 +1,5 @@
 //http://plnkr.co/edit/f4ZDCyOcud5WSEe9L0GO?p=preview
+//advanced http://plnkr.co/edit/TFnNrN938vpMoSoVbE79?p=preview
 var app = angular.module('angularjs-promise-example', ['ngRoute']);
 
 app.config(function($routeProvider){

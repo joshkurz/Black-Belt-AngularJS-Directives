@@ -98,8 +98,8 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
               scaleY;
 
           // slide the x-axis left
-          xAxis.transition()
-            .call(x.axis);
+          // xAxis.transition()
+          //   .call(x.axis);
 
           // // Shift domain
           x.domain([now - (limit - 2) * duration, now - duration]);
