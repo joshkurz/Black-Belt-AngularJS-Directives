@@ -2,6 +2,8 @@
 
 A set of directives that showcase the many techniques AngularJS holds in the HTML5 world.
 
+[![Black-Belt-A](http://angulardirectives.joshkurz.net/dist/images/angularBlackBelt.png=333x)]
+
 # Requirements
 - JQuery
 - AngularJS
