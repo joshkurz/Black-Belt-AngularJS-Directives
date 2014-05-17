@@ -13,5 +13,6 @@ before_install:
 before_script:
   - npm install -g bower grunt-cli
   - bower install
+  - node node_modules/protractor/bin/webdriver-manager update
 
 script: "grunt --verbose"
