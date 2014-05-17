@@ -1,6 +1,6 @@
 /*
   This test showcases how directives can communicate with remote resources to 
-  accomplish thier desired views. 
+  accomplish their desired views. 
 */
 describe('bbPhoneListApp Demo', function () {
   'use strict';
@@ -14,29 +14,39 @@ describe('bbPhoneListApp Demo', function () {
     $httpBackend = _$httpBackend_;
 
     $httpBackend.whenGET('test-phone.json')
-      .respond({
-          "age": 1, 
-          "id": "xxx-xxx-xxxx", 
-          "imageUrl": "testPhone.jpg", 
-          "name": "Amazing Phone", 
-          "snippet": "This is a Super Duper Phone"
-      });
+                .respond({
+                    "age": 1, 
+                    "id": "xxx-xxx-xxxx", 
+                    "imageUrl": "testPhone.jpg", 
+                    "name": "Amazing Phone", 
+                    "snippet": "This is a Super Duper Phone"
+                });
+
+    $httpBackend.whenGET('test-phone2.json')
+                .respond({
+                    "age": 2, 
+                    "id": "yyy-xxx-xxxx", 
+                    "imageUrl": "testPhone2.jpg", 
+                    "name": "Cool Phone", 
+                    "snippet": "This is a Super Amazing Phone"
+                });
+
+    $httpBackend.whenGET('error.json')
+                .respond(404);
 
   }));
   
   describe('Rendering one bbPhoneDetails directive in the DOM', function(){
     
-    var successPhoneDOM,
-        errorPhoneDOM;
-
+    var successPhoneLinkFn,
+        errorPhoneLinkFn,
+        successPhoneLinkedDOM,
+        errorPhoneLinkedDOM;
+    
     beforeEach(function(){
-      $httpBackend.whenGET('error.json').respond(404);
-      successPhoneDOM = $compile('<div bb-phone-details template-url="directives/BigData/phoneDetails.tpl.html" config="{url: \'test-phone.json\'}"></div>')(scope);
-      errorPhoneDOM = $compile('<div bb-phone-details template-url="directives/BigData/phoneDetails.tpl.html" config="{url: \'error.json\'}"></div>')(scope);
-      //apply needed, because the directive is watching the config for changes.
-      //this watch would never fire if the apply was not present.
-      scope.$apply();
-      $httpBackend.flush();
+      scope.configObj = {url: "test-phone.json"};
+      successPhoneLinkFn = $compile('<div bb-phone-details template-url="directives/BigData/phoneDetails.tpl.html" config="configObj"></div>');
+      errorPhoneLinkFn = $compile('<div bb-phone-details template-url="directives/BigData/phoneDetails.tpl.html" config="configObj"></div>');
     });
 
     afterEach(function() {
@@ -45,7 +55,15 @@ describe('bbPhoneListApp Demo', function () {
     });
 
     it('should contain the correct scope parameters based upon the configuration file', function(){
-      var phoneScope = successPhoneDOM.isolateScope();
+      successPhoneLinkedDOM = successPhoneLinkFn(scope);
+      //apply needed, because the directive is watching the config for changes.
+      //the directive’s watch would never fire if this apply was not present.
+      scope.$apply();
+      //flush function will execute the $httpBackend functions that have
+      //successfully matched. This will throw an error if nothing
+      //matches.
+      $httpBackend.flush();
+      var phoneScope = successPhoneLinkedDOM.isolateScope();
       expect(phoneScope.phone.age).toBe(1);
       expect(phoneScope.phone.id).toBe("xxx-xxx-xxxx");
       expect(phoneScope.phone.imageUrl).toBe("testPhone.jpg");
@@ -54,9 +72,30 @@ describe('bbPhoneListApp Demo', function () {
     });
 
     it('should contain a phone object that has only an error value', function(){
-      var phoneScope = errorPhoneDOM.isolateScope();
+      scope.configObj.url = "error.json";
+      errorPhoneLinkedDOM = errorPhoneLinkFn(scope);
+      scope.$apply();
+      $httpBackend.flush();
+      var phoneScope = errorPhoneLinkedDOM.isolateScope();
       expect(phoneScope.phone.error).toBe('no file exists');
       expect(phoneScope.phone.age).toBe(undefined);
+    });
+
+    it('should request for new data when the config file changes', function(){
+      var successPhoneLinkedDOM = successPhoneLinkFn(scope);
+      scope.$apply();
+      $httpBackend.flush();
+      scope.configObj.url = 'test-phone2.json';
+      //force the direcitve to go throught a diegest cycle, which should fire a watch function
+      //which should request for new data.
+      scope.$apply();
+      $httpBackend.flush();
+      var phoneScope = successPhoneLinkedDOM.isolateScope();
+      expect(phoneScope.phone.age).toBe(2);
+      expect(phoneScope.phone.id).toBe("yyy-xxx-xxxx");
+      expect(phoneScope.phone.imageUrl).toBe("testPhone2.jpg");
+      expect(phoneScope.phone.name).toBe("Cool Phone");
+      expect(phoneScope.phone.snippet).toBe("This is a Super Amazing Phone");
     });
   });
   
