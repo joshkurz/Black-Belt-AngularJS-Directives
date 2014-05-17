@@ -1,6 +1,6 @@
 //http://plnkr.co/edit/f4ZDCyOcud5WSEe9L0GO?p=preview
-//advanced http://plnkr.co/edit/TFnNrN938vpMoSoVbE79?p=preview
-var app = angular.module('angularjs-promise-example', ['ngRoute']);
+//advanced http://plnkr.co/edit/mBm7zjGIrBt6GLn9Mo0r?p=preview
+var app = angular.module('bbPhoneListApp', ['ngRoute', 'directives/BigData/phoneDetails.tpl.html']);
 
 app.config(function($routeProvider){
   $routeProvider.when('/', {
@@ -44,12 +44,11 @@ app.directive('bbPhoneDetails', ['phoneService', function(phoneService){
 
     function link(scope,element,attrs,controller){
       
-      scope.phone = {};
       scope.$watch('config', function(config){
         phoneService.getPhone(config).success(function(data) {
-          scope.phone.details = data.snippet;
+          scope.phone = data;
        }).error(function(){
-          scope.phone.details = 'error: no file exists';
+          scope.phone = {error: 'no file exists'};
        });
       },true); 
        
@@ -57,7 +56,9 @@ app.directive('bbPhoneDetails', ['phoneService', function(phoneService){
     
     return {
         restrict: 'A',
-        templateUrl: 'phoneDetails.tpl.html',
+        templateUrl: function(tElem,tAttrs){
+          return tAttrs.templateUrl || 'phoneDetails.tpl.html';
+        },
         scope: {config: '='},
         link: link
     };
