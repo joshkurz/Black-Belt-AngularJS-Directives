@@ -1,5 +1,5 @@
 describe("bbBarChart live data interaction", function () {
-	beforeEach(function() {
+    beforeEach(function() {
       browser.get('/dist/#/mediaelement');
     });
 

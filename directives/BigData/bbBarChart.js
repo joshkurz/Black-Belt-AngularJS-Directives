@@ -60,7 +60,7 @@ angular.module('AngularBlackBelt.BigData', ['AngularBlackBelt.BigDataCharts'])
         var graphData = [];
         angular.forEach(newData, function(dataItem) {
          var stats = dataItem.model['yt$statistics'];
-          if (stats) {
+         if (stats) {
             graphData.push({
               label: dataItem.label,
               value: parseInt(stats.viewCount, 10)
