@@ -65,6 +65,11 @@ angular.module('AngularBlackBelt.BigData', ['AngularBlackBelt.BigDataCharts'])
               label: dataItem.label,
               value: parseInt(stats.viewCount, 10)
             });
+          } else {
+            graphData.push({
+              label: dataItem.label,
+              value: 0
+            });
           }
         });
         if (graphData.length>0) {

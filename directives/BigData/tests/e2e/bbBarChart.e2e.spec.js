@@ -11,7 +11,7 @@ describe("bbBarChart live data interaction", function () {
       expect(bars.count()).toEqual(0);
       expect(mediaelementSource.count()).toEqual(0);
       typeahead.sendKeys('AngularJS');
-      expect(bars.count()).toEqual(29);
+      expect(bars.count()).toEqual(30);
       bars.first().click();
       expect(mediaelementSource.count()).toEqual(1);
     });
