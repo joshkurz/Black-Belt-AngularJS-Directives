@@ -1,8 +1,11 @@
 # Black Belt AngularJS Directives [![Build Status](https://travis-ci.org/joshkurz/Black-Belt-AngularJS-Directives.png?branch=master)](https://travis-ci.org/joshkurz/Black-Belt-AngularJS-Directives)
 
-A set of directives that showcase the many techniques AngularJS holds in the HTML5 world.
-
-[![Black-Belt-A](http://angulardirectives.joshkurz.net/dist/images/angularBlackBelt.png=333x)]
+<p align="center">
+  <a href="http://angulardirectives.joshkurz.net">
+    <img width="200" height="200" src="http://angulardirectives.joshkurz.net/dist/images/angularBlackBelt.png"/>
+  </a>
+  <br/>
+</p>
 
 # Requirements
 - JQuery
@@ -13,17 +16,20 @@ A set of directives that showcase the many techniques AngularJS holds in the HTM
 
 # Testing
 
-- Karma and grunt for testing. 
+### Karma and grunt for testing. 
 
-    * npm install -g grunt-cli
-    * npm install
-    * bower install
-    * grunt
+* npm install -g grunt-cli
+* npm install
+* bower install
+* grunt
+
+### Protractor for E2E testing
+* grunt protractor
 
 # Usage
 
 [bower](http://twitter.github.com/bower/) for dependency management.
-    * npm install
-    * bower install
-    * grunt
-    * http-server -c -1
+* npm install
+* bower install
+* grunt
+* http-server -c -1
