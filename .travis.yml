@@ -1,18 +1,18 @@
 language: node_js
 node_js:
-  - "0.10"
-
+- '0.10'
 branches:
   except:
-    - gh-pages
-
+  - gh-pages
 before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 before_script:
-  - npm install -g bower grunt-cli
-  - bower install
-  - node node_modules/protractor/bin/webdriver-manager update
-
-script: "grunt --verbose"
+- npm install --quiet -g bower grunt-cli
+- bower install
+- node node_modules/protractor/bin/webdriver-manager update
+script: grunt --verbose
+env:
+  global:
+  - secure: ABfpdCH+truwPFACWa4smFUHS/lZJKV7S7P9JlH6EjECbTn7u9x4AVSfQ7nin3XAlspxKtVWVlv3x+CHBvgKyFqWh8rAgiPQrp1HL3agU9MK6VJDHmx+S02Lmf8O93DVyIi2eVy2T0AsqY6CZiwZidgDpVAFnO8mbsdnlcHG1h8=
+  - secure: jSpj5Prd9c4FzVsKuwt1cKL0WguOGBkfV55kXP8Th3KTcsYX1iEK7yGqWXtgWo1oXk04Krs2FnezAt+ohQd7u1+lYxC80a7gZgLtQmF3Xbr0hZCRy+W37EnuHbV4ju7gfx7PP9GMCptqE2BHnaMPXBuDoVe+j3leGms1gyDt7dc=

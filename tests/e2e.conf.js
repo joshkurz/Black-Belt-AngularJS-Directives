@@ -13,7 +13,8 @@ exports.config = {
   // If the chromeOnly option is specified, no Selenium server will be started,
   // and chromeDriver will be used directly (from the location specified in
   // chromeDriver)
-
+  sauceUser : process.env.BLACKBELT_USERNAME,
+  sauceKey : process.env.BLACKBELT_KEY,
   // The location of the selenium standalone server .jar file, relative
   // to the location of this config. If no other method of starting selenium
   // is found, this will default to
@@ -75,7 +76,8 @@ exports.config = {
   // and
   // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER
   },
 
   // // If you would like to run more than one instance of webdriver on the same

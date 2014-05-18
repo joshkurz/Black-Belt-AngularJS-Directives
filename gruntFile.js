@@ -6,7 +6,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-protractor-runner');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'html2js', 'recess', 'build', 'karma', 'protractor']);
+  grunt.registerTask('default', ['jshint', 'html2js', 'recess', 'build', 'karma']);
 
   var testConfig = function(configFile, customOptions) {
     var options = { configFile: configFile, keepalive: true };

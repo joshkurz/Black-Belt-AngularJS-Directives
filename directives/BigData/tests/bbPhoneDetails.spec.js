@@ -1,5 +1,5 @@
 /*
-  This test showcases how directives can communicate with remote resources to 
+  These tests showcase how directives can communicate with remote resources to 
   accomplish their desired views. 
 */
 describe('bbPhoneListApp Demo', function () {
