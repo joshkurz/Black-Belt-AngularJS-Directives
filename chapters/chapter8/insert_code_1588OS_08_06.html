@@ -1,0 +1,12 @@
+<tr ng-class="{'bb-cool-trick': superhero.hasEffect == true}" ng-mouseenter="superhero.hasEffect = true;" ng-mouseleave="superhero.hasEffect = false;" ng-repeat="superhero in superheroes">
+              <td>
+                {{superhero.name}}
+                <div ng-class="{'bb-show-powers': superhero.hasEffect == true, 'ng-hide': !superhero.hasEffect}">
+                    <ul>
+                        <li ng-repeat="power in superhero.powers">
+                            {{power}}
+                        </li>
+                    </ul>
+                </div>
+              </td>
+            </tr>

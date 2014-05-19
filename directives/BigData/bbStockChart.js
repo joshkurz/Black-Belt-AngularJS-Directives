@@ -18,7 +18,7 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
 
       var tip = d3.tip()
         .attr('class', 'd3-tip')
-        .html(function(d) { return '<span> ' + d[d.length-1].tic + ' <br> $' + d[d.length-1].value + '</span>' ;})
+        .html(function(d) { return '<span> ' + d[d.length-1].tic + ' <br> Value: $' + d[d.length-1].value + ' <br> Time: ' + d[d.length-1].time + '</span>' ;})
         .offset([0 ,-65]);
 
       function rangeFunc(){
@@ -65,10 +65,10 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
 
         svg.call(tip);
 
-        xAxis = svg.append('g')
-            .attr('class', 'x axis')
-            .attr('transform', 'translate(0,' + height + ')')
-            .call(x.axis = d3.svg.axis().scale(x).orient('bottom'));
+        // xAxis = svg.append('g')
+        //     .attr('class', 'x axis')
+        //     .attr('transform', 'translate(0,' + height + ')')
+        //     .call(x.axis = d3.svg.axis().scale(x).orient('bottom'));
 
         //Define Y axis
         yAxis = svg.append('g')
@@ -98,8 +98,8 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
               scaleY;
 
           // slide the x-axis left
-          xAxis.transition()
-               .call();
+          // xAxis.transition()
+          //      .call();
 
           // // Shift domain
           x.domain([now - (limit - 2) * duration, now - duration]);

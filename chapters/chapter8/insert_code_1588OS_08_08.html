@@ -1,0 +1,10 @@
+<div tree-node-no-template>
+        <ul class="list-group"> 
+          <li class="list-group-item">
+            <span class="btn" ng-show="node.children && !node.show" ng-click="node.show=!node.show">[+]</span>
+            <span class="btn" ng-show="node.children && node.show" ng-click="node.show=!node.show">[-]</span>
+            {{node.name}}
+          </li>
+          <li ng-if="$parent.node.show" class="list-group-item childNode" ng-repeat="node in node.children" ng-transclude></li>
+        </ul>
+      </div>

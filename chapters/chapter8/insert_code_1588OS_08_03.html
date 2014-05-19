@@ -1,0 +1,28 @@
+<style>
+.player-repeat {
+    line-height:40px;
+    list-style:none;
+    box-sizing:border-box;
+}
+ 
+.player-repeat.ng-move,
+.player-repeat.ng-enter,
+.player-repeat.ng-leave {
+  -webkit-transition:all linear 0.2s;
+  transition:all linear 0.2s;
+}
+ 
+.player-repeat.ng-leave.ng-leave-active,
+.player-repeat.ng-move,
+.player-repeat.ng-enter {
+    opacity:0;
+    max-height:0;
+}
+
+.player-repeat.ng-leave,
+.player-repeat.ng-move.ng-move-active,
+.player-repeat.ng-enter.ng-enter-active {
+    opacity:1;
+    max-height:40px;
+}
+</style>

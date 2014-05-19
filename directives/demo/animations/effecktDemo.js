@@ -17,7 +17,7 @@ var app = angular.module('Effects', ['directives/demo/animations/animateMe.tpl.h
     $scope.listAnimationOptions = ['grow', 'curl', 'wave', 'fan', 'fade', 'fly', 'landing', 'swing-front', 'swing-back', 'twist', 'door', 'climb'];
     
 }])
-.directive('moveOver', ['$animate', function($animate){
+.directive('glowingDiv', ['$animate', function($animate){
    return {
       restrict: 'AC',
       scope: true,
@@ -26,7 +26,7 @@ var app = angular.module('Effects', ['directives/demo/animations/animateMe.tpl.h
 
         var parentNode = element.parent();
         scope.addElement = function(){
-            var toBeAnimatedNode = angular.element('<div class="animateMe">E.T. phone home</div>');
+            var toBeAnimatedNode = angular.element('<div class="animateMe">Hey Animate Me</div>');
             $animate.enter(toBeAnimatedNode, parentNode, element);
         };
       }

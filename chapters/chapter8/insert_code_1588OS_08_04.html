@@ -1,0 +1,20 @@
+<html>
+  <div class="bb-table-div">
+        <table class="table">
+          <thead>
+            <th>Name</th>
+          </thead>
+          <tbody>
+            <tr 
+ng-class="{'bb-cool-trick': superhero.hasEffect == true}" 
+ng-mouseenter="superhero.hasEffect = true;" 
+ng-mouseleave="superhero.hasEffect = false;" 
+ng-repeat="superhero in superheroes">
+               <td>
+                {{superhero.name}}
+               </td>
+            </tr>          
+          </tbody>
+        </table>
+    </div>
+</html>

@@ -1,0 +1,25 @@
+<div class="well container">
+    <button class="btn" ng-click="addPlayer()">Add Player</button>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Powers</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="player in players">
+                <td>{{$index}}</td>
+                <td>{{player.name}}</td>
+                <td>
+                    <div ng-repeat="power in player.powers">{{power}}</div>
+                </td>
+                <td>
+                    <button class="btn" ng-click="removePlayer($index)">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div> 

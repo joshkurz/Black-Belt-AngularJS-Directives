@@ -1,0 +1,10 @@
+.bb-show-powers {
+  animation:         super-cool-animation 0.2s; 
+  font-size: 30px;
+  background-color: skyblue;
+}
+@keyframes super-cool-animation {
+  0%   { opacity: 0; font-size: 10px;}
+  50%  {opacity: 0.5; font-size: 20px;}
+  100% { opacity: 1; font-size: 30px;}
+}
