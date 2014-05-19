@@ -11,7 +11,7 @@ angular.module("directives/demo/flowplayer/flowplayerDemo.tpl.html", []).run(["$
     "  </div>\n" +
     "  <div ng-if=\"buttonText == 'Playlist Player'\" class=\"alert\">Select the Dots to change the Video.</div>\n" +
     "  <div class=\"btn-group offsetTop\">\n" +
-    "    <div class=\"btn btn-default\" ng-class=\"{'active': currentFlowplayer == 'directives/mediaPlayer/pureHtml5Player.tpl.html'}\" ng-click=\"changeFlowPlayer('directives/mediaPlayer/pureHtml5Player.tpl.html')\">Pure HTML 5</div>\n" +
+    "    <!-- <div class=\"btn btn-default\" ng-class=\"{'active': currentFlowplayer == 'directives/mediaPlayer/pureHtml5Player.tpl.html'}\" ng-click=\"changeFlowPlayer('directives/mediaPlayer/pureHtml5Player.tpl.html')\">Pure HTML 5</div> -->\n" +
     "    <div class=\"btn btn-default\" ng-class=\"{'active': currentFlowplayer == 'directives/mediaPlayer/flowplayer.tpl.html'}\" ng-click=\"changeFlowPlayer('directives/mediaPlayer/flowplayer.tpl.html')\">Pre-Roll</div>\n" +
     "    <div class=\"btn btn-default\" ng-class=\"{'active': currentFlowplayer == 'directives/mediaPlayer/flowplayerSlideshow.tpl.html'}\" ng-click=\"changeFlowPlayer('directives/mediaPlayer/flowplayerSlideshow.tpl.html')\">Playlist</div>\n" +
     "  </div>\n" +
