@@ -89,7 +89,7 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
         }
       }
 
-      function tick() {
+      function renderGraph() {
          
           now = new Date();
           var group,
@@ -139,7 +139,7 @@ angular.module('AngularBlackBelt.BigDataCharts', [])
         resetGroups(scope.tickers);
       });
 
-      var killWatcher = scope.$watchCollection('data', tick);
+      var killWatcher = scope.$watchCollection('data', renderGraph);
 
       scope.$on('$destroy', function(elem){
         killWatcher();

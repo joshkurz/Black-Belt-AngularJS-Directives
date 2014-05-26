@@ -3,11 +3,11 @@ app.directive('bbPhoneDetails', ['phoneService', function(phoneService){
     function link(scope,element,attrs,controller){
       
       scope.$watch('config', function(config){
-        phoneService.getPhone(config).success(function(data) {
-          scope.phone = data;
-       }).error(function(){
+        phoneService.getPhone(config).then(function(request) {
+          scope.phone = request.data;
+        },function(){
           scope.phone = {error: 'no file exists'};
-       });
+        });
       },true); 
        
     }

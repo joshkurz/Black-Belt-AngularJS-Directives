@@ -1,13 +1,17 @@
 app.service('phoneService', function($http, $q) {
 
     this.getPhones = function() {
-       var deferred = $q.defer();
-       $http.get('phones.json').success(function(data) {
-          deferred.resolve(data);
-       }).error(function(error){
-          deferred.reject(error);
+       var request = $http.get('phones.json'),
+           promise;
+           
+       promise = request.then(function(response) {
+          return response.data;
+       },function(errorResponse){
+          return errorResponse;
        });
-       return deferred.promise;
-    }
+       
+       return promise;
+    } 
+
 
 });

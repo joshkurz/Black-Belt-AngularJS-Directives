@@ -33,3 +33,9 @@ describe('bbPhoneListApp Demo', function () {
     $httpBackend.whenGET('error.json')
                 .respond(404);
   }));
+
+  beforeEach(function(){
+      scope.configObj = {url: "test-phone.json"};
+      successPhoneLinkFn = $compile('<div bb-phone-details config="configObj"></div>');
+      errorPhoneLinkFn = $compile('<div bb-phone-details config="configObj"></div>');
+  });

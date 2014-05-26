@@ -3,7 +3,7 @@ it('should request for new data when the config file changes', function(){
       scope.$apply();
       $httpBackend.flush();
       scope.configObj.url = 'test-phone2.json';
-      //force the direcitve to go throught a diegest cycle, which should fire a watch function
+      //force the directive to go through a digest cycle, which should fire a watch function
       //which should request for new data.
       scope.$apply();
       $httpBackend.flush();
