@@ -11,7 +11,7 @@ angular.module("directives/demo/mediaelement/mediaelementView.tpl.html", []).run
     "  </div>\n" +
     "  <div class=\"alert alert-warning alignTextLeft\">\n" +
     "    <label for=\"youtubeSearch\">Search YouTube</label>\n" +
-    "    <input type=\"text\" name=\"youtubeSearch\" ng-model=\"result\" typeahead=\"suggestion as suggestion.title.$t for suggestion in videoSearch($viewValue)\">\n" +
+    "    <input type=\"text\" name=\"youtubeSearch\" ng-model=\"result\" typeahead=\"suggestion as suggestion.snippet.title for suggestion in videoSearch($viewValue)\">\n" +
     "  </div>\n" +
     "  <label>{{activeVideo.title}}</label>\n" +
     "  <div bb-media-player media-type=\"mediaelementplayer\" video-config=\"activeVideo\" template-url=\"{{currentMediaPlayer}}\"></div>\n" +

@@ -3,6 +3,7 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
 
     var activeVideo = $location.search().activeVideo;
     var activeYoutubeVideo = $location.search().youtube;
+    var QUERY = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&key=AIzaSyCK1kB2dMz_L05EuIMyLZWnTXxYnjS1-cM&type=video&callback=JSON_CALLBACK&q=";
 
     $scope.videos = [
       {
@@ -23,8 +24,8 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
     ];
 
     $scope.videoSearch = function(youtubeTitle) {
-      return $http.jsonp("https://gdata.youtube.com/feeds/api/videos?alt=json-in-script&start-index=11&max-results=30&v=2&callback=JSON_CALLBACK&q="+youtubeTitle).then(function(response){
-        return response.data.feed.entry;
+      return $http.jsonp(QUERY+youtubeTitle).then(function(response){
+        return response.data.items;
       });
     };
     
@@ -36,16 +37,14 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
 
     $scope.$watch('result', function(newV, oldV){
        if(typeof newV === 'object' && newV !== oldV){
-         var src = $scope.result.content.src.split('?')[0];
-         var splitArray = $scope.result.content.src.split('/');
-         var token = splitArray[splitArray.length-1].split('?')[0];
-         src = 'http://www.youtube.com/watch?v=' + token;
+         var id = newV.id.videoId;
+         var src = 'https://www.youtube.com/watch?v=' + id;
          $scope.activeVideo = {
           filePath: src,
-          thumbnail: $scope.result['media$group']['media$thumbnail'][0].url,
-          title: $scope.result.title.$t
+          thumbnail: newV.snippet.thumbnails.default,
+          title: newV.snippet.title
          };
-         $location.search('youtube', token);
+         $location.search('youtube', id);
          $scope.currentMediaPlayer = "directives/mediaelement/youtubeMediaelementPlayer.tpl.html";
        }
     });
