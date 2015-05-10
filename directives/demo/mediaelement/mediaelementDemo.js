@@ -41,7 +41,7 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
          var src = 'https://www.youtube.com/watch?v=' + id;
          $scope.activeVideo = {
           filePath: src,
-          thumbnail: newV.snippet.thumbnails.default,
+          thumbnail: newV.snippet.thumbnails['default'],
           title: newV.snippet.title
          };
          $location.search('youtube', id);
