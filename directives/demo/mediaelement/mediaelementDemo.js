@@ -32,7 +32,7 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
     };
 
     $scope.watchRtmp = function(src) {
-      $scope.activeVideo = {src: (typeof src === String && src.indexOf('rtmp') !== -1 ) ? decodeURIComponent(src) : "rtmp://45.55.189.251/live/test", 
+      $scope.activeVideo = {src: (typeof src === String && src.indexOf('rtmp') !== -1 ) ? decodeURIComponent(src) : "rtmp://45.55.189.251/live/cashmoney", 
                             thumbnail: '/dist/images/OBS.png',
                             options: {}, isRTMP: true};
       $location.search('youtube', null);
