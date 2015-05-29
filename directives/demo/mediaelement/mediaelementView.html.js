@@ -16,7 +16,7 @@ angular.module("directives/demo/mediaelement/mediaelementView.tpl.html", []).run
     "    </div>\n" +
     "    \n" +
     "    <div class=\"col-lg-6 alignTextLeft\">\n" +
-    "      <p>Enter any valid RTMP stream here and hit play. Then sit back and enjoy your live stream. Currently it's set on the default <a href=\"kurzstream.joshkurz.net\">Kurz Stream</a>.</p>\n" +
+    "      <p>Enter any valid RTMP stream here and hit play. Then sit back and enjoy your live stream. Currently it's set on the default Cash Money Stream. Cash Money is the turtles name.</p>\n" +
     "      <div class=\"btn btn-primary\" ng-click=\"watchRtmp()\">Watch RTMP</div>\n" +
     "      <label for=\"RTMPsrc\">Live Stream Custom RTMP</label>\n" +
     "      <input type=\"text\" name=\"RTMPsrc\" ng-model=\"activeVideo.src\" placeholder=\"Enter an RTMP Stream\">\n" +
