@@ -8,16 +8,16 @@
 
   <div class="row">
     <div class="col-lg-6 alignTextLeft">
-      <p>Type into the search box you will see YouTube statistics of views alongside of the search result</p>
-      <label for="youtubeSearch">Search YouTube</label>
-      <input type="text" name="youtubeSearch" ng-model="result" typeahead="suggestion as suggestion.snippet.title for suggestion in videoSearch($viewValue)">
-    </div>
-    
-    <div class="col-lg-6 alignTextLeft">
-      <p>Enter any valid RTMP stream here and hit play. Then sit back and enjoy your live stream. Currently it's set on the default Cash Money Stream. Cash Money is the turtles name.</p>
+      <p>Hit Play and Enter any valid RTMP stream here. Then sit back and enjoy your live stream. Currently it's set on the default Cash Money Stream. Cash Money is the turtle's name.</p>
       <div class="btn btn-primary" ng-click="watchRtmp()">Watch RTMP</div>
       <label for="RTMPsrc">Live Stream Custom RTMP</label>
       <input type="text" name="RTMPsrc" ng-model="activeVideo.src" placeholder="Enter an RTMP Stream">
+    </div>
+
+    <div class="col-lg-6 alignTextLeft">
+      <p>Type into the search box and select a video you would like to watch.</p>
+      <label for="youtubeSearch">Search YouTube</label>
+      <input type="text" name="youtubeSearch" ng-model="result" typeahead="suggestion as suggestion.snippet.title for suggestion in videoSearch($viewValue)">
     </div>
   </div>
 

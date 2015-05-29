@@ -10,16 +10,16 @@ angular.module("directives/demo/mediaelement/mediaelementView.tpl.html", []).run
     "\n" +
     "  <div class=\"row\">\n" +
     "    <div class=\"col-lg-6 alignTextLeft\">\n" +
-    "      <p>Type into the search box you will see YouTube statistics of views alongside of the search result</p>\n" +
-    "      <label for=\"youtubeSearch\">Search YouTube</label>\n" +
-    "      <input type=\"text\" name=\"youtubeSearch\" ng-model=\"result\" typeahead=\"suggestion as suggestion.snippet.title for suggestion in videoSearch($viewValue)\">\n" +
-    "    </div>\n" +
-    "    \n" +
-    "    <div class=\"col-lg-6 alignTextLeft\">\n" +
-    "      <p>Enter any valid RTMP stream here and hit play. Then sit back and enjoy your live stream. Currently it's set on the default Cash Money Stream. Cash Money is the turtles name.</p>\n" +
+    "      <p>Hit Play and Enter any valid RTMP stream here. Then sit back and enjoy your live stream. Currently it's set on the default Cash Money Stream. Cash Money is the turtle's name.</p>\n" +
     "      <div class=\"btn btn-primary\" ng-click=\"watchRtmp()\">Watch RTMP</div>\n" +
     "      <label for=\"RTMPsrc\">Live Stream Custom RTMP</label>\n" +
     "      <input type=\"text\" name=\"RTMPsrc\" ng-model=\"activeVideo.src\" placeholder=\"Enter an RTMP Stream\">\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"col-lg-6 alignTextLeft\">\n" +
+    "      <p>Type into the search box and select a video you would like to watch.</p>\n" +
+    "      <label for=\"youtubeSearch\">Search YouTube</label>\n" +
+    "      <input type=\"text\" name=\"youtubeSearch\" ng-model=\"result\" typeahead=\"suggestion as suggestion.snippet.title for suggestion in videoSearch($viewValue)\">\n" +
     "    </div>\n" +
     "  </div>\n" +
     "\n" +
