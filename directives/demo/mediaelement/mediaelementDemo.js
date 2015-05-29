@@ -65,8 +65,6 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
        }
     });
 
-    console.log(search.stream)
-
     if (search.stream) {
       $scope.watchRtmp(search.stream);
     } else if(!activeYoutubeVideo){
