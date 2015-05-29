@@ -5,5 +5,7 @@ bower_components/
 dist/*.js
 dist/*.css
 directives/**/*.html.js
+.DS_STORE
+dist/.DS_STORE
 *.iml
 npm-debug.log

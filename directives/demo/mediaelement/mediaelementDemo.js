@@ -1,8 +1,10 @@
 angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelement/mediaelementView.tpl.html'])
 .controller('mediaelementCtrl', ['$scope', '$location', '$http', function($scope, $location, $http){
 
-    var activeVideo = $location.search().activeVideo;
-    var activeYoutubeVideo = $location.search().youtube;
+    var search = $location.search(),
+        activeVideo = search.activeVideo,
+        activeYoutubeVideo = search.youtube;
+
     var QUERY = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&key=AIzaSyCK1kB2dMz_L05EuIMyLZWnTXxYnjS1-cM&type=video&callback=JSON_CALLBACK&q=";
 
     $scope.videos = [
@@ -28,9 +30,21 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
         return response.data.items;
       });
     };
+
+    $scope.watchRtmp = function(src) {
+      $scope.activeVideo = {src: (typeof src === String && src.indexOf('rtmp') !== -1 ) ? decodeURIComponent(src) : "rtmp://45.55.189.251/live/test", 
+                            thumbnail: '/dist/images/OBS.png',
+                            options: {}, isRTMP: true};
+      $location.search('youtube', null);
+      $location.search('activeVideo', null);
+      $location.search('stream', true);
+      $scope.currentMediaPlayer = "directives/mediaelement/mediaelementRTMP.tpl.html";
+    };
     
     $scope.setActiveVideo = function(index){
       $scope.activeVideo = $scope.videos[index];
+      $location.search('stream', null);
+      $location.search('youtube', null);
       $location.search('activeVideo', index);
       $scope.currentMediaPlayer = "directives/mediaelement/mediaelement.tpl.html";
     };
@@ -44,12 +58,18 @@ angular.module('AngularBlackBelt.demo/mediaelement', ['directives/demo/mediaelem
           thumbnail: newV.snippet.thumbnails['default'],
           title: newV.snippet.title
          };
+         $location.search('stream', null);
+         $location.search('activeVideo', null);
          $location.search('youtube', id);
          $scope.currentMediaPlayer = "directives/mediaelement/youtubeMediaelementPlayer.tpl.html";
        }
     });
 
-    if(!activeYoutubeVideo){
+    console.log(search.stream)
+
+    if (search.stream) {
+      $scope.watchRtmp(search.stream);
+    } else if(!activeYoutubeVideo){
       $scope.currentMediaPlayer = "directives/mediaelement/mediaelement.tpl.html";
       $scope.activeVideo = $scope.videos[activeVideo?activeVideo:1];
     } else {

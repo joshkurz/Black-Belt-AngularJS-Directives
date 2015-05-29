@@ -4,16 +4,28 @@
         <h1>Mediaelement</h1>
     </span>
     <a href="http://mediaelementjs.com/">mediaelement.js</a>
-    <p>This media-player directive is using a YouTube mediaelement template, that allows the video player to play YouTube videos. 
-       If you type into the search box you will see YouTube statistics of views alongside of the search result</p>
   </div>
-  <div class="alert alert-warning alignTextLeft">
-    <label for="youtubeSearch">Search YouTube</label>
-    <input type="text" name="youtubeSearch" ng-model="result" typeahead="suggestion as suggestion.snippet.title for suggestion in videoSearch($viewValue)">
+
+  <div class="row">
+    <div class="col-lg-6 alignTextLeft">
+      <p>Type into the search box you will see YouTube statistics of views alongside of the search result</p>
+      <label for="youtubeSearch">Search YouTube</label>
+      <input type="text" name="youtubeSearch" ng-model="result" typeahead="suggestion as suggestion.snippet.title for suggestion in videoSearch($viewValue)">
+    </div>
+    
+    <div class="col-lg-6 alignTextLeft">
+      <p>Enter any valid RTMP stream here and hit play. Then sit back and enjoy your live stream. Currently it's set on the default <a href="kurzstream.joshkurz.net">Kurz Stream</a>.</p>
+      <div class="btn btn-primary" ng-click="watchRtmp()">Watch RTMP</div>
+      <label for="RTMPsrc">Live Stream Custom RTMP</label>
+      <input type="text" name="RTMPsrc" ng-model="activeVideo.src" placeholder="Enter an RTMP Stream">
+    </div>
   </div>
+
+  <hr>
+
   <label>{{activeVideo.title}}</label>
   <div bb-media-player media-type="mediaelementplayer" video-config="activeVideo" template-url="{{currentMediaPlayer}}"></div>
-  <div class="alert">Suggested Titles</div>
+  <div class="alert">Suggested</div>
   <div class="btn-group">
     <div ng-repeat="video in videos" class="btn">
       <img ng-click="setActiveVideo($index)" class="thumbnail videoThumbnail" ng-src="{{video.thumbnail}}">

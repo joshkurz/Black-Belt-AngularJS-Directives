@@ -1,4 +1,4 @@
-angular.module('AngularBlackBelt.mediaPlayer', ['directives/mediaPlayer/flowplayer.tpl.html','directives/mediaPlayer/flowplayerSlideshow.tpl.html', 'directives/mediaPlayer/pureHtml5Player.tpl.html'])
+angular.module('AngularBlackBelt.mediaPlayer', ['directives/mediaPlayer/flowplayer.tpl.html','directives/mediaPlayer/flowplayerSlideshow.tpl.html', 'directives/mediaPlayer/pureHtml5Player.tpl.html', 'directives/mediaelement/mediaelementRTMP.tpl.html'])
 .directive('bbMediaPlayer', ['$sce', '$compile', '$templateCache', '$timeout', function($sce, $compile, $templateCache, $timeout) {
     return {
         restrict: 'A',
